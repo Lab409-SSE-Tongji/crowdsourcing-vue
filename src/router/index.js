@@ -18,16 +18,16 @@ export default new Router({
                     component: resolve => require(['../components/page/Readme.vue'], resolve)
                 },
                 {
-                    path: '/basetable',
-                    component: resolve => require(['../components/page/BaseTable.vue'], resolve)
+                    path: '/skill',
+                    component: resolve => require(['../components/page/Skill.vue'], resolve)
                 },
                 {
-                    path: '/vuetable',
-                    component: resolve => require(['../components/page/VueTable.vue'], resolve)     // vue-datasource组件
+                    path: '/requirement',
+                    component: resolve => require(['../components/page/Requirement.vue'], resolve)     // vue-datasource组件
                 },
                 {
-                    path: '/baseform',
-                    component: resolve => require(['../components/page/BaseForm.vue'], resolve)
+                    path: '/create',
+                    component: resolve => require(['../components/page/CreateRequirement.vue'], resolve)
                 },
                 {
                     path: '/vueeditor',
@@ -38,8 +38,8 @@ export default new Router({
                     component: resolve => require(['../components/page/Markdown.vue'], resolve)     // Vue-Quill-Editor组件
                 },
                 {
-                    path: '/upload',
-                    component: resolve => require(['../components/page/Upload.vue'], resolve)       // Vue-Core-Image-Upload组件
+                    path: '/skillupload',
+                    component: resolve => require(['../components/page/SkillUpload.vue'], resolve)       // Vue-Core-Image-Upload组件
                 },
                 {
                     path: '/basecharts',

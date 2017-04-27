@@ -204,16 +204,5 @@
     	display:block;
     	padding-top:.75em;
     }
-    .operation{
-    	flex:6;
-    	padding-left:5em;
-    	padding-top:.74em;
-    	font-size:14px;
-    	color:#333;
 
-    }
-    .el-icon-edit{
-    	padding-right:1em;
-    	color:#4289dc;
-    }
 </style>
