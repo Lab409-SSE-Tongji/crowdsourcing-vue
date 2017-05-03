@@ -3,7 +3,7 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
-                <el-breadcrumb-item>创建需求</el-breadcrumb-item>
+                <el-breadcrumb-item >创建需求</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="form-box">
@@ -92,7 +92,10 @@
         methods: {
             onSubmit() {
                 this.$message.success('提交成功！');
-            }
+            },
+//            jumpTo:function(){
+//                this.$router.push({ path: '/estimation/estimationindex'})
+//            }
         }
     }
 </script>

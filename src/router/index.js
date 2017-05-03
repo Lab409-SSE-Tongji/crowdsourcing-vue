@@ -48,6 +48,35 @@ export default new Router({
                 {
                     path: '/mixcharts',
                     component: resolve => require(['../components/page/MixCharts.vue'], resolve)    // vue-echarts-v3组件
+                },
+
+                {
+                    path: '/estimationstep1',
+                        component: resolve => require(['../components/page/estimation/estimationstep1.vue'], resolve)    // estimationstep1
+                },
+                {
+                    path: '/estimationstep2',
+                        component: resolve => require(['../components/page/estimation/estimationstep2.vue'], resolve)    // estimationstep2
+                },
+                {
+                    path: '/estimationstep3',
+                        component: resolve => require(['../components/page/estimation/estimationstep3.vue'], resolve)    // estimationstep3
+                },
+                {
+                    path: '/estimationstep4',
+                        component: resolve => require(['../components/page/estimation/estimationstep4.vue'], resolve)    // estimationstep4
+                },
+                {
+                    path: '/estimationindex',
+                        component: resolve => require(['../components/page/estimation/estimationindex.vue'], resolve)    // estimationindex
+                },
+                {
+                    path: '/estimationrecords',
+                        component: resolve => require(['../components/page/estimation/estimationrecords.vue'], resolve)    // estimationrecords
+                },
+                {
+                    path: '/estimationreport',
+                        component: resolve => require(['../components/page/estimation/estimationreport.vue'], resolve)    // estimationreport
                 }
             ]
         },
