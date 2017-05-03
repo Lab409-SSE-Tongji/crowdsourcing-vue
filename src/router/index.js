@@ -1,4 +1,4 @@
-import Vue from 'vue';
+    import Vue from 'vue';
 import Router from 'vue-router';
 
 Vue.use(Router);
@@ -28,6 +28,30 @@ export default new Router({
                 {
                     path: '/baseform',
                     component: resolve => require(['../components/page/BaseForm.vue'], resolve)
+                },
+                {
+                    path: '/step1',
+                    component: resolve => require(['../components/page/StepOne.vue'], resolve)
+                },
+                {
+                    path: '/step2',
+                    component: resolve => require(['../components/page/StepTwo.vue'], resolve)
+                },
+                {
+                    path: '/step3',
+                    component: resolve => require(['../components/page/StepThree.vue'], resolve)
+                },
+                {
+                    path: '/step4',
+                    component: resolve => require(['../components/page/StepFour.vue'], resolve)
+                },
+                {
+                    path: '/records',
+                    component: resolve => require(['../components/page/EstimationRecords.vue'], resolve)
+                },
+                {
+                    path: '/report',
+                    component: resolve => require(['../components/page/EstimationReport.vue'], resolve)
                 },
                 {
                     path: '/vueeditor',
