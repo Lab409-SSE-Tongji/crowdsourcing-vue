@@ -26,7 +26,7 @@ export default new Router({
                     component: resolve => require(['../components/page/Requirement.vue'], resolve)     // vue-datasource组件
                 },
                 {
-                    path: '/create',
+                    path: '/create_requirement',
                     component: resolve => require(['../components/page/CreateRequirement.vue'], resolve)
                 },
                 {
@@ -59,6 +59,6 @@ export default new Router({
             path:'/register',
             component:resolve =>require(['../components/page/Register.vue'],resolve)
         },
-        
+
     ]
 })

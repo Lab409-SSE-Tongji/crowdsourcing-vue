@@ -17,6 +17,27 @@
                                extensions="png,gif,jpeg,jpg"
                                @:imageuploaded="imageuploaded"
                                @:errorhandle="handleError"></vue-core-image-upload>
+        <hr>
+        <div class="content-title">新增项目经历</div>
+        <hr>
+        <el-form :label-position="labelPosition" label-width="8em" :model="formLabelAlign">
+          <el-form-item label="项目名称">
+            <el-input v-model="formLabelAlign.name"></el-input>
+          </el-form-item>
+          <el-form-item label="项目分类">
+            <el-input v-model="formLabelAlign.region"></el-input>
+          </el-form-item>
+          <el-form-item label="项目地址">
+            <el-input v-model="formLabelAlign.type"></el-input>
+          </el-form-item>
+          <el-form-item label="项目简介">
+              <el-input type="textarea" rows="4" v-model="formLabelAlign.text"></el-input>
+          </el-form-item>
+          <el-form-item>
+              <el-button type="primary" @click="onSubmit">提交</el-button>
+              <el-button>取消</el-button>
+          </el-form-item>
+        </el-form>
     </div>
 </template>
 
@@ -25,8 +46,14 @@
     export default {
         data: function(){
             return {
+               labelPosition: 'left',
                 src: '../../../static/img/img.jpg',
-                fileList: []
+                formLabelAlign: {
+                   name: '',
+                   region: '',
+                   type: '',
+                   text:''
+               }
             }
         },
         components: {
@@ -47,6 +74,9 @@
                     title: '上传失败',
                     message: '图片上传接口上传失败，可更改为自己的服务器接口'
                 });
+            },
+            onSubmit() {
+                this.$message.success('提交成功！');
             }
         }
     }
@@ -72,5 +102,11 @@
         border:0;
         border-top:1px solid #f4f4f4;
         padding:0;
+    }
+    .el-input{
+      width: 30%;
+    }
+    .el-textarea{
+      width:40%;
     }
 </style>

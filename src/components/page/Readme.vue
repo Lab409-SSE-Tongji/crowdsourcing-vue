@@ -7,7 +7,7 @@
             </el-breadcrumb>
         </div>
         <div class="ms-doc">
-            
+
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content">
@@ -17,90 +17,90 @@
                         </div>
 
 
-                        <div class="contact"> 
+                        <div class="contact">
                         	<h1>联系方式</h1>
                         	<hr>
                         	<el-row :gutter="10">
 								<el-col :xs="8" :sm="6" :md="4" :lg="3">
 									<div class="item-head">
-										<span>邮箱</span> 
-									</div> 
+										<span>邮箱</span>
+									</div>
 								</el-col>
-								<el-col :xs="4" :sm="6" :md="8" :lg="9"> 
-									<div class="bg-purple-light item-content"> 
+								<el-col :xs="4" :sm="6" :md="8" :lg="9">
+									<div class="bg-purple-light item-content">
 										<div class="input-message">
 											<span class="email">recall52@163.com</span>
 										</div>
-									</div> 
+									</div>
 								</el-col>
 							</el-row>
 
 					      	<el-row :gutter="10">
 								<el-col :xs="8" :sm="6" :md="4" :lg="3">
 									<div class="item-head">
-										<span>手机</span> 
-									</div> 
+										<span>手机</span>
+									</div>
 								</el-col>
-								<el-col :xs="4" :sm="6" :md="8" :lg="9"> 
-									<div class="bg-purple-light item-content"> 
+								<el-col :xs="4" :sm="6" :md="8" :lg="9">
+									<div class="bg-purple-light item-content">
 										<div class="input-message">
 											<span class="email">17621060896</span>
 										</div>
-									</div> 
+									</div>
 								</el-col>
 							</el-row>
                         </div>
 
-                        <div class="detail"> 
+                        <div class="detail">
                         	<h1>个人资料</h1>
                         	<hr>
                         	<el-row :gutter="10">
 								<el-col :xs="8" :sm="6" :md="4" :lg="3">
 									<div class="item-head">
-										<span>姓名</span> 
-									</div> 
+										<span>姓名</span>
+									</div>
 								</el-col>
-								<el-col :xs="4" :sm="6" :md="8" :lg="9"> 
-									<div class="bg-purple-light item-content"> 
+								<el-col :xs="4" :sm="6" :md="8" :lg="9">
+									<div class="bg-purple-light item-content">
 										<div class="input-message">
 											<span class="email">邱娟</span>
 										</div>
-									</div> 
+									</div>
 								</el-col>
 							</el-row>
 
 							<el-row :gutter="10">
 								<el-col :xs="8" :sm="6" :md="4" :lg="3">
 									<div class="item-head">
-										<span>性别</span> 
-									</div> 
+										<span>性别</span>
+									</div>
 								</el-col>
-								<el-col :xs="4" :sm="6" :md="8" :lg="9"> 
-									<div class="bg-purple-light item-content"> 
+								<el-col :xs="4" :sm="6" :md="8" :lg="9">
+									<div class="bg-purple-light item-content">
 										<div class="input-message">
 											<span class="email">男</span>
 										</div>
-									</div> 
+									</div>
 								</el-col>
 							</el-row>
 
 							<el-row :gutter="10">
 								<el-col :xs="8" :sm="6" :md="4" :lg="3">
 									<div class="item-head">
-										<span>职业</span> 
-									</div> 
+										<span>职业</span>
+									</div>
 								</el-col>
-								<el-col :xs="4" :sm="6" :md="8" :lg="9"> 
-									<div class="bg-purple-light item-content"> 
+								<el-col :xs="4" :sm="6" :md="8" :lg="9">
+									<div class="bg-purple-light item-content">
 										<div class="input-message">
 											<span class="email">软件工程师</span>
 										</div>
-									</div> 
+									</div>
 								</el-col>
 							</el-row>
                         </div>
 
-                        <div class="edit"> 
+                        <div class="edit">
                         	<hr>
                         	<el-button :plain="true" type="success">修改资料</el-button>
                         </div>
@@ -142,7 +142,7 @@
         max-width: 720px;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     }
-    
+
     .el-row {
         margin-bottom: 20px;
         &:last-child {
@@ -152,10 +152,10 @@
     .el-col {
         border-radius: 4px;
     }
-    
+
     .bg-purple-light{
     	background:#f4f4f4;
-    	
+
     }
     .user-logo {
     	display: inline-block;

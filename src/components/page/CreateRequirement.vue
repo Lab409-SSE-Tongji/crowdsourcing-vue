@@ -47,7 +47,7 @@
                 <el-form-item label="项目简介">
                     <el-input type="textarea" v-model="form.desc"></el-input>
                 </el-form-item>
-                
+
                 <el-form-item label="附件上传">
                     <el-upload
                     action="/api/posts/"
@@ -67,7 +67,7 @@
                     <el-button>取消</el-button>
                 </el-form-item>
             </el-form>
-            
+
         </div>
 
     </div>
