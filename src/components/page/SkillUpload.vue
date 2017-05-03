@@ -2,33 +2,13 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-date"></i> 表单</el-breadcrumb-item>
-                <el-breadcrumb-item>图片上传</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-date"></i>技能展示</el-breadcrumb-item>
+                <el-breadcrumb-item>新增技能</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <div class="content-title">支持拖拽</div>
-        <div class="plugins-tips">
-            Element UI自带上传组件。
-            访问地址：<a href="http://element.eleme.io/#/zh-CN/component/upload" target="_blank">Element UI Upload</a>
-        </div>
-        <el-upload
-                action="/api/posts/"
-                type="drag"
-                :thumbnail-mode="true"
-                :on-preview="handlePreview"
-                :on-remove="handleRemove"
-                :on-error="handleError"
-                :default-file-list="fileList"
-        >
-            <i class="el-icon-upload"></i>
-            <div class="el-dragger__text">将文件拖到此处，或<em>点击上传</em></div>
-            <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-        </el-upload>
-        <div class="content-title">支持裁剪</div>
-        <div class="plugins-tips">
-            Vue-Core-Image-Upload：一款轻量级的vue上传插件，支持裁剪。
-            访问地址：<a href="https://github.com/Vanthink-UED/vue-core-image-upload" target="_blank">Vue-Core-Image-Upload</a>
-        </div>
+
+        <div class="content-title">上传证书</div>
+        <hr>
         <img class="pre-img" :src="src" alt="">
         <vue-core-image-upload :class="['pure-button','pure-button-primary','js-btn-crop']"
                                :crop="true"
@@ -84,5 +64,13 @@
         width:250px;
         height: 250px;
         margin-bottom: 20px;
+    }
+    hr{
+        margin:.8em 0 1em;
+        display:block;
+        height:1px;
+        border:0;
+        border-top:1px solid #f4f4f4;
+        padding:0;
     }
 </style>
