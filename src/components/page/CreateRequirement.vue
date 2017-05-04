@@ -10,7 +10,7 @@
             <el-form ref="form" :model="form" label-width="80px">            
                 <el-form-item>
                     <el-button type="primary" @click="jumpTo">创建需求</el-button>
-                    <el-button type="primary" @click="records">项目记录</el-button>
+                    <el-button type="primary" @click="records">高级估算</el-button>
                 </el-form-item>
             </el-form>
             
