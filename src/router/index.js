@@ -22,6 +22,10 @@ export default new Router({
                     component: resolve => require(['../components/page/Skill.vue'], resolve)
                 },
                 {
+                    path: '/inputrequirement',
+                    component: resolve => require(['../components/page/InputRequirement.vue'], resolve)     // vue-datasource组件
+                },
+                {
                     path: '/requirement',
                     component: resolve => require(['../components/page/Requirement.vue'], resolve)     // vue-datasource组件
                 },

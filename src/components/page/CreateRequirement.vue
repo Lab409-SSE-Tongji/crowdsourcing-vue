@@ -9,8 +9,8 @@
         <div class="form-box">
             <el-form ref="form" :model="form" label-width="80px">            
                 <el-form-item>
-                    <el-button type="primary" @click="jumpTo">创建需求</el-button>
-                    <el-button type="primary" @click="records">高级估算</el-button>
+                    <el-button type="primary" @click="requirement">创建需求</el-button>
+                    <el-button type="primary" @click="estimation">高级估算</el-button>
                 </el-form-item>
             </el-form>
             
@@ -36,11 +36,11 @@
             }
         },
         methods: {
-            records:function(){
-                this.$router.push( {path:'/records'});
-            },
-            jumpTo:function(){
+            estimation:function(){
                 this.$router.push( {path:'/step1'});
+            },
+            requirement:function(){
+                this.$router.push( {path:'/inputrequirement'});
             }
         }
     }
