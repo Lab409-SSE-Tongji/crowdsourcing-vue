@@ -151,7 +151,6 @@ a{
 }
 .container > header{
     padding: 20px 30px 10px 30px;
-    margin: 0 20% 10% 20%;
     position: relative;
     display: block;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.2);

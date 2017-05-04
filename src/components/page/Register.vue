@@ -5,44 +5,46 @@
             <!-- Codrops top bar -->
             <header>
                 <h1>Welcome to<span>&nbspCrowdingSourcing Platform</span></h1>
-      
+
             </header>
 
-            <section>       
+            <section>
                 <div id="container_demo" >
                     <a class="hiddenanchor" id="register"></a>
                     <div id="wrapper">
                         <div id="register" class="animate form">
-                            <form> 
-                                <h1>加入我们</h1> 
-                                <p> 
-                                    <label for="usernamesignup" class="uname" data-icon="u">用户名</label>
-                                    <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
+                            {{count}}
+                            <form>
+                                <h1>加入我们</h1>
+                                <p>
+                                    <label class="name" data-icon="u">用户名</label>
+                                    <input id="name" name="name" v-model="name" required="required" type="text" placeholder="admin" />
                                 </p>
-                                <p> 
-                                    <label for="emailsignup" class="youmail" data-icon="e" >邮箱</label>
-                                    <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/> 
+                                <p>
+                                    <label class="email" data-icon="e" >邮箱</label>
+                                    <input id="email" name="email" v-model="email" required="required" type="email" placeholder="admin@admin.com"/>
                                 </p>
-                                <p> 
-                                    <label for="passwordsignup" class="youpasswd" data-icon="p">密码</label>
-                                    <input id="passwordsignup" name="passwordsignup" required="required" type="password"/>
+                                <p>
+                                    <label class="passwd" data-icon="p">密码</label>
+                                    <input id="password" name="password" v-model="password" required="required" type="password"/>
                                 </p>
-                                <p> 
-                                    <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">确认密码</label>
-                                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password"/>
+                                <p>
+                                    <label class="passwd_comfirm" data-icon="p">确认密码</label>
+                                    <input id="password_confirm" name="password_confirm" required="required" type="password"/>
                                 </p>
-                                                <p class="signin button"> 
-                                  <input type="submit" value="注册"/> 
+                                <p class="signin button">
+                                  <input type="submit" value="注册" @click="count += 1"/>
+                                  <a> {{count}} </a>
                                 </p>
-                                                <p class="change_link">  
+                                <p class="change_link" >
                                   已有账户？
-                                  <a href="#login" class="to_register"> 马上登录</a>
+                                  <a href="#login" class="to_register"  > 马上登录</a>
                                 </p>
                             </form>
                         </div>
 
                     </div>
-                </div>  
+                </div>
             </section>
         </div>
     </div>
@@ -51,51 +53,89 @@
 
 <script>
 import "../../common/animate-custom.css";
-    // export default {
-    //     data: function(){
-    //         return {
-    //             ruleForm: {
-    //                 username: '',
-    //                 password: ''
-    //             },
-    //             rules: {
-    //                 username: [
-    //                     { required: true, message: '请输入用户名', trigger: 'blur' }
-    //                 ],
-    //                 password: [
-    //                     { required: true, message: '请输入密码', trigger: 'blur' }
-    //                 ]
-    //             }
-    //         }
-    //     },
-    //     methods: {
-    //         submitForm(formName) {
-    //             const self = this;
-    //             self.$refs[formName].validate((valid) => {
-    //                 if (valid) {
-    //                     localStorage.setItem('ms_username',self.ruleForm.username);
-    //                     self.$router.push('/readme');
-    //                 } else {
-    //                     console.log('error submit!!');
-    //                     return false;
-    //                 }
-    //             });
-    //         }
-    //     }
-    // }
+import Vue from 'vue';
+import axios from 'axios'
+
+var register = new Vue({
+  el: '#register',
+  data: {
+    count: 0,
+    name: '',
+    email: '',
+    password: ''
+
+  },
+  methods: {
+    test: function () {
+      alert(1);
+      console.log('11');
+      axios.get('http://www.npmjs.com/package/axios')
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log('error');
+        })
+    }
+  }
+});
+
+
+// new Vue({
+//   el:'#register',
+//   data: {
+// 		registerUrl: 'http://localhost:8080/register',
+//     userinfo:{
+//       name: '',
+//       email:'',
+//       password:''
+//     }
+// 	},
+//   methods: {
+// 		register: function() {
+// 			// var vm = this
+// 			// vm.msg = ''
+//     //
+// 		// 	$.ajax({
+// 		// 		url: data.registerUrl,
+// 		// 		type: 'POST',
+// 		// 		dataType: 'json',
+// 		// 		data: data.userinfo,
+// 		// 		success: function() {
+// 		// 			data.msg = '注册成功！'
+// 		// 		},
+// 		// 		error: data.requestError
+// 		// 	})
+// 		// },
+// 		// requestError: function(xhr, errorType, error) {
+// 		// 	data.msg = xhr.responseText
+// 		// }
+// 		  alert(1);
+// 		  // axios.post(this.registerUrl,this.userinfo,{
+//       //   headers: {
+//       //     'Content-Type': 'json'
+//       //   }
+//       // }).then(function (response) {
+//       //   console.log(response.code);
+//       // }).catch(function (error) {
+//       //   console.log(error);
+//       // });
+//    }
+//  }
+// })
 </script>
 
 <style scoped>
 @font-face {
     font-family: 'PingFang Light';
- 
-    src: 
+
+    src:
          url('../../assets/fonts/PingFang Light.ttf') format('truetype') ;
     font-weight: normal;
     font-style: normal;
 }
     /* CSS reset */
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
     margin:0;
     padding:0;
 }
@@ -152,7 +192,6 @@ a{
 }
 .container > header{
     padding: 20px 30px 10px 30px;
-    margin: 0px 20px 10px 20px;
     position: relative;
     display: block;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
@@ -189,7 +228,7 @@ a{
     /* font-family: "Trebuchet MS","Myriad Pro",Arial,sans-serif;*/
 }
 
-/** fonts used for the icons **/ 
+/** fonts used for the icons **/
 @font-face {
     font-family: 'FontomasCustomRegular';
     src: url('../../assets/fonts/fontomas-webfont.eot');
@@ -208,10 +247,10 @@ a.hiddenanchor{
 #wrapper{
     width: 60%;
     right: 0px;
-    min-height: 560px;  
-    margin: 0px auto;   
+    min-height: 560px;
+    margin: 0px auto;
     width: 500px;
-    position: relative; 
+    position: relative;
 }
 /**** Styling the form elements **/
 
@@ -231,11 +270,11 @@ a.hiddenanchor{
     padding-bottom: 30px;
 }
 #wrapper h1{
-    background: -webkit-repeating-linear-gradient(-45deg, 
-    rgb(18, 83, 93) , 
-    rgb(18, 83, 93) 20px, 
-    rgb(64, 111, 118) 20px, 
-    rgb(64, 111, 118) 40px, 
+    background: -webkit-repeating-linear-gradient(-45deg,
+    rgb(18, 83, 93) ,
+    rgb(18, 83, 93) 20px,
+    rgb(64, 111, 118) 20px,
+    rgb(64, 111, 118) 40px,
     rgb(18, 83, 93) 40px);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
@@ -246,12 +285,12 @@ a.hiddenanchor{
     width: 100%;
     height: 2px;
     margin-top: 10px;
-    background: -moz-linear-gradient(left, rgba(147,184,189,0) 0%, rgba(147,184,189,0.8) 20%, rgba(147,184,189,1) 53%, rgba(147,184,189,0.8) 79%, rgba(147,184,189,0) 100%); 
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(147,184,189,0)), color-stop(20%,rgba(147,184,189,0.8)), color-stop(53%,rgba(147,184,189,1)), color-stop(79%,rgba(147,184,189,0.8)), color-stop(100%,rgba(147,184,189,0))); 
-    background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
-    background: -o-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
-    background: -ms-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
-    background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+    background: -moz-linear-gradient(left, rgba(147,184,189,0) 0%, rgba(147,184,189,0.8) 20%, rgba(147,184,189,1) 53%, rgba(147,184,189,0.8) 79%, rgba(147,184,189,0) 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(147,184,189,0)), color-stop(20%,rgba(147,184,189,0.8)), color-stop(53%,rgba(147,184,189,1)), color-stop(79%,rgba(147,184,189,0.8)), color-stop(100%,rgba(147,184,189,0)));
+    background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%);
+    background: -o-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%);
+    background: -ms-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%);
+    background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%);
 }
 
 #wrapper p{
@@ -267,15 +306,15 @@ a.hiddenanchor{
 
 /**** advanced input styling ****/
 /* placeholder */
-::-webkit-input-placeholder  { 
-    color: rgb(190, 188, 188); 
+::-webkit-input-placeholder  {
+    color: rgb(190, 188, 188);
     font-style: italic;
 }
 input:-moz-placeholder,
-textarea:-moz-placeholder{ 
+textarea:-moz-placeholder{
     color: rgb(190, 188, 188);
     font-style: italic;
-} 
+}
 input {
   outline: none;
 }
@@ -284,7 +323,7 @@ input {
 #wrapper input:not([type="checkbox"]){
     width: 92%;
     margin-top: 4px;
-    padding: 10px 5px 10px 32px;    
+    padding: 10px 5px 10px 32px;
     border: 1px solid rgb(178, 178, 178);
     -webkit-appearance: textfield;
     -webkit-box-sizing: content-box;
@@ -304,11 +343,11 @@ input {
 #wrapper input:not([type="checkbox"]):active,
 #wrapper input:not([type="checkbox"]):focus{
     border: 1px solid rgba(91, 90, 90, 0.7);
-    background: rgba(238, 236, 240, 0.2);   
+    background: rgba(238, 236, 240, 0.2);
     -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
        -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
             box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
-} 
+}
 /** the magic icon trick ! **/
 [data-icon]:after {
     content: attr(data-icon);
@@ -322,18 +361,18 @@ input {
 /*styling both submit buttons */
 #wrapper p.button input{
     width: 30%;
-    cursor: pointer;    
+    cursor: pointer;
     background: rgb(61, 157, 179);
     padding: 8px 5px;
     font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
     color: #fff;
-    font-size: 24px;    
-    border: 1px solid rgb(28, 108, 122);    
-    margin-bottom: 10px;    
+    font-size: 24px;
+    border: 1px solid rgb(28, 108, 122);
+    margin-bottom: 10px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
     -webkit-border-radius: 3px;
        -moz-border-radius: 3px;
-            border-radius: 8px; 
+            border-radius: 8px;
     -webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
             0px 0px 0px 3px rgb(254, 254, 254),
             0px 5px 3px 3px rgb(210, 210, 210);
@@ -356,7 +395,7 @@ input {
     background: rgb(40, 137, 154);
     position: relative;
     top: 1px;
-    border: 1px solid rgb(12, 76, 87);  
+    border: 1px solid rgb(12, 76, 87);
     -webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
        -moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
             box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
@@ -382,32 +421,32 @@ p.change_link{
        -moz-border-radius: 0 0  5px 5px;
             border-radius: 0 0  5px 5px;
     background: rgb(225, 234, 235);
-    background: -moz-repeating-linear-gradient(-45deg, 
-    rgb(247, 247, 247) , 
-    rgb(247, 247, 247) 15px, 
-    rgb(225, 234, 235) 15px, 
-    rgb(225, 234, 235) 30px, 
+    background: -moz-repeating-linear-gradient(-45deg,
+    rgb(247, 247, 247) ,
+    rgb(247, 247, 247) 15px,
+    rgb(225, 234, 235) 15px,
+    rgb(225, 234, 235) 30px,
     rgb(247, 247, 247) 30px
     );
-    background: -webkit-repeating-linear-gradient(-45deg, 
-    rgb(247, 247, 247) , 
-    rgb(247, 247, 247) 15px, 
-    rgb(225, 234, 235) 15px, 
-    rgb(225, 234, 235) 30px, 
+    background: -webkit-repeating-linear-gradient(-45deg,
+    rgb(247, 247, 247) ,
+    rgb(247, 247, 247) 15px,
+    rgb(225, 234, 235) 15px,
+    rgb(225, 234, 235) 30px,
     rgb(247, 247, 247) 30px
     );
-    background: -o-repeating-linear-gradient(-45deg, 
-    rgb(247, 247, 247) , 
-    rgb(247, 247, 247) 15px, 
-    rgb(225, 234, 235) 15px, 
-    rgb(225, 234, 235) 30px, 
+    background: -o-repeating-linear-gradient(-45deg,
+    rgb(247, 247, 247) ,
+    rgb(247, 247, 247) 15px,
+    rgb(225, 234, 235) 15px,
+    rgb(225, 234, 235) 30px,
     rgb(247, 247, 247) 30px
     );
-    background: repeating-linear-gradient(-45deg, 
-    rgb(247, 247, 247) , 
-    rgb(247, 247, 247) 15px, 
-    rgb(225, 234, 235) 15px, 
-    rgb(225, 234, 235) 30px, 
+    background: repeating-linear-gradient(-45deg,
+    rgb(247, 247, 247) ,
+    rgb(247, 247, 247) 15px,
+    rgb(225, 234, 235) 15px,
+    rgb(225, 234, 235) 30px,
     rgb(247, 247, 247) 30px
     );
 }
@@ -440,11 +479,11 @@ p.change_link{
 }
 
 
-#register, 
+#register,
 #login{
     position: absolute;
     top: 0px;
-    width: 88%; 
+    width: 88%;
     padding: 18px 6% 60px 6%;
     margin: 0 0 35px 0;
     background: rgb(247, 247, 247);
@@ -460,19 +499,19 @@ p.change_link{
     -webkit-animation-duration: 0.5s;
     -webkit-animation-timing-function: ease;
     -webkit-animation-fill-mode: both;
-    
+
     -moz-animation-duration: 0.5s;
     -moz-animation-timing-function: ease;
     -moz-animation-fill-mode: both;
-    
+
     -o-animation-duration: 0.5s;
     -o-animation-timing-function: ease;
     -o-animation-fill-mode: both;
-    
+
     -ms-animation-duration: 0.5s;
     -ms-animation-timing-function: ease;
     -ms-animation-fill-mode: both;
-    
+
     animation-duration: 0.5s;
     animation-timing-function: ease;
     animation-fill-mode: both;
