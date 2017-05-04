@@ -6,77 +6,75 @@
                 <el-breadcrumb-item>管理需求</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <datasource language="en" :table-data="getData" :columns="columns" :pagination="information.pagination"
-                :actions="actions"
-                v-on:change="changePage"
-                v-on:searching="onSearch"></datasource>
+        <el-table ref="multipleTable" :data="tableData" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+            <el-table-column type="selection" width="55">
+            </el-table-column>
+            <el-table-column prop="id" label="项目id" width="120">
+              <template scope="scope">{{ scope.row.id }}</template>
+            </el-table-column>
+            <el-table-column prop="name" label="项目名称" width="120">
+            </el-table-column>
+            <el-table-column prop="address" label="项目地址" show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column prop="tag" label="标签" width="100" :filters="[{ text: '发布中', value: '发布中' }, { text: '开发中', value: '开发中' },{ text: '已完成', value: '已完成' }]" :filter-method="filterTag" filter-placement="bottom-end">
+              <template scope="scope">
+                <el-tag
+                  :type="scope.row.tag === '开发中' ? 'primary' : 'success'"
+                  close-transition>{{scope.row.tag}}</el-tag>
+              </template>
+            </el-table-column>
+        </el-table>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
-    import Datasource from 'vue-datasource';
     export default {
-        data: function(){
-            const self = this;
+        data() {
             return {
-                information: {
-                    pagination:{},
-                    data:[]
-                },
-                columns: [
-                    {
-                        name: 'Id',
-                        key: 'id',
-                    },
-                    {
-                        name: 'Name',
-                        key: 'name',
-                    },
-                    {
-                        name: 'company',
-                        key: 'company',
-                    }
-                ],
-                actions: [
-                    {
-                        text: 'Click',
-                        class: 'btn-primary',
-                        event(e, row) {
-                            self.$message('选中的行数： ' + row.row.id);
-                        }
-                    }
-                ],
-                query:''
+                tableData: [{
+                    id: '12987122',
+                    name: 'Crowdsourcing',
+                    category: 'Vue',
+                    date: '2017-5-1',
+                    address: 'https://github.com/breeswish/php-marked',
+                    tag:'已完成',
+                }, {
+                    id: '12987123',
+                    name: '666',
+                    category: 'Web',
+                    date: '2017-5-2',
+                    address: 'https://github.com/Lab409-SSE-Tongji/WebGIS-BackEnd',
+                    tag:'开发中',
+                }, {
+                    id: '12987125',
+                    name: 'Test',
+                    category: 'IOS',
+                    date: '2017-4-30',
+                    address: 'https://github.com/Lab409-SSE-Tongji/crowdsourcing-front',
+                    tag:'发布中',
+                }, {
+                    id: '12987126',
+                    name: 'Hello',
+                    category: 'Android',
+                    date: '2016-5-1',
+                    address: 'https://github.com/alibaba/weex',
+                    tag:'已完成',
+                }],
+
             }
         },
-        components: {
-            Datasource
-        },
-        methods: {
-            changePage(values) {
-                this.information.pagination.per_page = values.perpage;
-                this.information.data = this.information.data;
-            },
-            onSearch(searchQuery) {
-                this.query = searchQuery;
+            methods: {
+              formatter(row, column) {
+                return row.address;
+              },
+              filterTag(value, row) {
+                return row.tag === value;
+              }
             }
-        },
-        computed:{
-            getData(){
-                const self = this;
-                return self.information.data.filter(function (d) {
-                    if(d.name.indexOf(self.query) > -1){
-                        return d;
-                    }
-                })
-            }
-        },
-        beforeMount(){
-            axios.get('/static/data.json').then( (res) => {
-                this.information = res.data;
-            })
-        }
+
+
+
     }
 </script>
 

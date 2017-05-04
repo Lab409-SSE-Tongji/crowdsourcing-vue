@@ -6,9 +6,10 @@
                 <el-breadcrumb-item>我的技能</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-
+        <div class="content-title">项目展示</div>
+        <hr>
         <el-table
-                :data="tableData5"
+                :data="tableData"
                 style="width: 100%">
             <el-table-column type="expand">
                 <template scope="props">
@@ -41,6 +42,21 @@
                     prop="address">
             </el-table-column>
         </el-table>
+        <div class="content-title">证书展示</div>
+        <hr>
+        <el-row>
+          <el-col :span="4" v-for="(o, index) in 4" :key="o" :offset="index > 0 ? 2 : 0">
+            <el-card :body-style="{ padding: '0px' }">
+              <img src="/static/img/img.jpg" class="image">
+              <div style="padding: 14px;">
+                <div class="bottom clearfix">
+                  <time class="time">{{ currentDate }}</time>
+                  <el-button type="text" class="button">删除</el-button>
+                </div>
+              </div>
+            </el-card>
+          </el-col>
+        </el-row>
     </div>
 </template>
 
@@ -48,7 +64,7 @@
     export default {
         data() {
             return {
-                tableData5: [{
+                tableData: [{
                     id: '12987122',
                     name: 'Crowdsourcing',
                     category: 'Vue',
@@ -72,12 +88,30 @@
                     category: 'Android',
                     desc: 'Hello World!',
                     address: 'https://github.com/alibaba/weex',
-                }]
+                }],
+                dialogImageUrl: '',
+                dialogVisible: false,
+                currentDate: new Date()
             }
         }
     }
 </script>
 <style>
+    .content-title{
+        font-weight: 400;
+        line-height: 50px;
+        margin: 10px 0;
+        font-size: 22px;
+        color: #1f2f3d;
+    }
+    hr{
+        margin:.8em 0 1em;
+        display:block;
+        height:1px;
+        border:0;
+        border-top:1px solid #f4f4f4;
+        padding:0;
+    }
     .demo-table-expand {
         font-size: 0;
     }
@@ -91,5 +125,34 @@
         width: 60%;
     }
 
+    .time {
+    font-size: 13px;
+    color: #999;
+    }
+
+    .bottom {
+      margin-top: 5%;
+      line-height: 12px;
+    }
+
+    .button {
+      padding: 0;
+      float: right;
+    }
+
+    .image {
+      width: 100%;
+      display: block;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+        display: table;
+        content: "";
+    }
+
+    .clearfix:after {
+        clear: both
+    }
 
 </style>

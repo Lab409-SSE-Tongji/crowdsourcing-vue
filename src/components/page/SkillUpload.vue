@@ -109,4 +109,7 @@
     .el-textarea{
       width:40%;
     }
+    .el-button{
+      margin-left: 0;
+    }
 </style>
