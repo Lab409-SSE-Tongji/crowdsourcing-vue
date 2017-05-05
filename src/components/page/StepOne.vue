@@ -54,6 +54,36 @@
             },
             nextStep:function(){
                 this.$router.push( {path:'/step2'});
+            },
+            test:function(){
+                // this.$http.get('http://127.0.0.1:8011/estimation/addRequirement').then(response => {
+
+                //   // get body data
+                //   // this.someData = response.body;
+                //   console.log("data");
+                //   var jsonObject = {
+                //                  "projectName" : "name",
+                //                  "projectDescription" : "description"
+                //             };
+                //             // estimation/addDescription1/1493893139271'
+                 
+
+                // }, response => {
+                //   // error callback
+                //   console.log("error");
+                // });
+
+                 this.$http.post('http://127.0.0.1:8011/estimation/test'
+                                    ).then(response => {
+
+                    // get body data
+                    // this.someData = response.body;
+                    console.log("success");
+                    
+
+                  }, response => {
+                    console.log("error");
+                  });
             }
         }
     }
