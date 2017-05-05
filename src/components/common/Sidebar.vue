@@ -12,7 +12,7 @@
             <el-submenu index="3">
                 <template slot="title"><i class="el-icon-date"></i>我的需求</template>
                 <el-menu-item index="create">创建需求</el-menu-item>
-                <el-menu-item index="requirement">管理需求</el-menu-item>
+                <el-menu-item index="records">管理需求</el-menu-item>
                 <!--<el-menu-item index="vueeditor">富文本编辑器</el-menu-item>-->
                 <!--<el-menu-item index="markdown">markdown</el-menu-item>-->
                 <!--<el-menu-item index="upload">文件上传</el-menu-item>-->

@@ -98,8 +98,10 @@
                 </el-form-item>
                 
                 <el-form-item>
+                    <el-button type="primary" @click="">添加</el-button>
                     <el-button type="primary" @click="prevStep">上一步</el-button>
                     <el-button type="primary" @click="nextStep">下一步</el-button>
+                    <el-button type="primary" @click="">保存</el-button>
                 </el-form-item>
             </el-form>
             
@@ -135,6 +137,7 @@
                 this.$router.push( {path:'/step3'});
             },
             add:function() {
+                console.log(form.name);
                 this.form.tests.push( {text:"one"});
             },
             remove(index) {
