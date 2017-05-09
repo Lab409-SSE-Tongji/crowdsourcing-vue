@@ -2,7 +2,7 @@
 var path = require('path')
 
 module.exports = {
-    url: 'http://123.206.123.213:8080',
+    url: 'http://localhost:8080',
     build: {
         env: require('./prod.env'),
         index: path.resolve(__dirname, '../dist/index.html'),
