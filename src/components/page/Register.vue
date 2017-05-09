@@ -10,30 +10,30 @@
 
             <section>
                 <div id="container_demo" >
-                    <a class="hiddenanchor" id="register"></a>
+
                     <div id="wrapper">
                         <div id="register" class="animate form">
-                            {{count}}
+                            <span>{{info.count}}</span>
                             <form>
                                 <h1>加入我们</h1>
                                 <p>
                                     <label class="name" data-icon="u">用户名</label>
-                                    <input id="name" name="name" v-model="name" required="required" type="text" placeholder="admin" />
+                                    <input id="name" name="name" v-model="info.username" required="required" type="text" placeholder="admin" />
                                 </p>
                                 <p>
                                     <label class="email" data-icon="e" >邮箱</label>
-                                    <input id="email" name="email" v-model="email" required="required" type="email" placeholder="admin@admin.com"/>
+                                    <input id="email" name="email" v-model="info.email" required="required" type="email" placeholder="admin@admin.com"/>
                                 </p>
                                 <p>
                                     <label class="passwd" data-icon="p">密码</label>
-                                    <input id="password" name="password" v-model="password" required="required" type="password"/>
+                                    <input id="password" name="password" v-model="info.password" required="required" type="password"/>
                                 </p>
                                 <p>
                                     <label class="passwd_comfirm" data-icon="p">确认密码</label>
                                     <input id="password_confirm" name="password_confirm" required="required" type="password"/>
                                 </p>
                                 <p class="signin button">
-                                  <input type="submit" value="注册" @click="count += 1"/>
+                                  <input type="submit" value="注册" @click="register"/>
                                   <a> {{count}} </a>
                                 </p>
                                 <p class="change_link" >
@@ -53,32 +53,61 @@
 
 <script>
 import "../../common/animate-custom.css";
-import Vue from 'vue';
-import axios from 'axios'
+import axios from 'axios';
+export default{
+  name:"register",
+  data(){
+    return{
+      registerUrl: 'http://localhost:8080/api/register',
+      info : {
+        count: 22,
+        username: '',
+        email: '',
+        password: ''
+      },
 
-var register = new Vue({
-  el: '#register',
-  data: {
-    count: 0,
-    name: '',
-    email: '',
-    password: ''
-
-  },
-  methods: {
-    test: function () {
-      alert(1);
-      console.log('11');
-      axios.get('http://www.npmjs.com/package/axios')
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log('error');
-        })
+      register: function () {
+         alert(1);
+         console.log('11');
+         axios.post(this.registerUrl,this.data.info,{
+           headers: {
+             'Content-Type': 'json'
+           }
+           }).then(function (response) {
+             console.log(response.code);
+           }).catch(function (error) {
+             console.log(error);
+           });
+       }
     }
   }
-});
+}
+// import Vue from 'vue';
+// import axios from 'axios'
+//
+// var register = new Vue({
+//   el: '#register',
+//   data: {
+//     count: 22,
+//     name: '',
+//     email: '',
+//     password: ''
+//
+//   },
+//   methods: {
+//     test: function () {
+//       alert(1);
+//       console.log('11');
+//       axios.get('http://www.npmjs.com/package/axios')
+//         .then(function(response) {
+//           console.log(response);
+//         })
+//         .catch(function(error) {
+//           console.log('error');
+//         })
+//     }
+//   }
+// });
 
 
 // new Vue({

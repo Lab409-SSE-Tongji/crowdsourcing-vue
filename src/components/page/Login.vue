@@ -16,12 +16,12 @@
                             <form>
                                 <h1>登录</h1>
                                 <p>
-                                    <label for="username" class="username" data-icon="u" > 邮箱/手机/用户名</label>
-                                    <input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+                                    <label for="name" class="name" data-icon="u" > 邮箱/手机/用户名</label>
+                                    <input id="name" v-model="info.username" name="name" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
                                 </p>
                                 <p>
                                     <label for="password" class="youpasswd" data-icon="p"> Your password </label>
-                                    <input id="password" name="password" required="required" type="password"/>
+                                    <input id="password" v-model="info.password" name="password" required="required" type="password"/>
                                 </p>
                                 <p class="keeplogin">
                                   <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
@@ -29,7 +29,7 @@
                                 </p>
                                 <p class="login button">
                                     <a href="#readme">
-                                    <input type="submit" value="登录" />
+                                    <input type="submit" value="登录" @click="login"/>
                                     <i class="el-icon el-icon-arrow-right" style="margin-left: -20px;"></i>
                                     </a>
                                 </p>
@@ -48,6 +48,30 @@
 
 <script>
 import "../../common/animate-custom.css";
+import axios from 'axios';
+export default{
+  name:"login",
+  data(){
+    return{
+      registerUrl: 'http://localhost:8080/api/session',
+      info : {
+        username: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    login () {
+      axios.post(this.registerUrl,this.info)
+      .then(function (response) {
+        console.log(response);
+          //  console.log(response);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }
+}
 
     // export default {
     //     data: function(){

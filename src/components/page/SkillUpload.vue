@@ -7,7 +7,7 @@
             </el-breadcrumb>
         </div>
 
-        <div class="content-title">上传证书</div>
+        <div class="content-title">上传图片(可选)</div>
         <hr>
         <img class="pre-img" :src="src" alt="">
         <vue-core-image-upload :class="['pure-button','pure-button-primary','js-btn-crop']"
@@ -28,14 +28,14 @@
             <el-input v-model="formLabelAlign.region"></el-input>
           </el-form-item>
           <el-form-item label="项目地址">
-            <el-input v-model="formLabelAlign.type"></el-input>
+            <el-input v-model="formLabelAlign.address"></el-input>
           </el-form-item>
           <el-form-item label="项目简介">
               <el-input type="textarea" rows="4" v-model="formLabelAlign.text"></el-input>
           </el-form-item>
           <el-form-item>
               <el-button type="primary" @click="onSubmit">提交</el-button>
-              <el-button>取消</el-button>
+              <el-button>清空输入</el-button>
           </el-form-item>
         </el-form>
     </div>
@@ -51,7 +51,7 @@
                 formLabelAlign: {
                    name: '',
                    region: '',
-                   type: '',
+                   address: '',
                    text:''
                }
             }
