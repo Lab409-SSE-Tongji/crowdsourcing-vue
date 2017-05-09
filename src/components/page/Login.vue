@@ -48,12 +48,13 @@
 
 <script>
 import "../../common/animate-custom.css";
+import server from '../../../config/index';
 import axios from 'axios';
 export default{
   name:"login",
   data(){
     return{
-      registerUrl: 'http://localhost:8080/api/session',
+      registerUrl: server.url + '/api/session',
       info : {
         username: '',
         password: ''
@@ -62,9 +63,9 @@ export default{
   },
   methods: {
     login () {
-      axios.post(this.registerUrl,this.info)
-      .then(function (response) {
-        console.log(response);
+      axios.post(this.registerUrl, this.info)
+      .then(function(response) {  
+        alert(response.body);
           //  console.log(response);
       }).catch(function (error) {
         console.log(error);
