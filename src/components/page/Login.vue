@@ -50,6 +50,8 @@
 import "../../common/animate-custom.css";
 import server from '../../../config/index';
 import axios from 'axios';
+import Router from 'vue-router';
+import routes from '../../router/index.js';
 export default{
   name:"login",
   data(){
@@ -66,7 +68,12 @@ export default{
       axios.post(this.registerUrl, this.info)
       .then(function(response) {
         // alert(response);
-           console.log(response.data.status);
+        if(response.data.status==200){
+          console.log(response.data.status);
+        }else {
+          console.log(response.data.status);
+        }
+
       }).catch(function (error) {
         console.log(error);
       });

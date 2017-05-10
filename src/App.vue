@@ -3,17 +3,23 @@
         <router-view></router-view>
     </div>
 </template>
+<script>
+import store from './vuex/store' //vuex 配置
+export default {
+    store
+}
+</script>
 <style>
 	@font-face {
     font-family: 'PingFang Light';
- 
-    src: 
+
+    src:
          url('assets/fonts/PingFang Light.ttf') format('truetype') ;
     font-weight: normal;
     font-style: normal;
 }
     @import "../static/css/main.css";
     @import "../static/css/theme-green/color-green.css";  /*浅绿色主题*/
-   /* @import "../static/css/color-dark.css";*/    
-   
+   /* @import "../static/css/color-dark.css";*/
+
 </style>
