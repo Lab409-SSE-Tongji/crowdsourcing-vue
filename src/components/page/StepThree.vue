@@ -40,7 +40,7 @@
                 <el-form-item label="RET:">
                 <a href="javascript:void(0)" @click="add">新增</a>
                     <p v-for="(test,index) in form.tests">
-                        <el-input v-model="test.text" type="text" name="tests[]"></el-input><a href="javascript:void(0)" @click="remove(index)">删除</a>
+                        字段信息<el-input v-model="test.text" type="text" name="tests[]"></el-input><a href="javascript:void(0)" @click="remove(index)">删除</a>
                     </p>
                 </el-form-item>
                 <!-- <el-form-item label="多选框">
@@ -89,7 +89,10 @@
                     delivery: true,
                     type: ['步步高'],
                     resource: '小天才',
-                    desc: ''
+                    desc: '',
+                    tests: [{
+                        text: "one"
+                    }]
                 }
             }
         },
