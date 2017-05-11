@@ -11,11 +11,11 @@
         <div class="form-box">
             <el-form ref="form" :model="form" label-width="80px">
                 <el-form-item label="项目名称">
-                    <el-input v-model="form.name"></el-input>
+                    <el-input v-model="form.projectName"></el-input>
                 </el-form-item>
        
                 <el-form-item label="项目简介">
-                    <el-input type="textarea" v-model="form.desc"></el-input>
+                    <el-input type="textarea" v-model="form.projectDescription"></el-input>
                 </el-form-item>
             </el-form>
 
@@ -37,14 +37,9 @@
         data: function(){
             return {
                 form: {
-                    name: '',
-                    region: '',
-                    date1: '',
-                    date2: '',
-                    delivery: true,
-                    type: ['步步高'],
-                    resource: '小天才',
-                    desc: ''
+                    projectName: '',
+                    projectDescription: ''
+                    
                 }
             }
         },
@@ -56,34 +51,33 @@
                 this.$router.push( {path:'/step2'});
             },
             test:function(){
-                // this.$http.get('http://127.0.0.1:8011/estimation/addRequirement').then(response => {
+                console.log(this.form);
+                var forms = {};
+                forms.projectName = this.form.projectName;
+                forms.projectDescription = "yy";
+                 console.log(JSON.stringify(forms));
 
-                //   // get body data
-                //   // this.someData = response.body;
-                //   console.log("data");
-                //   var jsonObject = {
-                //                  "projectName" : "name",
-                //                  "projectDescription" : "description"
-                //             };
-                //             // estimation/addDescription1/1493893139271'
+
+                this.$http.get('http://127.0.0.1:8011/estimation/addRequirement').then(response => {
+
+                  console.log("data");
+                
+
+                }, response => {
+                  
+                  console.log("error");
+                });
+
+                 this.$http.post('http://127.0.0.1:8011/estimation/test',{body:JSON.stringify(forms)}).then(response => {
+
+                  console.log("response.body");
+     
                  
 
-                // }, response => {
-                //   // error callback
-                //   console.log("error");
-                // });
-
-                 this.$http.post('http://127.0.0.1:8011/estimation/test'
-                                    ).then(response => {
-
-                    // get body data
-                    // this.someData = response.body;
-                    console.log("success");
-                    
-
-                  }, response => {
-                    console.log("error");
-                  });
+                }, response => {
+                  
+                  console.log("error");
+                });
             }
         }
     }
