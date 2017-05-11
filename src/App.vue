@@ -4,10 +4,6 @@
     </div>
 </template>
 <script>
-import store from './vuex/store' //vuex 配置
-export default {
-    store
-}
 </script>
 <style>
 	@font-face {

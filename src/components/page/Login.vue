@@ -52,6 +52,9 @@ import server from '../../../config/index';
 import axios from 'axios';
 import Router from 'vue-router';
 import routes from '../../router/index.js';
+import store from '../../vuex/store.js';
+
+// alert(store.getters.token);
 export default{
   name:"login",
   data(){
@@ -67,9 +70,9 @@ export default{
     login () {
       axios.post(this.registerUrl, this.info)
       .then(function(response) {
-        // alert(response);
         if(response.data.status==200){
-          console.log(response.data.status);
+          store.commit('setToken', {token: response.data.result.token});
+          alert(store.getters.token);
         }else {
           console.log(response.data.status);
         }
