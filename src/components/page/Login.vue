@@ -50,8 +50,7 @@
 import "../../common/animate-custom.css";
 import server from '../../../config/index';
 import axios from 'axios';
-import Router from 'vue-router';
-import routes from '../../router/index.js';
+import router from '../../router/index.js';
 import store from '../../vuex/store.js';
 
 // alert(store.getters.token);
@@ -71,8 +70,12 @@ export default{
       axios.post(this.registerUrl, this.info)
       .then(function(response) {
         if(response.data.status==200){
-          store.commit('setToken', {token: response.data.result.token});
-          alert(store.getters.token);
+          // store.commit('setToken', {token: response.data.result.token});
+          sessionStorage.setItem("token", response.data.result.token);
+          // alert(sessionStorage.getItem('token'));
+          router.push('/readme');
+          // alert(store.getters.token);
+          //
         }else {
           console.log(response.data.status);
         }
