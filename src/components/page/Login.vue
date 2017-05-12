@@ -47,78 +47,45 @@
 </template>
 
 <script>
-import "../../common/animate-custom.css";
-import server from '../../../config/index';
-import axios from 'axios';
-import router from '../../router/index.js';
-import store from '../../vuex/store.js';
+    import "../../common/animate-custom.css";
+    import server from '../../../config/index';
+    import axios from 'axios';
+    import router from '../../router/index.js';
+    import store from '../../vuex/store.js';
 
-// alert(store.getters.token);
-export default{
-  name:"login",
-  data(){
-    return{
-      registerUrl: server.url + '/api/session',
-      info : {
-        username: '',
-        password: ''
-      }
-    }
-  },
-  methods: {
-    login () {
-      axios.post(this.registerUrl, this.info)
-      .then(function(response) {
-        if(response.data.status==200){
-          // store.commit('setToken', {token: response.data.result.token});
-          sessionStorage.setItem("token", response.data.result.token);
-          // alert(sessionStorage.getItem('token'));
-          router.push('/readme');
-          // alert(store.getters.token);
-          //
-        }else {
-          console.log(response.data.status);
+    // alert(store.getters.token);
+    export default{
+        name:"login",
+        data(){
+            return{
+                url: server.url + '/api/session',
+                info : {
+                    username: '',
+                    password: ''
+                }
+            }
+        },
+        methods: {
+            login () {
+                axios.post(this.url, this.info)
+                .then(function(response) {
+                    if(response.data.status==200){
+                        // store.commit('setToken', {token: response.data.result.token});
+                        sessionStorage.setItem("token", response.data.result.token);
+                        // alert(sessionStorage.getItem('token'));
+                        router.push('/readme');
+                        // alert(store.getters.token);
+                    }else {
+                        console.log(response.data.status);
+                    }
+
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
         }
-
-      }).catch(function (error) {
-        console.log(error);
-      });
     }
-  }
-}
 
-    // export default {
-    //     data: function(){
-    //         return {
-    //             ruleForm: {
-    //                 username: '',
-    //                 password: ''
-    //             },
-    //             rules: {
-    //                 username: [
-    //                     { required: true, message: '请输入用户名', trigger: 'blur' }
-    //                 ],
-    //                 password: [
-    //                     { required: true, message: '请输入密码', trigger: 'blur' }
-    //                 ]
-    //             }
-    //         }
-    //     },
-    //     methods: {
-    //         submitForm(formName) {
-    //             const self = this;
-    //             self.$refs[formName].validate((valid) => {
-    //                 if (valid) {
-    //                     localStorage.setItem('ms_username',self.ruleForm.username);
-    //                     self.$router.push('/readme');
-    //                 } else {
-    //                     console.log('error submit!!');
-    //                     return false;
-    //                 }
-    //             });
-    //         }
-    //     }
-    // }
 </script>
 
 <style scoped>
