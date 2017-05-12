@@ -13,28 +13,26 @@
 
                     <div id="wrapper">
                         <div id="register" class="animate form">
-                            <span>{{info.count}}</span>
                             <form>
                                 <h1>加入我们</h1>
                                 <p>
                                     <label class="name" data-icon="u">用户名</label>
-                                    <input id="name" name="name" v-model="info.username" required="required" type="text" placeholder="admin" />
+                                    <input v-model="info.username" required="required" type="text" placeholder="admin" />
                                 </p>
                                 <p>
                                     <label class="email" data-icon="e" >邮箱</label>
-                                    <input id="email" name="email" v-model="info.email" required="required" type="email" placeholder="admin@admin.com"/>
+                                    <input v-model="info.email" required="required" type="email" placeholder="admin@admin.com"/>
                                 </p>
                                 <p>
                                     <label class="passwd" data-icon="p">密码</label>
-                                    <input id="password" name="password" v-model="info.password" required="required" type="password"/>
+                                    <input v-model="info.password" required="required" type="password"/>
                                 </p>
                                 <p>
                                     <label class="passwd_comfirm" data-icon="p">确认密码</label>
-                                    <input id="password_confirm" name="password_confirm" required="required" type="password"/>
+                                    <input required="required" type="password"/>
                                 </p>
                                 <p class="signin button">
                                   <input type="submit" value="注册" @click="register"/>
-                                  <a> {{count}} </a>
                                 </p>
                                 <p class="change_link" >
                                   已有账户？
@@ -54,31 +52,40 @@
 <script>
 import "../../common/animate-custom.css";
 import axios from 'axios';
+import server from '../../../config/index';
+import router from '../../router/index.js';
+import store from '../../vuex/store.js';
+
 export default{
   name:"register",
   data(){
     return{
-      registerUrl: 'http://localhost:8080/api/register',
+      url: server.url + '/api/register',
       info : {
-        count: 22,
         username: '',
-        email: '',
+        email:'',
         password: ''
-      },
+      }
+    }
+  },
+  methods: {
+    register () {
+      axios.post(this.url, this.info)
+      .then(function(response) {
+        if(response.data.status==201){
+          // store.commit('setToken', {token: response.data.result.token});
+          // sessionStorage.setItem("token", response.data.result.token);
+          // alert(sessionStorage.getItem('token'));
+          router.push('login');
+          // alert(store.getters.token);
+          //
+        }else {
+          console.log(response.data.status);
+        }
 
-      register: function () {
-         alert(1);
-         console.log('11');
-         axios.post(this.registerUrl,this.data.info,{
-           headers: {
-             'Content-Type': 'json'
-           }
-           }).then(function (response) {
-             console.log(response.code);
-           }).catch(function (error) {
-             console.log(error);
-           });
-       }
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   }
 }
