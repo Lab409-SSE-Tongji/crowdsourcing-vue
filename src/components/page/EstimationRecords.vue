@@ -7,8 +7,7 @@
                     v-on:change="changePage"
                     v-on:searching="onSearch"></datasource>
 
-        <button class="btn btn-white btn-xs" v-on:click="jumpTo"> 查看报告</button>
-        <button class="btn btn-white btn-xs" v-on:click="jumpTo"> 继续编辑</button>
+       
         <!--<el-form ref="form" :model="form" label-width="80px">-->
             <!--<el-form-item>-->
                 <!--<el-button type="primary" @click="prevStep">上一步</el-button>-->
@@ -48,13 +47,27 @@
                     }
                 ],
                 actions: [
+                    // {
+                    //     text: 'Click',
+                    //     class: 'btn-primary',
+                    //     event(e, row) {
+                    //         self.$message('选中的行数： ' + row.row.id);
+                    //     }
+                    // },
                     {
-                        text: 'Click',
+                        text: '查看报告',
                         class: 'btn-primary',
-                        event(e, row) {
-                            self.$message('选中的行数： ' + row.row.id);
+                        event() {
+                            self.$router.push({ path: '/report'});
                         }
                     },
+                    {
+                        text: '继续编辑',
+                        class: 'btn-primary',
+                        event() {
+                            self.$router.push({ path: '/report'});
+                        }
+                    }
 
                 ],
                 query:''
@@ -71,9 +84,9 @@
             onSearch(searchQuery) {
                 this.query = searchQuery;
             },
-            jumpTo:function () {
-                this.$router.push({ path: '/report'})
-            }
+            // jumpTo:function () {
+            //     this.$router.push({ path: '/report'})
+            // }
         },
         computed:{
             getData(){
