@@ -123,24 +123,36 @@
                                     <el-input v-model="test.text" type="text" name="tests[]"></el-input><a href="javascript:void(0)" @click="remove(index)">删除</a>
                                 </p>
                         </el-form-item>
-                        <el-form-item label="是否需要确认/保存等逻辑">
+                        <el-form-item label="逻辑操作的数量">
                             <p>
-                                <input type="radio" name="picked" value=11 v-model="picked">是
-                                <input type="radio" name="picked" value=10 v-model="picked">否
+                                <el-select v-model="form.picked1" placeholder="请选择">
+                                     <el-option label="0" value="0"></el-option>
+                                     <el-option label="1" value="1"></el-option>
+                                     <el-option label="2" value="2"></el-option>
+                                     <el-option label="3" value="3"></el-option>
+                                     <el-option label="4" value="4"></el-option>
+                                     <el-option label="5" value="5"></el-option>
+                                </el-select>
                             </p>
                         </el-form-item>
-                        <el-form-item label="是否需要返回成功/失败等状态">
+                        <el-form-item label="返回状态信息的数量">
                             <p>
-                                <input type="radio" name="picked1" value=21 v-model="picked">是
-                                <input type="radio" name="picked1" value=20 v-model="picked">否
+                                <el-select v-model="form.picked2" placeholder="请选择">
+                                     <el-option label="0" value="0"></el-option>
+                                     <el-option label="1" value="1"></el-option>
+                                     <el-option label="2" value="2"></el-option>
+                                     <el-option label="3" value="3"></el-option>
+                                     <el-option label="4" value="4"></el-option>
+                                     <el-option label="5" value="5"></el-option>
+                                </el-select>
                             </p>
                         </el-form-item>
-                        <el-form-item label="是否需要验证字段">
+                       <!--  <el-form-item label="是否需要验证字段">
                             <p>
                                 <input type="radio" name="picked2" value=31 v-model="picked">是
                                 <input type="radio" name="picked2" value=30 v-model="picked">否
                             </p>
-                        </el-form-item>
+                        </el-form-item> -->
                         <li>--------------------------------------------------------------------------------------------------</li>
                     <el-button type="primary" @click="removel(index)">删除</el-button>
                     </p>
