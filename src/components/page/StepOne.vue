@@ -54,7 +54,7 @@
                 console.log(this.form);
                 var forms = {};
                 forms.projectName = this.form.projectName;
-                forms.projectDescription = "yy";
+                forms.projectDescription = this.form.projectDescription;
                  console.log(JSON.stringify(forms));
 
 

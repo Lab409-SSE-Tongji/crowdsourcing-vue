@@ -11,31 +11,31 @@
             <el-form ref="form" :model="form" label-width="80px">  
                 <el-form-item label="系统对安全性的要求">
                     <p>
-                        <input type="radio" name="" value="" v-model="picked">1
-                        <input type="radio" name="" value="" v-model="picked">2 
-                        <input type="radio" name="" value="" v-model="picked">3 
-                        <input type="radio" name="" value="" v-model="picked">4
-                        <input type="radio" name="" value="" v-model="picked">5
+                        <input type="radio" name="picked" value="1" v-model="picked">1
+                        <input type="radio" name="picked" value="2" v-model="picked">2 
+                        <input type="radio" name="picked" value="3" v-model="picked">3 
+                        <input type="radio" name="picked" value="4" v-model="picked">4
+                        <input type="radio" name="picked" value="5" v-model="picked">5
                     </p>
                 </el-form-item> 
                 <el-form-item label="系统对可靠性的要求">
                     <p>
-                        <input type="radio" name="" value="" v-model="picked">1
-                        <input type="radio" name="" value="" v-model="picked">2 
-                        <input type="radio" name="" value="" v-model="picked">3 
-                        <input type="radio" name="" value="" v-model="picked">4
-                        <input type="radio" name="" value="" v-model="picked">5
+                        <input type="radio" name="picked2" value="" v-model="picked">1
+                        <input type="radio" name="picked2" value="" v-model="picked">2 
+                        <input type="radio" name="picked2" value="" v-model="picked">3 
+                        <input type="radio" name="picked2" value="" v-model="picked">4
+                        <input type="radio" name="picked2" value="" v-model="picked">5
                     </p>
                 </el-form-item>  
                 <el-form-item label="系统的开发语言">
-                    <el-select v-model="form.region" placeholder="请选择">
+                    <el-select v-model="form.language" placeholder="请选择">
                         <el-option label="Java" value="Java"></el-option>
                         <el-option label="C／C++" value="C／C++"></el-option>
                         <el-option label="JavaScript" value="JavaScript"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="系统的类型">
-                    <el-select v-model="form.region" placeholder="请选择">
+                    <el-select v-model="form.type" placeholder="请选择">
                         <el-option label="Windows" value="Windows"></el-option>
                         <el-option label="Mac OS" value="Mac OS"></el-option>
                         <el-option label="iOS" value="iOS"></el-option>
@@ -68,6 +68,7 @@
                     resource: '小天才',
                     desc: ''
                 }
+                        
             }
         },
         methods: {
@@ -76,10 +77,13 @@
             },
             onSave() {
                 this.$message.success('保存成功！');
+                JSON.stringify(form);
             },
             prevStep:function(){
                 this.$router.push( {path:'/step3'});
             }
         }
+
+        //RequestMapping(value = "/addAllEntity/{id}",method = RequestMethod.POST)
     }
 </script>
