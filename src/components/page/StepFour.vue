@@ -9,7 +9,7 @@
         </div>
         <div class="form-box">
             <el-form ref="form" :model="form" label-width="80px">  
-                <el-form-item label="系统对安全性的要求">
+                <!-- <el-form-item label="系统对安全性的要求">
                     <p>
                         <input type="radio" name="picked" value="1" v-model="picked">1
                         <input type="radio" name="picked" value="2" v-model="picked">2 
@@ -41,11 +41,11 @@
                         <el-option label="iOS" value="iOS"></el-option>
                         <el-option label="Android" value="Android"></el-option>
                     </el-select>
-                </el-form-item>       
+                </el-form-item>      -->  
                 <el-form-item>
                     <el-button type="primary" @click="prevStep">上一步</el-button>
-                    <el-button type="primary" @click="onSubmit">提交</el-button>
-                    <el-button type="primary" @click="onSave">保存</el-button>
+                    <el-button type="primary" @click="submit">提交</el-button>
+                    <!-- <el-button type="primary" @click="onSave">保存</el-button> -->
                 </el-form-item>
             </el-form>
             
@@ -58,29 +58,29 @@
     export default {
         data: function(){
             return {
-                form: {
-                    name: '',
-                    region: '',
-                    date1: '',
-                    date2: '',
-                    delivery: true,
-                    type: ['步步高'],
-                    resource: '小天才',
-                    desc: ''
-                }
-                        
+                queryId: ''                     
+            }
+        },
+        created: function(){
+            if(this.$route.query.id){
+                var id = this.$route.query.id;
+                this.queryId = id;
             }
         },
         methods: {
-            onSubmit() {
-                this.$message.success('提交成功！');
-            },
-            onSave() {
-                this.$message.success('保存成功！');
-                JSON.stringify(form);
+            submit() {
+                var id = this.queryId;
+                this.$http.get('http://localhost:8011/fp/ufp/'+id).then(response => {
+                    var ufp = response.body;
+                    this.$message.success('估算完成！共计'+ufp+"个未调整功能点");
+                }, response => {
+                  
+                    console.log("error");
+                });
             },
             prevStep:function(){
-                this.$router.push( {path:'/step3'});
+                var param = {id:this.queryId};
+                this.$router.push( {path:'/step3', query: param});  
             }
         }
 

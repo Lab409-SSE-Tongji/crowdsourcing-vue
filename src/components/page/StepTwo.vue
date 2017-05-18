@@ -93,7 +93,7 @@
                         <el-button type="primary" @click="addIndex1">添加</el-button>
                         <el-button type="primary" @click="prevStep">上一步</el-button>
                         <el-button type="primary" @click="nextStep">下一步</el-button>
-                        <el-button type="primary" @click="save">保存</el-button>
+                        <el-button type="primary" @click="save(0)">保存</el-button>
                     </el-form-item>
 
                   
@@ -129,17 +129,42 @@
                        regulationOfSameLogic : '',
                        regulationOfReturningStatus : ''                   
                     }
-                ]
+                ],
+                queryId: '',
             }
         },
-        created: function(){
+        created:function(){
+            //如果来自编辑页面
+            if(this.$route.query.id){
+                var id = this.$route.query.id;
+                this.queryId = id;
+                this.$http.get('http://127.0.0.1:8011/estimation/getRequirement/'+id).then(response => {
+
+                   console.log("success");
+                   console.log(response.body.transactions);
+                   var res_transactions = response.body.transactions;
+                   //清空原数组
+                   if(res_transactions.length != 0){
+                        this.transactions = [];
+                   }
+                   for(var i=0; i<res_transactions.length; i++){
+                        this.transactions[i] = res_transactions[i]; 
+                   }
+
+                 }, response => {
+                  
+                   console.log("error");
+                 });
+
+            }
         },
         methods: {
             prevStep() {
-                this.$router.push( {path:'/step1'});
+                var param = {id:this.queryId};
+                this.$router.push( {path:'/step1', query: param});            
             },
             nextStep:function(){
-                this.$router.push( {path:'/step3'});
+               this.save(1);
             },
             addIndex1:function() {
                 this.transactions.push(
@@ -185,10 +210,16 @@
             removeIndex3:function(index1, index2, index3) {
                 this.transactions[index1].steps[index2].concerningDataSets.splice(index3,1);
             },
-            save:function(){
+            //flag用于区分仅保存、保存并以id跳转、保存并以insertid跳转三种情况。
+            save:function(flag){
+                var id = this.queryId;
                 var transactions = this.transactions;
-                this.$http.post('http://127.0.0.1:8011/estimation/addAllTransaction/1493870686488',{transactions}).then(response => {
+                this.$http.post('http://127.0.0.1:8011/estimation/addAllTransaction/'+id,{transactions}).then(response => {
                     console.log("success");
+                    if(flag == 1){
+                        var param = {id:this.queryId};
+                        this.$router.push( {path:'/step3', query: param});
+                    }
                 }, response => {
                   
                   console.log("error");

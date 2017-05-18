@@ -35,11 +35,11 @@
                 columns: [
                     {
                         name: '项目名',
-                        key: 'name',
+                        key: 'projectName',
                     },
                     {
                         name: '创建时间',
-                        key: 'time',
+                        key: 'id',
                     },
                     {
                         name: '估算是否完成',
@@ -47,13 +47,7 @@
                     }
                 ],
                 actions: [
-                    // {
-                    //     text: 'Click',
-                    //     class: 'btn-primary',
-                    //     event(e, row) {
-                    //         self.$message('选中的行数： ' + row.row.id);
-                    //     }
-                    // },
+                    
                     {
                         text: '查看报告',
                         class: 'btn-primary',
@@ -64,13 +58,16 @@
                     {
                         text: '继续编辑',
                         class: 'btn-primary',
-                        event() {
-                            self.$router.push({ path: '/report'});
+                        event(e, row) {
+                            self.$message('选中的行数： ' + row.row.id);
+                            var param = {id:row.row.id};
+                            self.$router.push({ path: '/step1', query: param});
                         }
                     }
 
                 ],
-                query:''
+                query: ''
+
             }
         },
         components: {
@@ -92,15 +89,37 @@
             getData(){
                 const self = this;
                 return self.information.data.filter(function (d) {
-                    if(d.name.indexOf(self.query) > -1){
+                    if(d.projectName.indexOf(self.query) > -1){
                         return d;
                     }
                 })
             }
         },
-        beforeMount(){
+        beforeMount: function(){
             axios.get('/static/estimationrecords.json').then( (res) => {
-                this.information = res.data;
+                var response_data = res.data;
+
+                this.$http.get('http://localhost:8011/estimation/getAllRequirements').then(response => {
+
+                   console.log(response.body[0].description.projectName);
+
+                    //这里只取了第一条记录，注意如果mongo字段为空，前段会报错的
+                   // for(var i=0; i<response.body.length; i++){
+                    for(var i=0; i<1; i++){
+                       response_data.data.push({
+                           projectName:response.body[i].description.projectName,
+                           id:response.body[i].id,
+                           fin:response.body[i].description.projectName
+                       });
+                   }
+                   this.information = response_data;
+
+
+
+                   }, response => {
+                     
+                     console.log("error");
+                });
             })
         }
     }
