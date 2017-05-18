@@ -41,25 +41,34 @@
 
                     <!--照step3自己写的，其中add变成了addIndex2，嵌套的add用addIndex3-->
                     <el-form-item label="步骤:">
+                        <!-- <el-button :plain="true" type="success" @click="addIndex2(i1)">新增步骤</el-button> -->
                         <p v-for="(step,i2) in transaction.steps">
+                            <!-- <el-button :plain="true" type="success" @click="removeIndex2(i1,i2)">删除该步骤</el-button> -->
                             <el-form-item label="">
                                 <el-form-item label="步骤名称:">
-                                    <el-input v-model="step.stepName"></el-input>
+                                    <el-input v-model="step.stepName" style="width:80%"></el-input>
                                 </el-form-item>
+                                <el-button :plain="true" type="success" @click="addIndex3(i1,i2)">新增字段</el-button>
                                 <p v-for="(concerningDataSet,i3) in step.concerningDataSets">
+                                    <!-- <el-button :plain="true" type="success" @click="removeIndex3(i1,i2,i3)">删除该逻辑字段</el-button> -->
                                     <el-form-item label="逻辑文件:">
-                                        <el-input v-model="concerningDataSet.logicalFileName"></el-input>
+                                        <el-input v-model="concerningDataSet.logicalFileName" style="width:80%"></el-input>
                                     </el-form-item>
                                     <el-form-item label="逻辑字段:">
-                                        <el-input v-model="concerningDataSet.logicalFieldName"></el-input>
+                                        <el-input v-model="concerningDataSet.logicalFieldName" style="width:80%"></el-input>
                                     </el-form-item>
-                                    <a href="javascript:void(0)" @click="removeIndex3(i1,i2,i3)">删除</a>
+                                    <el-button :plain="true" type="success" @click="removeIndex3(i1,i2,i3)">删除该逻辑字段</el-button>
+                                    <!--<a href="javascript:void(0)" @click="removeIndex3(i1,i2,i3)">删除该逻辑字段</a>-->
                                 </p>
-                                <a href="javascript:void(0)" @click="addIndex3(i1,i2)">新增字段</a>    
+                                <!-- <el-button :plain="true" type="success" @click="addIndex3(i1,i2)">新增字段</el-button> -->
+                                <!--<a href="javascript:void(0)" @click="addIndex3(i1,i2)">新增字段</a>-->    
                             </el-form-item> 
-                            <a href="javascript:void(0)" @click="removeIndex2(i1,i2)">删除</a>                        
+                            <el-button :plain="true" type="success" @click="addIndex2(i1)">新增步骤</el-button>
+                            <el-button :plain="true" type="success" @click="removeIndex2(i1,i2)">删除该步骤</el-button>
+                            <!--<a href="javascript:void(0)" @click="removeIndex2(i1,i2)">删除该步骤</a>-->                        
                         </p>
-                         <a href="javascript:void(0)" @click="addIndex2(i1)">新增</a>
+                        <!-- <el-button :plain="true" type="success" @click="addIndex2(i1)">新增步骤</el-button> -->
+                        <!--<a href="javascript:void(0)" @click="addIndex2(i1)">新增步骤</a>-->
                     </el-form-item>
 
                     <el-form-item label="逻辑操作的数量">
@@ -85,6 +94,11 @@
                                  <el-option label="5" value="5"></el-option>
                             </el-select>
                         </p>
+                    </el-form-item>
+
+                    <el-form-item label="测试input和button能否串起来">
+                        <el-input v-model="transactions.transactionName" style="width:80%"></el-input>
+                        <el-button type="primary" style="" @click="">测试</el-button>
                     </el-form-item>
                    
                     <el-button :plain="true" type="success" @click="removeIndex1(i1)">删除</el-button>
