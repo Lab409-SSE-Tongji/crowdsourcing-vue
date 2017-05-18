@@ -41,6 +41,7 @@
 
                     <!--照step3自己写的，其中add变成了addIndex2，嵌套的add用addIndex3-->
                     <el-form-item label="步骤:">
+
                         <p v-for="(step,i2) in transaction.steps">
                             <el-form-item label="">
                                 <el-form-item label="步骤名称:">
@@ -96,7 +97,9 @@
                         <el-button type="primary" @click="save(0)">保存</el-button>
                     </el-form-item>
 
-                  
+                   <el-form-item label="">                 
+                        <el-input v-model="forBug" type='hidden'></el-input>
+                    </el-form-item>
 
                 </el-form>
                 
@@ -131,6 +134,7 @@
                     }
                 ],
                 queryId: '',
+                forBug: 1
             }
         },
         created:function(){
@@ -184,6 +188,7 @@
                 this.transactions.splice(index,1);
             },
             addIndex2:function(index) {
+                this.forBug = this.forBug + 1;
                 this.transactions[index].steps.push(
                     {
                         stepName : '',
@@ -195,11 +200,14 @@
                         ]
                     }
                 );
+                console.log(this.transactions);
             },
             removeIndex2:function(index1, index2) {
+                this.forBug = this.forBug + 1;
                 this.transactions[index1].steps.splice(index2,1);
             },
             addIndex3:function(index1, index2) {
+                this.forBug = this.forBug + 1;
                 this.transactions[index1].steps[index2].concerningDataSets.push(
                     {
                         logicalFileName : '',
@@ -208,6 +216,7 @@
                 );
             },
             removeIndex3:function(index1, index2, index3) {
+                this.forBug = this.forBug + 1;
                 this.transactions[index1].steps[index2].concerningDataSets.splice(index3,1);
             },
             //flag用于区分仅保存、保存并以id跳转、保存并以insertid跳转三种情况。

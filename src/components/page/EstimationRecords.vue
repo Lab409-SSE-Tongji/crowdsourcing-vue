@@ -104,8 +104,8 @@
                    console.log(response.body[0].description.projectName);
 
                     //这里只取了第一条记录，注意如果mongo字段为空，前段会报错的
-                   // for(var i=0; i<response.body.length; i++){
-                    for(var i=0; i<1; i++){
+                   for(var i=0; i<response.body.length; i++){
+                    // for(var i=0; i<1; i++){
                        response_data.data.push({
                            projectName:response.body[i].description.projectName,
                            id:response.body[i].id,
