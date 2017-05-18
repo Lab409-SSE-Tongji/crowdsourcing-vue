@@ -22,11 +22,11 @@
 
             
 
-                <el-form-item label="RET:">
-                <a href="javascript:void(0)" @click="add">新增</a>
-                    <p v-for="(RET,k) in entities[index].RETs">
-                        RET名称<el-input v-model="RET.RETName" type="text"></el-input>
-                        DET名称<el-input v-model="RET.RETField" type="text"></el-input>
+                <el-form-item label="ret:">
+                    <a href="javascript:void(0)" @click="add">新增</a>
+                    <p v-for="(ret,k) in entities[index].rets">
+                        RET<el-input v-model="ret.retname" type="text"></el-input>
+                        DET名称<el-input v-model="ret.retfield" type="text"></el-input>
                         <a href="javascript:void(0)" @click="remove(k)">删除</a>
                     </p>
                 </el-form-item>
@@ -40,9 +40,10 @@
                 
                 
                 <el-form-item>
+                    <el-button type="primary" @click="sort()">整理</el-button>
                     <el-button type="primary" @click="prevStep">上一步</el-button>
                     <el-button type="primary" @click="nextStep">下一步</el-button>
-                    <el-button type="primary" @click="save">保存</el-button>
+                    <el-button type="primary" @click="save(0)">保存</el-button>
                 </el-form-item>
             </el-form>
             
@@ -55,39 +56,43 @@
     export default {
         data: function(){
             return {
-                entities:[],
+                entities:[
+                    {
+                        logicalFileName: '',
+                        logicalFieldName: '',
+                        logicalFileType: '',
+                        rets: [
+                        {
+                            retname: '',
+                            retfield: ''
+                        }]
+                    }
+                ],
                 index:0,
                 //这个字段的设计是因为vue双向绑定，选择下拉框时会对v-model的data产生影响。本代码中v-model是动态的，会出现问题。
-                temp:''
+                temp: '',
+                queryId: ''
             }
         },
         created: function(){
-            //第一次进入这个界面，整理事务中的逻辑文件；否则，不整理。这个功能后期再优化。
-             this.$http.get('http://127.0.0.1:8011/estimation/sortOutAllEntity/1493870686488').then(response => {
+            if(this.$route.query.id){
+                var id = this.$route.query.id;
+                this.queryId = id;
+                this.$http.get('http://127.0.0.1:8011/estimation/getRequirement/'+id).then(response => {
 
-                
-                for(var i=0; i<response.body.length; i++){
-                    this.entities.push({
-                        logicalFileName: response.body[i].logicalFileName,
-                        logicalFieldName: response.body[i].logicalFieldName,
-                        logicalFileType: '',
-                        RETs: [
-                        {
-                            RETName: '',
-                            RETField: ''
-                        }]
-                    })
-                }
-console.log(this.entities);
-                this.temp = this.entities[0].logicalFileName;
-                
-
-
-
-                }, response => {
+                   console.log("success");
+                   console.log(response.body.entities);
+                   var res_entities = response.body.entities;
+                   this.entities = [];
+                   for(var i=0; i<res_entities.length; i++){
+                        this.entities[i] = res_entities[i]; 
+                   }
+                   this.temp = this.entities[0].logicalFileName;
+                 }, response => {
                   
-                  console.log("error");
-                });
+                   console.log("error");
+                 });
+            }
         },
         methods: {
             changeEntity(e) {
@@ -103,29 +108,58 @@ console.log(this.entities);
                 
 
             },
+            sort: function(){
+                var id = this.queryId;
+                this.$http.get('http://127.0.0.1:8011/estimation/sortOutAllEntity/'+id).then(response => {
+
+                   this.entities = [];
+                   for(var i=0; i<response.body.length; i++){
+                       this.entities.push({
+                           logicalFileName: response.body[i].logicalFileName,
+                           logicalFieldName: response.body[i].logicalFieldName,
+                           logicalFileType: '',
+                           rets: [
+                           {
+                               retname: '',
+                               retfield: ''
+                           }]
+                       })
+                   }
+                   console.log(this.entities);
+                   this.temp = this.entities[0].logicalFileName;
+                   }, response => {
+                     
+                     console.log("error");
+                   });
+            },
             prevStep() {
-                this.$router.push( {path:'/step2'});
+                var param = {id:this.queryId};
+                this.$router.push( {path:'/step2', query: param});  
             },
             nextStep:function(){
-                this.$router.push( {path:'/step4'});
+                this.save(1);
             },
             add:function() {
-                this.entities[this.index].RETs.push( {
-                        RETName: '',
-                        RETField: ''
+                this.entities[this.index].rets.push( {
+                        retname: '',
+                        retfield: ''
                     })
             },
             remove:function(index) {
-                this.entities[this.index].RETs.splice(index,1)
+                this.entities[this.index].rets.splice(index,1)
             },
-            save:function(){
+            save:function(flag){
+                var id = this.queryId;
                 var entities = this.entities;
                 var object = {entities:this.entities};
-                this.$http.post('http://127.0.0.1:8011/estimation/addAllEntity/1493870686488',object).then(response => {
-
+                this.$http.post('http://127.0.0.1:8011/estimation/addAllEntity/'+id,object).then(response => {
+                    if(flag == 1){
+                        var param = {id:this.queryId};
+                        this.$router.push( {path:'/step4', query: param});
+                    }
                 }, response => {
                   
-                  console.log("error"+response.status);
+                  console.log("error");
                 });
             }
         }
