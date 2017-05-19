@@ -73,6 +73,10 @@
                 
             },
             save: function(flag){
+                if(this.form.projectName=="" || this.form.projectName==null){
+                    this.$message("请输入项目名称");
+                    return;
+                }
                 if(this.$route.query.id){
                     var id = this.queryId;
                     var description = this.form;
