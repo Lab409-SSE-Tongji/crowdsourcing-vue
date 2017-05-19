@@ -28,10 +28,8 @@
                                   <label for="loginkeeping">记住我</label>
                                 </p>
                                 <p class="login button">
-                                    <a href="#readme">
                                     <input type="submit" value="登录" @click.prevent="login"/>
                                     <i class="el-icon el-icon-arrow-right" style="margin-left: -20px;"></i>
-                                    </a>
                                 </p>
                                 <p class="change_link">还没有账户<a class="to_register" href="#register">马上注册</a>
 
