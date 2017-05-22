@@ -3,7 +3,10 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
-                <el-breadcrumb-item>创建需求这是步骤4！</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/create'}">创建需求</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/step1', query: param}">创建您的项目</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/step2', query: param}">添加数据模块</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/step3', query: param}">调整数据模块</el-breadcrumb-item>
                 <el-breadcrumb-item>添加非功能性需求</el-breadcrumb-item>
             </el-breadcrumb>
         </div>

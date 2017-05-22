@@ -3,7 +3,7 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
-                <el-breadcrumb-item>创建需求</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/create'}">创建需求</el-breadcrumb-item>
                 <el-breadcrumb-item>创建您的项目</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
@@ -73,6 +73,10 @@
                 
             },
             save: function(flag){
+                if(this.form.projectName=="" || this.form.projectName==null){
+                    this.$message("请输入项目名称");
+                    return;
+                }
                 if(this.$route.query.id){
                     var id = this.queryId;
                     var description = this.form;

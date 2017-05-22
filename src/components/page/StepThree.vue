@@ -3,7 +3,9 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
-                <el-breadcrumb-item>创建需求</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/create'}">创建需求</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/step1', query: param}">创建您的项目</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/step2', query: param}">添加数据模块</el-breadcrumb-item>
                 <el-breadcrumb-item>调整数据模块</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
@@ -22,10 +24,10 @@
 
             
 
-                <el-form-item label="ret:">
+                <el-form-item label="RET:">
                     <a href="javascript:void(0)" @click="add">新增</a>
                     <p v-for="(ret,k) in entities[index].rets">
-                        RET<el-input v-model="ret.retname" type="text"></el-input>
+                        RET名称<el-input v-model="ret.retname" type="text"></el-input>
                         DET名称<el-input v-model="ret.retfield" type="text"></el-input>
                         <a href="javascript:void(0)" @click="remove(k)">删除</a>
                     </p>
@@ -45,6 +47,10 @@
                     <el-button type="primary" @click="nextStep">下一步</el-button>
                     <el-button type="primary" @click="save(0)">保存</el-button>
                 </el-form-item>
+
+                <el-form-item label="">                 
+                     <el-input v-model="forBug" type='hidden'></el-input>
+                 </el-form-item>
             </el-form>
             
         </div>
@@ -71,7 +77,8 @@
                 index:0,
                 //这个字段的设计是因为vue双向绑定，选择下拉框时会对v-model的data产生影响。本代码中v-model是动态的，会出现问题。
                 temp: '',
-                queryId: ''
+                queryId: '',
+                forBug: ''
             }
         },
         created: function(){
@@ -95,6 +102,10 @@
             }
         },
         methods: {
+            bindForBug: function(){
+                console.log("change");
+                this.forBug = this.forBug + 1;
+            },
             changeEntity(e) {
             
                 for(var i=0; i<this.entities.length; i++){
@@ -140,12 +151,14 @@
                 this.save(1);
             },
             add:function() {
+                this.bindForBug();
                 this.entities[this.index].rets.push( {
                         retname: '',
                         retfield: ''
                     })
             },
             remove:function(index) {
+              this.bindForBug();
                 this.entities[this.index].rets.splice(index,1)
             },
             save:function(flag){

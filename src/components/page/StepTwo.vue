@@ -4,9 +4,10 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
-                <el-breadcrumb-item>创建需求</el-breadcrumb-item>
-                <el-breadcrumb-item>添加数据模块</el-breadcrumb-item>
-            </el-breadcrumb>
+                <el-breadcrumb-item :to="{ path: '/create'}">创建需求</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/step1', query: param}">创建您的项目</el-breadcrumb-item>
+                <el-breadcrumb-item>添加数据模块</el-breadcrumb-item>     
+           </el-breadcrumb>
         </div>
         
             <div class="form-box">
@@ -19,7 +20,8 @@
 
                   
                     <el-form-item label="事务类型">
-                        <el-select v-model="transaction.transactionType" placeholder="请选择">
+                        <el-select v-model="transaction.transactionType" placeholder="请选择" 
+                        @change="bindForBug" @visible-change="changeForBug">
                             <el-option label="EI" value="EI"></el-option>
                             <el-option label="EO" value="EO"></el-option>
                             <el-option label="EQ" value="EQ"></el-option>
@@ -29,28 +31,15 @@
                         <el-input type="textarea" v-model="transaction.transactionDescription"></el-input>
                     </el-form-item>
 
-                    <!--step3上的-->
-           <!--          <el-form-item label="RET:">
-                    <a href="javascript:void(0)" @click="add">新增</a>
-                        <p v-for="(RET,k) in entities[index].RETs">
-                            RET名称<el-input v-model="RET.RETName" type="text"></el-input>
-                            DET名称<el-input v-model="RET.RETField" type="text"></el-input>
-                            <a href="javascript:void(0)" @click="remove(k)">删除</a>
-                        </p>
-                    </el-form-item> -->
-
-                    <!--照step3自己写的，其中add变成了addIndex2，嵌套的add用addIndex3-->
                     <el-form-item label="步骤:">
 
                         <p v-for="(step,i2) in transaction.steps">
-                            <!-- <el-button :plain="true" type="success" @click="removeIndex2(i1,i2)">删除该步骤</el-button> -->
                             <el-form-item label="">
                                 <el-form-item label="步骤名称:">
                                     <el-input v-model="step.stepName" style="width:80%"></el-input>
                                 </el-form-item>
                                 <el-button :plain="true" type="success" @click="addIndex3(i1,i2)">新增字段</el-button>
                                 <p v-for="(concerningDataSet,i3) in step.concerningDataSets">
-                                    <!-- <el-button :plain="true" type="success" @click="removeIndex3(i1,i2,i3)">删除该逻辑字段</el-button> -->
                                     <el-form-item label="逻辑文件:">
                                         <el-input v-model="concerningDataSet.logicalFileName" style="width:80%"></el-input>
                                     </el-form-item>
@@ -58,22 +47,30 @@
                                         <el-input v-model="concerningDataSet.logicalFieldName" style="width:80%"></el-input>
                                     </el-form-item>
                                     <el-button :plain="true" type="success" @click="removeIndex3(i1,i2,i3)">删除该逻辑字段</el-button>
-                                    <!--<a href="javascript:void(0)" @click="removeIndex3(i1,i2,i3)">删除该逻辑字段</a>-->
                                 </p>
-                                <!-- <el-button :plain="true" type="success" @click="addIndex3(i1,i2)">新增字段</el-button> -->
-                                <!--<a href="javascript:void(0)" @click="addIndex3(i1,i2)">新增字段</a>-->    
                             </el-form-item> 
-                            <el-button :plain="true" type="success" @click="addIndex2(i1)">新增步骤</el-button>
-                            <el-button :plain="true" type="success" @click="removeIndex2(i1,i2)">删除该步骤</el-button>
-                            <!--<a href="javascript:void(0)" @click="removeIndex2(i1,i2)">删除该步骤</a>-->                        
+                            <el-button :plain="true" type="success" @click="removeIndex2(i1,i2)">删除步骤</el-button>
                         </p>
-                        <!-- <el-button :plain="true" type="success" @click="addIndex2(i1)">新增步骤</el-button> -->
-                        <!--<a href="javascript:void(0)" @click="addIndex2(i1)">新增步骤</a>-->
+                        <el-button :plain="true" type="success" @click="addIndex2(i1)">新增步骤</el-button>
+                          
+                    </el-form-item>
+
+                     <el-form-item label="剔除重复字段的数量">                 
+                     <el-select v-model="transaction.countRepeatField" placeholder="请选择" 
+                            @change="bindForBug" @visible-change="changeForBug" >
+                                 <el-option label="0" value="0"></el-option>
+                                 <el-option label="1" value="1"></el-option>
+                                 <el-option label="2" value="2"></el-option>
+                                 <el-option label="3" value="3"></el-option>
+                                 <el-option label="4" value="4"></el-option>
+                                 <el-option label="5" value="5"></el-option>
+                            </el-select>
                     </el-form-item>
 
                     <el-form-item label="逻辑操作的数量">
                         <p>
-                            <el-select v-model="transaction.regulationOfSameLogic" placeholder="请选择">
+                            <el-select v-model="transaction.regulationOfSameLogic" placeholder="请选择" 
+                           @change="bindForBug" @visible-change="changeForBug" >
                                  <el-option label="0" value="0"></el-option>
                                  <el-option label="1" value="1"></el-option>
                                  <el-option label="2" value="2"></el-option>
@@ -85,7 +82,7 @@
                     </el-form-item>
                     <el-form-item label="返回状态信息的数量">
                         <p>
-                            <el-select v-model="transaction.regulationOfReturningStatus" placeholder="请选择">
+                            <el-select v-model="transaction.regulationOfReturningStatus" placeholder="请选择" @change="bindForBug" @visible-change="changeForBug" >
                                  <el-option label="0" value="0"></el-option>
                                  <el-option label="1" value="1"></el-option>
                                  <el-option label="2" value="2"></el-option>
@@ -94,11 +91,6 @@
                                  <el-option label="5" value="5"></el-option>
                             </el-select>
                         </p>
-                    </el-form-item>
-
-                    <el-form-item label="测试input和button能否串起来">
-                        <el-input v-model="transactions.transactionName" style="width:80%"></el-input>
-                        <el-button type="primary" style="" @click="">测试</el-button>
                     </el-form-item>
                    
                     <el-button :plain="true" type="success" @click="removeIndex1(i1)">删除</el-button>
@@ -142,6 +134,7 @@
                                ]
                            }
                        ],
+                       countRepeatField: '',
                        regulationOfSameLogic : '',
                        regulationOfReturningStatus : ''                   
                     }
@@ -151,6 +144,7 @@
             }
         },
         created:function(){
+            this.transactions[0].regulationOfReturningStatus = 1;
             //如果来自编辑页面
             if(this.$route.query.id){
                 var id = this.$route.query.id;
@@ -176,6 +170,14 @@
             }
         },
         methods: {
+            //编辑从数据库载入的信息时，点击增加按钮，并不会有新的输入框产生，而数据确实发生了更改。也就是说视图与数据的更新不同步，只有修改一个其他的数据后，视图才能同步到数据上。因此引入数据forBug。产生此问题的原因不明，猜测与vue无法监听部分数组操作有关。
+            bindForBug: function(e){
+                this.forBug = this.forBug + 1;
+            },
+            changeForBug: function(isVisible){     
+                if(!isVisible)
+                this.forBug = this.forBug - 1;
+            },
             prevStep() {
                 var param = {id:this.queryId};
                 this.$router.push( {path:'/step1', query: param});            
@@ -201,7 +203,8 @@
                 this.transactions.splice(index,1);
             },
             addIndex2:function(index) {
-                this.forBug = this.forBug + 1;
+                this.transactions[0].regulationOfReturningStatus = 5;
+                this.bindForBug();
                 this.transactions[index].steps.push(
                     {
                         stepName : '',
