@@ -3,7 +3,7 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ path: '/create'}">创建需求</el-breadcrumb-item>
+                <el-breadcrumb-item>创建需求</el-breadcrumb-item>
                 <el-breadcrumb-item>创建您的项目</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
@@ -110,7 +110,8 @@
                       
                       console.log("error");
                     });
-                }  
+                }
+               
            }
 
         }

@@ -4,9 +4,8 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ path: '/create'}">创建需求</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ path: '/step1', query: param}">创建您的项目</el-breadcrumb-item>
-                <el-breadcrumb-item>添加数据模块</el-breadcrumb-item>     
+                <el-breadcrumb-item>创建需求</el-breadcrumb-item>
+                <el-breadcrumb-item>添加数据模块</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         
@@ -14,7 +13,7 @@
                 <el-form ref="form" :model="form" label-width="80px">
                   <p v-for="(transaction,i1) in transactions">
 
-                    <el-form-item label="功能名称"> 
+                    <el-form-item label="功能名称">                 
                         <el-input v-model="transaction.transactionName"></el-input>
                     </el-form-item>
 
@@ -240,8 +239,8 @@
                 this.$http.post('http://127.0.0.1:8011/estimation/addAllTransaction/'+id,{transactions}).then(response => {
                     console.log("success");
                     if(flag == 1){
-                        var param = {id:this.queryId};  //  
-                        this.$router.push( {path:'/step3', query: param});  //
+                        var param = {id:this.queryId};
+                        this.$router.push( {path:'/step3', query: param});
                     }
                 }, response => {
                   
