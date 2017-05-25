@@ -11,11 +11,12 @@
         <div class="form-box">
             <el-form ref="form" :model="form" label-width="80px">
                 <el-form-item label="项目名称">
-                    <el-input v-model="form.projectName"></el-input>
+                    <el-input v-model="form.projectName" placeholder="名称不得多于20个字"></el-input>
+                   
                 </el-form-item>
        
                 <el-form-item label="项目简介">
-                    <el-input type="textarea" v-model="form.projectDescription"></el-input>
+                    <el-input type="textarea" v-model="form.projectDescription" placeholder="文字不得多于50个字"></el-input>
                 </el-form-item>
             </el-form>
 

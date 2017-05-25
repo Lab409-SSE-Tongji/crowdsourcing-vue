@@ -38,7 +38,8 @@
                                 <el-form-item label="步骤名称:">
                                     <el-input v-model="step.stepName" style="width:80%"></el-input>
                                 </el-form-item>
-                                <el-button :plain="true" type="success" @click="addIndex3(i1,i2)">新增字段</el-button>
+                                <i class="el-icon-plus" @click="addIndex3(i1,i2)"></i>
+                                <!-- <el-button :plain="true" type="success" @click="addIndex3(i1,i2)">新增字段</el-button> -->
                                 <p v-for="(concerningDataSet,i3) in step.concerningDataSets">
                                     <el-form-item label="逻辑文件:">
                                         <el-input v-model="concerningDataSet.logicalFileName" style="width:80%"></el-input>
@@ -46,7 +47,8 @@
                                     <el-form-item label="逻辑字段:">
                                         <el-input v-model="concerningDataSet.logicalFieldName" style="width:80%"></el-input>
                                     </el-form-item>
-                                    <el-button :plain="true" type="success" @click="removeIndex3(i1,i2,i3)">删除该逻辑字段</el-button>
+                                    <!-- <el-button :plain="true" type="success" @click="removeIndex3(i1,i2,i3)">删除该逻辑字段</el-button> -->
+                                    <i class="el-icon-minus" @click="removeIndex3(i1,i2,i3)"></i>
                                 </p>
                             </el-form-item> 
                             <el-button :plain="true" type="success" @click="removeIndex2(i1,i2)">删除步骤</el-button>
