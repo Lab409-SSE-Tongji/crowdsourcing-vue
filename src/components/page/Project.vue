@@ -12,7 +12,7 @@
             <el-table-column prop="id" label="项目id" width="120">
               <template scope="scope">{{ scope.row.id }}</template>
             </el-table-column>
-            <el-table-column prop="name" label="项目名称" width="120">
+            <el-table-column prop="name" label="项目名称" width="180">
             </el-table-column>
             <el-table-column prop="address" label="项目地址" show-overflow-tooltip>
             </el-table-column>

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import ElementUI from 'element-ui';
+import Notification  from 'element-ui';
 import VueResource from 'vue-resource';
 import axios from 'axios';
 import Vuex from 'vuex';

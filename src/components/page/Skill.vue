@@ -42,7 +42,7 @@
                     prop="address">
             </el-table-column>
         </el-table>
-        <div class="content-title">证书展示</div>
+        <!-- <div class="content-title">证书展示</div>
         <hr>
         <el-row>
           <el-col :span="4" v-for="(o, index) in 4" :key="o" :offset="index > 0 ? 2 : 0">
@@ -56,7 +56,7 @@
               </div>
             </el-card>
           </el-col>
-        </el-row>
+        </el-row> -->
     </div>
 </template>
 

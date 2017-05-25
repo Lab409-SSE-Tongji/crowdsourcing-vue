@@ -19,7 +19,7 @@
             </el-submenu>
             <el-submenu index="4">
                 <template slot="title"><i class="el-icon-star-on"></i>我的开发</template>
-                <el-menu-item index="basecharts">开发中项目</el-menu-item>
+                <el-menu-item index="project">开发中项目</el-menu-item>
                 <el-menu-item index="mixcharts"></el-menu-item>
             </el-submenu>
         </el-menu>

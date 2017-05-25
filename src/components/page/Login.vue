@@ -29,7 +29,6 @@
                                 </p>
                                 <p class="login button">
                                     <input type="submit" value="登录" @click.prevent="login"/>
-                                    <i class="el-icon el-icon-arrow-right" style="margin-left: -20px;"></i>
                                 </p>
                                 <p class="change_link">还没有账户<a class="to_register" href="#register">马上注册</a>
 
@@ -50,6 +49,7 @@
     import axios from 'axios';
     import router from '../../router/index.js';
     import store from '../../vuex/store.js';
+    import { Message } from 'element-ui';
 
     // alert(store.getters.token);
     export default{
@@ -72,9 +72,12 @@
                         sessionStorage.setItem("token", response.data.result.token);
                         // alert(sessionStorage.getItem('token'));
                         router.push('/readme');
-                        // alert(store.getters.token);
-                    }else {
-                        console.log(response.data.status);
+                        console.log(response);
+                    }else if(response.data.status==404) {
+                        // console.log(response.data.status);
+                        Message.error("用户不存在")
+                    }else if(response.data.status==401){
+                        Message.error("密码错误，请重新输入");
                     }
 
                 }).catch(function (error) {

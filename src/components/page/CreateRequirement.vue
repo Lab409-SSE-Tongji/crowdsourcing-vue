@@ -14,11 +14,25 @@
 
                 <el-form-item label="起止时间">
                     <el-col :span="11" >
-                        <el-date-picker  type="date" placeholder="选择日期" v-model="form.start_time" style="width: 100%;"></el-date-picker>
+                      <el-date-picker
+                        style="width:100%"
+                        v-model="form.start_time"
+                        type="date"
+                        placeholder="选择日期"
+                        :picker-options="pickerOptions0"
+                        :format="yyyy-MM-dd">
+                      </el-date-picker>
                     </el-col>
                     <el-col class="line" :span="2">-</el-col>
                     <el-col :span="11" >
-                        <el-date-picker  type="date" placeholder="选择日期" v-model="form.end_time" style="width: 100%;"></el-date-picker>
+                      <el-date-picker
+                        style="width:100%"
+                        v-model="form.end_time"
+                        type="date"
+                        placeholder="选择日期"
+                        :picker-options="pickerOptions0"
+                        :format="yyyy-MM-dd">
+                      </el-date-picker>
                     </el-col>
                 </el-form-item>
                 <el-form-item label="项目类型">
@@ -37,7 +51,7 @@
 
                 <el-form-item label="附件上传">
                   <el-upload
-                    class="upload-demo"
+                    id="upload"
                     ref="upload"
                     action=""
                     :on-preview="handlePreview"
@@ -66,9 +80,15 @@ import axios from 'axios';
 import server from '../../../config/index';
 import router from '../../router/index.js';
 import store from '../../vuex/store.js';
-    export default {
+import { Message } from 'element-ui';
+export default {
         data: function(){
             return {
+              pickerOptions0: {
+                 disabledDate(time) {
+                   return time.getTime() < Date.now() - 8.64e7;
+                 }
+               },
                 url: server.url + '/api/requirement',
 
                 form: {
@@ -78,28 +98,32 @@ import store from '../../vuex/store.js';
                     end_time: '',
                     need_manager: '1',
                     requirement_detail: '',
-                },
-                info:{
-                  requirement_name: 'test',
-                  requirement_type: 'ios',
-                  start_time: '2017-5-6',
-                  end_time: '2065-8-9',
-                  need_manager: 1,
-                  requirement_detail: 'test',
                 }
             }
         },
         methods: {
             onSubmit() {
+              var sd = new Date(this.form.start_time);
+              var sdd = sd.getFullYear() + '-' + (sd.getMonth() + 1) + '-' + sd.getDate();
+              var ed = new Date(this.form.end_time);
+              var edd = ed.getFullYear() + '-' + (ed.getMonth() + 1) + '-' + ed.getDate();
+
+              var form = new FormData();
+              form.append("requirement_name",this.form.requirement_name);
+              form.append("requirement_type",this.form.requirement_type);
+              form.append("start_time",sdd);
+              form.append("end_time",edd);
+              form.append("need_manager",1);
+              form.append("requirement_detail",this.form.requirement_detail);
               // axios.post(this.url, {'headers': {'authorization': sessionStorage.getItem('token')}, 'data': this.info})
-              axios.post(this.url, this.info, {'headers': {'Authorization': sessionStorage.getItem('token')}})
+              axios.post(this.url, form, {'headers': {'Authorization': sessionStorage.getItem('token')}})
               .then(function(response) {
                 if(response.data.status==201){
                   // store.commit('setToken', {token: response.data.result.token});
                   // sessionStorage.setItem("token", response.data.result.token);
                   // alert(sessionStorage.getItem('token'));
                   router.push('create_requirement');
-                  this.$message.success('提交成功！');
+                  Message.success("新建需求成功！")
                   // alert(store.getters.token);
                   //
                 }else {

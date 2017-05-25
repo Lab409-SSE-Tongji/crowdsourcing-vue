@@ -25,11 +25,11 @@
                                 </p>
                                 <p>
                                     <label class="passwd" data-icon="p">密码</label>
-                                    <input v-model="info.password" required="required" type="password"/>
+                                    <input v-model="info.password" required="required" type="password" auto-complete="off"/>
                                 </p>
                                 <p>
-                                    <label class="passwd_comfirm" data-icon="p">确认密码</label>
-                                    <input required="required" type="password"/>
+                                    <label class="passwd_comfirm" data-icon="p" type="password">确认密码</label>
+                                    <input v-model="info.checkpassword"required="required" type="password" auto-complete="off"/>
                                 </p>
                                 <p class="signin button">
                                   <input type="submit" value="注册" @click="register"/>
