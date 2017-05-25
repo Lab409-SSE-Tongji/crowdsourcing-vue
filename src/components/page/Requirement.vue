@@ -22,8 +22,21 @@
                   close-transition>{{scope.row.tag}}</el-tag>
               </template>
             </el-table-column>
+          <el-table-column label="操作" width="200">
+          <template scope="scope">
+            <el-button
+              size="small"
+              @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            <el-button
+              size="small"
+              type="danger"
+              @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          </template>
+          </el-table-column>
         </el-table>
     </div>
+    <el-pagination
+
 </template>
 
 <script>
@@ -34,7 +47,6 @@
         data() {
             return {
                 url: server.url + '/api/requirement',
-
                 tableData: null
             }
 
@@ -72,6 +84,12 @@
           },
           filterTag(value, row) {
             return row.tag === value;
+          },
+          handleEdit(index, row) {
+            console.log(index, row);
+          },
+          handleDelete(index, row) {
+            console.log(index, row);
           }
         }
 
