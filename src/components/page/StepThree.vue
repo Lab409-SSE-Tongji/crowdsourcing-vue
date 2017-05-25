@@ -17,7 +17,7 @@
                 </el-form-item>
 
                 <el-form-item label="字段信息">
-                    <el-input type="textarea" v-model="entities[index].logicalFieldName"></el-input>
+                    <el-input type="textarea" v-model="entities[index].logicalFieldName" readonly="true"></el-input>
                 </el-form-item>
 
             
