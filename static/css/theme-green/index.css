@@ -7887,7 +7887,7 @@
 .el-input.is-disabled .el-input__inner {
   background-color: rgb(238, 246, 246);
   border-color: rgb(209, 229, 229);
-  color: #bbb;
+  color: #000;
   cursor: not-allowed
 }
 
@@ -8088,7 +8088,7 @@
 .el-textarea.is-disabled .el-textarea__inner {
   background-color: rgb(238, 246, 246);
   border-color: rgb(209, 229, 229);
-  color: #bbb;
+  color: #000;
   cursor: not-allowed
 }
 

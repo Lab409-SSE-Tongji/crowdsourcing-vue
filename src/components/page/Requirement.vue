@@ -24,30 +24,57 @@
             </el-table-column>
           <el-table-column label="操作" width="200">
           <template scope="scope">
-            <el-button
-              size="small"
-              @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            <router-link :to="{name:'singlerequirement',params:{id:scope.row.requirement_id}}">  <el-button
+                size="small"
+                >查看</el-button></router-link>
             <el-button
               size="small"
               type="danger"
-              @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+              @click="handleDelete(scope.$index, scope.row, scope.row.requirement_id)">删除</el-button>
           </template>
           </el-table-column>
+
         </el-table>
+        <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-sizes="[10, 20, 30, 40]"
+            :page-size="pagesize"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="tableData.length">
+        </el-pagination>
+
     </div>
-    <el-pagination
+
 
 </template>
 
 <script>
     import axios from 'axios';
     import server from '../../../config/index';
+    import router from '../../router/index.js';
+    import store from '../../vuex/store.js';
+    import { Message } from 'element-ui';
 
     export default {
         data() {
             return {
                 url: server.url + '/api/requirement',
-                tableData: null
+
+                tableData: null,
+                currentPage1: 1,
+                //默认每页数据量
+                pagesize: 10,
+
+                //当前页码
+                currentPage: 1,
+
+                //查询的页码
+                start: 1,
+
+                //默认数据总数
+                totalCount: 1000,
             }
 
         },
@@ -58,7 +85,7 @@
             if(response.data.status==200){
               that.tableData = response.data.result;
               for (var index = 0; index < that.tableData.length; index++) {
-                console.log(that.tableData[index]['requirement_id']);
+                // console.log(that.tableData[index]);
                 if (that.tableData[index].requirement_state == 1)
                   that.tableData[index]['tag'] = '发布中';
                 else if (that.tableData[index].requirement_state == 2)
@@ -85,16 +112,36 @@
           filterTag(value, row) {
             return row.tag === value;
           },
-          handleEdit(index, row) {
-            console.log(index, row);
+
+          handleDelete(index, row, requirement_id) {
+            var url_operation = server.url + '/api/requirement/' + requirement_id
+            axios.delete(url_operation, {'headers': {'Authorization': sessionStorage.getItem('token')}})
+            .then(function(response) {
+              if(response.data.status==200){
+                router.push('requirement');
+                Message.success("删除需求成功！")
+              }else {
+                console.log(response.data.status);
+              }
+
+            }).catch(function (error) {
+              console.log(error);
+            });
           },
-          handleDelete(index, row) {
-            console.log(index, row);
-          }
+          //每页显示数据量变更
+              handleSizeChange: function(val) {
+                  this.pagesize = val;
+                  this.loadData(this.criteria, this.currentPage, this.pagesize);
+              },
+
+              //页码变更
+              handleCurrentChange: function(val) {
+                  this.currentPage = val;
+                  this.loadData(this.criteria, this.currentPage, this.pagesize);
+              },
         }
 
     }
-
 </script>
 
 <style src="../../../static/css/datasource.css"></style>

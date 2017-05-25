@@ -22,7 +22,7 @@
         <hr>
         <el-form :label-position="labelPosition" ref="form" label-width="8em" :model="form" :rules="rules">
           <el-form-item label="项目名称" prop="name">
-            <el-input v-model="form.name"></el-input>
+            <el-input v-model="form.name" ></el-input>
           </el-form-item>
           <el-form-item label="项目类型" prop="region">
               <el-select v-model="form.region" placeholder="请选择">

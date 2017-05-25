@@ -119,13 +119,8 @@ export default {
               axios.post(this.url, form, {'headers': {'Authorization': sessionStorage.getItem('token')}})
               .then(function(response) {
                 if(response.data.status==201){
-                  // store.commit('setToken', {token: response.data.result.token});
-                  // sessionStorage.setItem("token", response.data.result.token);
-                  // alert(sessionStorage.getItem('token'));
                   router.push('create_requirement');
                   Message.success("新建需求成功！")
-                  // alert(store.getters.token);
-                  //
                 }else {
                   console.log(response.data.status);
                 }

@@ -42,6 +42,11 @@ export default new Router({
                     component: resolve => require(['../components/page/SkillUpload.vue'], resolve)       // Vue-Core-Image-Upload组件
                 },
                 {
+                    path: '/requirement/:id',
+                    name:'singlerequirement',
+                    component: resolve => require(['../components/page/SingleRequirement.vue'], resolve)
+                },
+                {
                     path: '/project',
                     component: resolve => require(['../components/page/Project.vue'], resolve)       // Vue-Core-Image-Upload组件
                 },
