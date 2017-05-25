@@ -3,7 +3,9 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
-                <el-breadcrumb-item>创建需求</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/create'}">创建需求</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/step1', query: param}">创建您的项目</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/step2', query: param}">添加数据模块</el-breadcrumb-item>
                 <el-breadcrumb-item>调整数据模块</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
@@ -17,16 +19,21 @@
                 </el-form-item>
 
                 <el-form-item label="字段信息">
+
                     <el-input type="textarea" v-model="entities[index].logicalFieldName" readonly="true"></el-input>
+
                 </el-form-item>
 
             
 
-                <el-form-item label="RET:">
+                <el-form-item prop="retname" label="RET:" :rules="[
+                    { required: true, message: '请输入ret名称', trigger: 'blur' },
+                    { max: 15, message: '长度要在15个字符以内', trigger: 'blur'}
+                    ]">
                     <a href="javascript:void(0)" @click="add">新增</a>
                     <p v-for="(ret,k) in entities[index].rets">
-                        RET名称<el-input v-model="ret.retname" type="text"></el-input>
-                        DET名称<el-input v-model="ret.retfield" type="text"></el-input>
+                        RET名称<el-input v-model="ret.retname" type="text" placeholder="不得多于15个字符"></el-input>
+                        DET名称<el-input v-model="ret.retfield" type="text" placeholder="不得多于15个字符"></el-input>
                         <a href="javascript:void(0)" @click="remove(k)">删除</a>
                     </p>
                 </el-form-item>
@@ -156,7 +163,7 @@
                     })
             },
             remove:function(index) {
-                this.bindForBug();
+              this.bindForBug();
                 this.entities[this.index].rets.splice(index,1)
             },
             save:function(flag){

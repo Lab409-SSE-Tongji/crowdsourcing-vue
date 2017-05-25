@@ -4,17 +4,21 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
-                <el-breadcrumb-item>创建需求</el-breadcrumb-item>
-                <el-breadcrumb-item>添加数据模块</el-breadcrumb-item>
-            </el-breadcrumb>
+                <el-breadcrumb-item :to="{ path: '/create'}">创建需求</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/step1', query: param}">创建您的项目</el-breadcrumb-item>
+                <el-breadcrumb-item>添加数据模块</el-breadcrumb-item>     
+           </el-breadcrumb>
         </div>
         
             <div class="form-box">
                 <el-form ref="form" :model="form" label-width="80px">
                   <p v-for="(transaction,i1) in transactions">
 
-                    <el-form-item label="功能名称">                 
-                        <el-input v-model="transaction.transactionName"></el-input>
+                    <el-form-item prop="transactionName" label="功能名称" :rules="[
+                    { required: true, message: '功能名称不能为空', trigger: 'blur' },
+                    { max: 20, message: '长度要在20个字符以内', trigger: 'blur'}
+                    ]">                 
+                        <el-input v-model="transaction.transactionName" placeholder="不得多于20个字符"></el-input>
                     </el-form-item>
 
                   
@@ -26,26 +30,38 @@
                             <el-option label="EQ" value="EQ"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="具体描述">
-                        <el-input type="textarea" v-model="transaction.transactionDescription"></el-input>
+                    <el-form-item prop="transactionDescription" label="具体描述" :rules="[
+                    { required: true, message: '具体描述内容不能为空', trigger: 'blur' },
+                    { max: 50, message: '长度要在50个字符以内', trigger: 'blur'}
+                    ]">
+                        <el-input type="textarea" v-model="transaction.transactionDescription" placeholder="不得多于50个字符"></el-input>
                     </el-form-item>
 
                     <el-form-item label="步骤:">
 
                         <p v-for="(step,i2) in transaction.steps">
                             <el-form-item label="">
-                                <el-form-item label="步骤名称:">
-                                    <el-input v-model="step.stepName" style="width:80%"></el-input>
+                                <el-form-item prop="stepName" label="步骤名称:" :rules="[
+                                { required: true, message: '步骤名称不能为空', trigger: 'blur' },
+                                { max: 20, message: '长度要在20个字符以内', trigger: 'blur'}
+                                ]">
+                                    <el-input v-model="step.stepName" style="width:80%" placeholder="不得多于20个字符"></el-input>
                                 </el-form-item>
-                                <el-button :plain="true" type="success" @click="addIndex3(i1,i2)">新增字段</el-button>
+                                <i class="el-icon-plus" @click="addIndex3(i1,i2)"></i>
+                                <!-- <el-button :plain="true" type="success" @click="addIndex3(i1,i2)">新增字段</el-button> -->
                                 <p v-for="(concerningDataSet,i3) in step.concerningDataSets">
-                                    <el-form-item label="逻辑文件:">
-                                        <el-input v-model="concerningDataSet.logicalFileName" style="width:80%"></el-input>
+                                    <el-form-item prop="logicalFileName" label="逻辑文件:" :rules="[
+                                    { required: true, message: '逻辑文件名称不能为空', trigger: 'blur' },
+                                    ]">
+                                        <el-input v-model="concerningDataSet.logicalFileName" style="width:80%" placeholder="请输入逻辑文件名称"></el-input>
                                     </el-form-item>
-                                    <el-form-item label="逻辑字段:">
-                                        <el-input v-model="concerningDataSet.logicalFieldName" style="width:80%"></el-input>
+                                    <el-form-item prop="logicalFieldName" label="逻辑字段:" :rules="[
+                                    { required: true, message: '逻辑字段名称不能为空', trigger: 'blur' },
+                                    ]">
+                                        <el-input v-model="concerningDataSet.logicalFieldName" style="width:80%" placeholder="请输入逻辑字段名称"></el-input>
                                     </el-form-item>
-                                    <el-button :plain="true" type="success" @click="removeIndex3(i1,i2,i3)">删除逻辑字段</el-button>
+                                    <!-- <el-button :plain="true" type="success" @click="removeIndex3(i1,i2,i3)">删除该逻辑字段</el-button> -->
+                                    <i class="el-icon-minus" @click="removeIndex3(i1,i2,i3)"></i>
                                 </p>
                             </el-form-item> 
                             <el-button :plain="true" type="success" @click="removeIndex2(i1,i2)">删除步骤</el-button>
@@ -91,7 +107,7 @@
                             </el-select>
                         </p>
                     </el-form-item>
-
+                   
                     <el-button :plain="true" type="success" @click="removeIndex1(i1)">删除</el-button>
                   </p> 
                     <el-form-item>
@@ -202,7 +218,7 @@
                 this.transactions.splice(index,1);
             },
             addIndex2:function(index) {
-                  this.transactions[0].regulationOfReturningStatus = 5;
+                this.transactions[0].regulationOfReturningStatus = 5;
                 this.bindForBug();
                 this.transactions[index].steps.push(
                     {

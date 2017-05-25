@@ -3,19 +3,26 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
-                <el-breadcrumb-item>创建需求</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/create'}">创建需求</el-breadcrumb-item>
                 <el-breadcrumb-item>创建您的项目</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
 
         <div class="form-box">
             <el-form ref="form" :model="form" label-width="80px">
-                <el-form-item label="项目名称">
-                    <el-input v-model="form.projectName"></el-input>
+                <el-form-item prop="projectName" label="项目名称" :rules="[
+                    { required: true, message: '请输入项目名称', trigger: 'blur' },
+                    { max: 20, message: '长度要在20个字符以内', trigger: 'blur'}
+                    ]">
+                    <el-input v-model="form.projectName" placeholder="名称不得多于20个字"></el-input>
+                   
                 </el-form-item>
        
-                <el-form-item label="项目简介">
-                    <el-input type="textarea" v-model="form.projectDescription"></el-input>
+                <el-form-item prop="projectDescription" label="项目简介" :rules="[
+                    { required: true, message: '项目简介不能为空', trigger: 'blur' },
+                    { max: 50, message: '长度要在50个字符以内', trigger: 'blur'}
+                    ]">
+                    <el-input type="textarea" v-model="form.projectDescription" placeholder="文字不得多于50个字"></el-input>
                 </el-form-item>
             </el-form>
 
