@@ -14,7 +14,7 @@
                 <el-form ref="form" :model="form" label-width="80px">
                   <p v-for="(transaction,i1) in transactions">
 
-                    <el-form-item prop="transactionName" label="功能名称" :rules="[
+                    <el-form-item prop="'transactions.'+i1+'.transactionName" label="功能名称" :rules="[
                     { required: true, message: '功能名称不能为空', trigger: 'blur' },
                     { max: 20, message: '长度要在20个字符以内', trigger: 'blur'}
                     ]">                 
@@ -41,23 +41,16 @@
 
                         <p v-for="(step,i2) in transaction.steps">
                             <el-form-item label="">
-                                <el-form-item prop="stepName" label="步骤名称:" :rules="[
-                                { required: true, message: '步骤名称不能为空', trigger: 'blur' },
-                                { max: 20, message: '长度要在20个字符以内', trigger: 'blur'}
-                                ]">
+                                <el-form-item prop="stepName" label="步骤名称:">
                                     <el-input v-model="step.stepName" style="width:80%" placeholder="不得多于20个字符"></el-input>
                                 </el-form-item>
                                 <i class="el-icon-plus" @click="addIndex3(i1,i2)"></i>
                                 <!-- <el-button :plain="true" type="success" @click="addIndex3(i1,i2)">新增字段</el-button> -->
                                 <p v-for="(concerningDataSet,i3) in step.concerningDataSets">
-                                    <el-form-item prop="logicalFileName" label="逻辑文件:" :rules="[
-                                    { required: true, message: '逻辑文件名称不能为空', trigger: 'blur' },
-                                    ]">
+                                    <el-form-item prop="logicalFileName" label="逻辑文件:">
                                         <el-input v-model="concerningDataSet.logicalFileName" style="width:80%" placeholder="请输入逻辑文件名称"></el-input>
                                     </el-form-item>
-                                    <el-form-item prop="logicalFieldName" label="逻辑字段:" :rules="[
-                                    { required: true, message: '逻辑字段名称不能为空', trigger: 'blur' },
-                                    ]">
+                                    <el-form-item prop="logicalFieldName" label="逻辑字段:">
                                         <el-input v-model="concerningDataSet.logicalFieldName" style="width:80%" placeholder="请输入逻辑字段名称"></el-input>
                                     </el-form-item>
                                     <!-- <el-button :plain="true" type="success" @click="removeIndex3(i1,i2,i3)">删除该逻辑字段</el-button> -->
@@ -109,6 +102,9 @@
                     </el-form-item>
                    
                     <el-button :plain="true" type="success" @click="removeIndex1(i1)">删除</el-button>
+                    <br>
+                    <br>
+                    <br>
                   </p> 
                     <el-form-item>
                         <el-button type="primary" @click="addIndex1">添加</el-button>
