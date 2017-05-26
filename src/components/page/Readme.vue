@@ -29,7 +29,7 @@
 								<el-col :xs="4" :sm="6" :md="8" :lg="9"> 
 									<div class="bg-purple-light item-content"> 
 										<div class="input-message">
-											<span class="email">recall52@163.com</span>
+											<span class="email">kaos_model@163.com</span>
 										</div>
 									</div> 
 								</el-col>
@@ -44,7 +44,7 @@
 								<el-col :xs="4" :sm="6" :md="8" :lg="9"> 
 									<div class="bg-purple-light item-content"> 
 										<div class="input-message">
-											<span class="email">17621060896</span>
+											<span class="email">13000000000</span>
 										</div>
 									</div> 
 								</el-col>
@@ -63,7 +63,7 @@
 								<el-col :xs="4" :sm="6" :md="8" :lg="9"> 
 									<div class="bg-purple-light item-content"> 
 										<div class="input-message">
-											<span class="email">邱娟</span>
+											<span class="email">Admin</span>
 										</div>
 									</div> 
 								</el-col>

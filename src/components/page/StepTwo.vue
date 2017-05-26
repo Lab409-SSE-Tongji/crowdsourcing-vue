@@ -5,8 +5,8 @@
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ path: '/create'}">创建需求</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ path: '/step1', query: param}">创建您的项目</el-breadcrumb-item>
-                <el-breadcrumb-item>添加数据模块</el-breadcrumb-item>     
+                <el-breadcrumb-item :to="{ path: '/step1', query: param}">项目描述</el-breadcrumb-item>
+                <el-breadcrumb-item>录入目标模型</el-breadcrumb-item>     
            </el-breadcrumb>
         </div>
         
@@ -57,7 +57,8 @@
                                     <i class="el-icon-minus" @click="removeIndex3(i1,i2,i3)"></i>
                                 </p>
                             </el-form-item> 
-                            <el-button :plain="true" type="success" @click="removeIndex2(i1,i2)">删除步骤</el-button>
+                            <el-button :plain="true" type="success" @click="removeIndex2(i1,i2)">删除</el-button>
+                            <br/> 
                         </p>
                         <el-button :plain="true" type="success" @click="addIndex2(i1)">新增步骤</el-button>
                           

@@ -4,9 +4,9 @@
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ path: '/create'}">创建需求</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ path: '/step1', query: param}">创建您的项目</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ path: '/step2', query: param}">添加数据模块</el-breadcrumb-item>
-                <el-breadcrumb-item>调整数据模块</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/step1', query: param}">项目描述</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/step2', query: param}">录入目标模型</el-breadcrumb-item>
+                <el-breadcrumb-item>录入对象模型</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="form-box">

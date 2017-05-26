@@ -18,7 +18,7 @@
     export default {
         data() {
             return {
-                name: '邱娟'
+                name: 'Admin'
             }
         },
         computed:{

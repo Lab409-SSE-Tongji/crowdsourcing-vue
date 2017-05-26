@@ -4,7 +4,7 @@
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i>我的需求</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ path: '/create', query: param}">创建需求</el-breadcrumb-item>
-                <el-breadcrumb-item>创建您的项目</el-breadcrumb-item>
+                <el-breadcrumb-item>项目描述</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
 
