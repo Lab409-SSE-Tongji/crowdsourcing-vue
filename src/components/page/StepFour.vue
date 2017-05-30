@@ -47,6 +47,7 @@
                 </el-form-item>      -->  
                 <el-form-item>
                     <el-button type="primary" @click="prevStep">上一步</el-button>
+                    <el-button type="primary" @click="nextStep">下一步</el-button>
                     <el-button type="primary" @click="submit">提交</el-button>
                     <!-- <el-button type="primary" @click="onSave">保存</el-button> -->
                 </el-form-item>
@@ -84,9 +85,11 @@
             prevStep:function(){
                 var param = {id:this.queryId};
                 this.$router.push( {path:'/step3', query: param});  
+            },
+            nextStep:function(){
+                this.$router.push({path:'/step5'});
             }
         }
 
-        //RequestMapping(value = "/addAllEntity/{id}",method = RequestMethod.POST)
     }
 </script>
