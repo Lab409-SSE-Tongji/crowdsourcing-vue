@@ -26,14 +26,11 @@
 
             
 
-                <el-form-item prop="retname" label="RET:" :rules="[
-                    { required: true, message: '请输入ret名称', trigger: 'blur' },
-                    { max: 15, message: '长度要在15个字符以内', trigger: 'blur'}
-                    ]">
+                <el-form-item prop="retname" label="RET:">
                     <a href="javascript:void(0)" @click="add">新增</a>
                     <p v-for="(ret,k) in entities[index].rets">
-                        RET名称<el-input v-model="ret.retname" type="text" placeholder="不得多于15个字符"></el-input>
-                        DET名称<el-input v-model="ret.retfield" type="text" placeholder="不得多于15个字符"></el-input>
+                        RET名称<el-input v-model="ret.retname" type="text" placeholder="请输入RET名称"></el-input>
+                        DET名称<el-input v-model="ret.retfield" type="text" placeholder="请输入DET名称"></el-input>
                         <a href="javascript:void(0)" @click="remove(k)">删除</a>
                     </p>
                 </el-form-item>

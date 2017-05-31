@@ -54,6 +54,10 @@ export default new Router({
                     component: resolve => require(['../components/page/StepFive.vue'], resolve)
                 },
                 {
+                    path: '/step6',
+                    component: resolve => require(['../components/page/StepSix.vue'], resolve)
+                },
+                {
                     path: '/records',
                     component: resolve => require(['../components/page/EstimationRecords.vue'], resolve)
                 },
