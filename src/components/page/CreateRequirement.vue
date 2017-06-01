@@ -51,16 +51,16 @@
 
                 <el-form-item label="附件上传">
                   <el-upload
-                    id="upload"
                     ref="upload"
                     action=""
                     :on-preview="handlePreview"
                     :on-remove="handleRemove"
                     :file-list="fileList"
+                    :before-upload="beforeUpload"
                     :auto-upload="false">
                     <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
                     <!-- <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button> -->
-                    <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                    <div slot="tip" class="el-upload__tip">不超过500KB</div>
                 </el-upload>
                 </el-form-item>
                 <el-form-item>
@@ -132,7 +132,15 @@ export default {
             },
             resetForm(formName) {
               this.$refs[formName].resetFields();
-            }
+            },
+            beforeUpload(file) {
+              alert(1);
+               const isLt = file.size / 1024 / 1024 < 0.5;
+               if (!isLt) {
+                 Message.error('上传头像文件大小不能超过 500KB!');
+               }
+               return isLt;
+             }
         }
     }
 </script>
