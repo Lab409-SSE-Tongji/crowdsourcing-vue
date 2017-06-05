@@ -148,7 +148,7 @@
         &:last-child {
             margin-bottom: 0;
         }
-	}
+    }
     .el-col {
         border-radius: 4px;
     }

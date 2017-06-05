@@ -121,7 +121,7 @@ caption,th {
 }
 h1,h2,h3,h4,h5,h6 {
     font-size:100%;
-    font-weight:lighter;
+    font-weight:thin;
 }
 q:before,q:after {
     content:'';
