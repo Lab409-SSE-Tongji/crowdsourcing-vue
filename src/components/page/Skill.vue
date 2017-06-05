@@ -119,11 +119,7 @@
         width: 100px;
         color: #99a9bf;
     }
-    .demo-table-expand .el-form-item {
-        margin-right: 0;
-        margin-bottom: 0;
-        width: 60%;
-    }
+
 
     .time {
     font-size: 13px;
@@ -140,19 +136,5 @@
       float: right;
     }
 
-    .image {
-      width: 100%;
-      display: block;
-    }
-
-    .clearfix:before,
-    .clearfix:after {
-        display: table;
-        content: "";
-    }
-
-    .clearfix:after {
-        clear: both
-    }
 
 </style>
