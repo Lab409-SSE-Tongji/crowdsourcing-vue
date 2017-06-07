@@ -17,12 +17,12 @@
       
     </div>
       <el-row :gutter="20">
-        <el-col :span="4" v-for="">
+        <el-col :span="4" v-for="requirement in requirements">
           <el-card >
             <img src="static/img/img.jpg" class="image">
             <div style="padding: 14px;">
-              <span id="project_name">项目名称</span>
-              <span id="project_type">项目类型</span>
+              <span id="project_name">{{requirement.requirement_id}}</span>
+              <span id="project_type">{{requirement.requirement_name}}</span>
               <div class="bottom clearfix">
                 <span id="proposer">报名人数</span>
                 <el-button>查看详情</el-button>
@@ -38,25 +38,48 @@
 </template>
 
 <script>
-export default {
-  data() {
-      return {
-        activeIndex: '1',
-        activeIndex2: '1'
-      };
-    },
-    methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
+  import axios from 'axios';
+  import server from '../../../config/index';
+  import router from '../../router/index.js';
+  import { Message } from 'element-ui';
+
+  export default {
+    data() {
+        return {
+          url: server.url + '/api/requirements',
+
+          requirements: null,
+          activeIndex: '1',
+          activeIndex2: '1'
+        };
       },
-      getToken() {
-        if (sessionStorage.getItem('token') != null)
-          return true;
-        else 
-          return false;
+      created () {
+        var that = this;
+        axios.get(this.url)
+        .then(function(response) {
+          if(response.data.status==200){
+            that.requirements = response.data.result;
+          } else {
+            console.log(response.data.status);
+          }
+
+        }).catch(function (error) {
+          console.log(error);
+        });
+
+      },
+      methods: {
+        handleSelect(key, keyPath) {
+          console.log(key, keyPath);
+        },
+        getToken() {
+          if (sessionStorage.getItem('token') != null)
+            return true;
+          else 
+            return false;
+        }
       }
-    }
-}
+  }
 </script>
 
 <style lang="css">
