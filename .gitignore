@@ -18,4 +18,4 @@ Makefile.in
 /stamp-h1
 node_modules/
 test/unit/coverage/
-npmdebug.log
+npm-debug.log
