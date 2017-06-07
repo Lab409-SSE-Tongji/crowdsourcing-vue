@@ -16,4 +16,6 @@ Makefile.in
 /install-sh
 /missing
 /stamp-h1
-/node_modules
+node_modules/
+test/unit/coverage/
+npmdebug.log
