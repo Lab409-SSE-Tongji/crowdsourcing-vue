@@ -7,7 +7,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: '/login'
+            redirect: '/CrowdSourcing'
         },
         {
             path: '/readme',
@@ -61,6 +61,10 @@ export default new Router({
             ]
         },
         {
+          path:'/CrowdSourcing',
+          component: resolve => require(['../components/market/Welcome.vue'], resolve)
+        },
+        {
             path: '/login',
             component: resolve => require(['../components/page/Login.vue'], resolve)
         },
@@ -68,6 +72,10 @@ export default new Router({
             path:'/register',
             component:resolve =>require(['../components/page/Register.vue'],resolve)
         },
+        {
+          path:'/market',
+          component:resolve =>require(['../components/market/Market.vue'],resolve)
+        }
 
     ]
 })
