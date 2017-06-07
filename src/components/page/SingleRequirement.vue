@@ -66,7 +66,6 @@
 import axios from 'axios';
 import server from '../../../config/index';
 import router from '../../router/index.js';
-import store from '../../vuex/store.js';
 import { Message } from 'element-ui';
 
 export default {

@@ -1,5 +1,3 @@
-<template>
-
     <div id="app">
         <div class="container">
             <!-- Codrops top bar -->
@@ -54,7 +52,6 @@ import "../../common/animate-custom.css";
 import axios from 'axios';
 import server from '../../../config/index';
 import router from '../../router/index.js';
-import store from '../../vuex/store.js';
 
 export default{
   name:"register",

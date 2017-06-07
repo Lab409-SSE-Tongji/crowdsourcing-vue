@@ -48,7 +48,6 @@
     import server from '../../../config/index';
     import axios from 'axios';
     import router from '../../router/index.js';
-    import store from '../../vuex/store.js';
     import { Message } from 'element-ui';
 
     // alert(store.getters.token);
