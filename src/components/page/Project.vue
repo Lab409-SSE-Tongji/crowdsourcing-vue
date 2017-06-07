@@ -32,46 +32,59 @@
     export default {
         data() {
             return {
-                tableData: [{
-                    id: '12987122',
-                    name: 'Crowdsourcing',
-                    category: 'Vue',
-                    date: '2017-5-1',
-                    address: 'https://github.com/breeswish/php-marked',
-                    tag:'已完成',
-                }, {
-                    id: '12987123',
-                    name: '666',
-                    category: 'Web',
-                    date: '2017-5-2',
-                    address: 'https://github.com/Lab409-SSE-Tongji/WebGIS-BackEnd',
-                    tag:'开发中',
-                }, {
-                    id: '12987125',
-                    name: 'Test',
-                    category: 'IOS',
-                    date: '2017-4-30',
-                    address: 'https://github.com/Lab409-SSE-Tongji/crowdsourcing-front',
-                    tag:'申请中',
-                }, {
-                    id: '12987126',
-                    name: 'Hello',
-                    category: 'Android',
-                    date: '2016-5-1',
-                    address: 'https://github.com/alibaba/weex',
-                    tag:'已完成',
-                }],
+                url: server.url + '/api/project',
+
+                tableData: null
+                // tableData: [{
+                //     id: '12987122',
+                //     name: 'Crowdsourcing',
+                //     category: 'Vue',
+                //     date: '2017-5-1',
+                //     address: 'https://github.com/breeswish/php-marked',
+                //     tag:'已完成',
+                // }, {
+                //     id: '12987123',
+                //     name: '666',
+                //     category: 'Web',
+                //     date: '2017-5-2',
+                //     address: 'https://github.com/Lab409-SSE-Tongji/WebGIS-BackEnd',
+                //     tag:'开发中',
+                // }, {
+                //     id: '12987125',
+                //     name: 'Test',
+                //     category: 'IOS',
+                //     date: '2017-4-30',
+                //     address: 'https://github.com/Lab409-SSE-Tongji/crowdsourcing-front',
+                //     tag:'申请中',
+                // }, {
+                //     id: '12987126',
+                //     name: 'Hello',
+                //     category: 'Android',
+                //     date: '2016-5-1',
+                //     address: 'https://github.com/alibaba/weex',
+                //     tag:'已完成',
+                // }],
 
             }
         },
-            methods: {
-              formatter(row, column) {
-                return row.address;
-              },
-              filterTag(value, row) {
-                return row.tag === value;
-              }
-            }
+        created () {
+            var that = this;
+            axios.get (this.url, {'headers': {
+                'Authorization': sessionStorage.getItem('token')}})
+            .then (function (response) {
+                if (response.date.status == 200)
+                    ;
+            })
+        },
+
+        methods: {
+          formatter(row, column) {
+            return row.address;
+          },
+          filterTag(value, row) {
+            return row.tag === value;
+          }
+        }
 
 
 

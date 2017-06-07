@@ -1,11 +1,20 @@
 <template lang="html">
   <div class="table">
     <div class="header">
-      <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="1">CrowdSourcing</el-menu-item>
-        <el-menu-item index="2">登录</el-menu-item>
-        <el-menu-item index="3">注册</el-menu-item>
-      </el-menu>
+      <template  v-if="getToken()">
+        <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+          <el-menu-item index="1">CrowdSourcing</el-menu-item>
+          <el-menu-item index="2"><router-link to="readme">我的主页</router-link></el-menu-item>
+        </el-menu>
+      </template>
+      <template v-else>
+        <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+          <el-menu-item index="1">CrowdSourcing</el-menu-item>
+          <el-menu-item index="2"><router-link to="login">登录</router-link></el-menu-item>
+          <el-menu-item index="3"><router-link to="register">注册</router-link></el-menu-item> 
+        </el-menu>
+      </template>
+      
     </div>
       <el-row :gutter="20">
         <el-col :span="4" v-for="">
@@ -39,6 +48,12 @@ export default {
     methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
+      },
+      getToken() {
+        if (sessionStorage.getItem('token') != null)
+          return true;
+        else 
+          return false;
       }
     }
 }
