@@ -19,3 +19,5 @@ Makefile.in
 node_modules/
 test/unit/coverage/
 npm-debug.log
+selenium-debug.log
+test/e2e/reports/
