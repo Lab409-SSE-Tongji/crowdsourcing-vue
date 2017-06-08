@@ -16,21 +16,17 @@
       </template>
       
     </div>
-      <el-row :gutter="20">
-        <el-col :span="4" v-for="requirement in requirements">
-          <el-card >
-            <img src="static/img/img.jpg" class="image">
-            <div style="padding: 14px;">
-              <span id="project_name">{{requirement.requirement_id}}</span>
-              <span id="project_type">{{requirement.requirement_name}}</span>
-              <div class="bottom clearfix">
-                <el-button><router-link :to="{name: 'publicSingleRequirement', params:{id: requirement.id}}">查看详情</router-link>></el-button>
-              </div>
-            </div>
-          </el-card>
-        </el-col>
 
-      </el-row>
+
+    <el-card v-model="requirement">
+      <div style="padding: 14px;">
+        <span id="project_name">{{requirement.requirement_name}}</span>
+        <div class="bottom clearfix">
+<!--           <span id="proposer">报名人数</span> -->
+        <el-button @click="enroll()" v-if="getToken()">报名</el-button>
+        </div>
+      </div>
+    </el-card>
 
   </div>
 
@@ -45,28 +41,32 @@
   export default {
     data() {
         return {
-          url: server.url + '/api/requirements',
+          id: this.$route.params.id,
+          url: server.url + '/api/requirement/' + this.$route.params.id,
 
-          requirements: null,
+          requirement: {
+            id: 2,
+            requirement_name: "test"
+          },
           activeIndex: '1',
           activeIndex2: '1'
         };
       },
-      created () {
-        var that = this;
-        axios.get(this.url)
-        .then(function(response) {
-          if(response.data.status==200){
-            that.requirements = response.data.result;
-          } else {
-            console.log(response.data.status);
-          }
+      // created () {
+      //   var that = this;
+      //   axios.get(this.url)
+      //   .then(function(response) {
+      //     if(response.data.status==200){
+      //       that.requirement = response.data.result;
+      //     } else {
+      //       console.log(response.data.status);
+      //     }
 
-        }).catch(function (error) {
-          console.log(error);
-        });
+      //   }).catch(function (error) {
+      //     console.log(error);
+      //   });
 
-      },
+      // },
       methods: {
         handleSelect(key, keyPath) {
           console.log(key, keyPath);
@@ -76,6 +76,23 @@
             return true;
           else 
             return false;
+        },
+        enroll() {
+          var enroll_url = this.url + '/enroll';
+
+          axios.post(enroll_url, {}, {'headers': {'Authorization': sessionStorage.getItem('token')}})
+          .then(function(response) {
+            if(response.data.status==200){
+              router.go(0);
+              Message.success("报名成功！");
+            }else {
+              Message.fail("报名失败！")
+              console.log(response.data.status);
+            }
+
+          }).catch(function (error) {
+            console.log(error);
+          });
         }
       }
   }

@@ -75,6 +75,11 @@ export default new Router({
         {
           path:'/market',
           component:resolve =>require(['../components/market/Market.vue'],resolve)
+        },
+        {
+          path:'/market/:id',
+          name:'publicSingleRequirement',
+          component: resolve => require(['../components/market/SingleRequirement.vue'], resolve)
         }
 
     ]
