@@ -52,143 +52,74 @@ import server from '../../../config/index';
 import router from '../../router/index.js';
 import { Message } from 'element-ui';
 export default {
-        data: function(){
-            return {
-                url: server.url + '/api/user/projectExperience',
+  data: function(){
+    return {
+      url: server.url + '/api/user/projectExperience',
 
-                form: {
-                  name: '',
-                  region: '',
-                  address: '',
-                  text:''
-                },
-                rules: {
-                    name: [
-                      { required: true, message: '请输入项目名称', trigger: 'blur' },
-                      { min: 1, max: 30, message: '长度在 0 到 10 个字符', trigger: 'blur' }
-                    ],
-                    region: [
-                      { required: true, message: '请选择项目类型', trigger: 'change' }
-                    ],
-                    address: [
-                      { required: true, message: '请填写项目地址', trigger: 'blur' },
-                      { min: 1, max: 30, message: '长度在 0 到 10 个字符', trigger: 'blur' }
-                    ],
-                    text: [
-                      { required: true, message: '请填写项目简介', trigger: 'blur' },
-                      { min: 1, max: 200, message: '小于100字', trigger: 'blur' }
-                    ]
-                  }
-            }
-        },
-        methods: {
-            resetForm(formName) {
-              this.$refs[formName].resetFields();
-            },
-            onSubmit(formName) {
-            this.$refs[formName].validate((valid) => {
-              if (valid) {
-                var form = new FormData();
-                form.append("project_name",this.form.name);
-                form.append("project_region",this.form.region);
-                form.append("project_address",this.form.address);
-                form.append("project_text",this.form.text);
-
-                // axios.post(this.url, {'headers': {'authorization': sessionStorage.getItem('token')}, 'data': this.info})
-                axios.post(this.url, form, {'headers': {'Authorization': sessionStorage.getItem('token')}})
-                .then(function(response) {
-                  if(response.data.status==201){
-                    // store.commit('setToken', {token: response.data.result.token});
-                    // sessionStorage.setItem("token", response.data.result.token);
-                    // alert(sessionStorage.getItem('token'));
-                    router.push('skillupload');
-                    Message.success("新建项目经历成功！")
-                    // alert(store.getters.token);
-                    //
-                  }else {
-                    console.log(response.data.status);
-                  }
-
-                }).catch(function (error) {
-                  console.log(error);
-                });
-
-              } else {
-                console.log('error submit!!');
-                return false;
-              }
-            });
-          },
-            // onSubmit() {
-            //   var form = new FormData();
-            //   form.append("project_name",this.form.name);
-            //   form.append("project_region",this.form.region);
-            //   form.append("project_address",this.form.address);
-            //   form.append("project_text",this.form.text);
-            //
-            //   // axios.post(this.url, {'headers': {'authorization': sessionStorage.getItem('token')}, 'data': this.info})
-            //   axios.post(this.url, form, {'headers': {'Authorization': sessionStorage.getItem('token')}})
-            //   .then(function(response) {
-            //     if(response.data.status==201){
-            //       // store.commit('setToken', {token: response.data.result.token});
-            //       // sessionStorage.setItem("token", response.data.result.token);
-            //       // alert(sessionStorage.getItem('token'));
-            //       router.push('create_requirement');
-            //       Message.success("新建项目经历成功！")
-            //       // alert(store.getters.token);
-            //       //
-            //     }else {
-            //       console.log(response.data.status);
-            //     }
-            //
-            //   }).catch(function (error) {
-            //     console.log(error);
-            //   });
-            //
-            // },
-            resetForm(formName) {
-              this.$refs[formName].resetFields();
-            }
-        }
+      form: {
+        name: '',
+        region: '',
+        address: '',
+        text:''
+      },
+      rules: {
+        name: [
+          { required: true, message: '请输入项目名称', trigger: 'blur' },
+          { min: 1, max: 30, message: '长度在 0 到 10 个字符', trigger: 'blur' }
+        ],
+        region: [
+          { required: true, message: '请选择项目类型', trigger: 'change' }
+        ],
+        address: [
+          { required: true, message: '请填写项目地址', trigger: 'blur' },
+          { min: 1, max: 30, message: '长度在 0 到 10 个字符', trigger: 'blur' }
+        ],
+        text: [
+          { required: true, message: '请填写项目简介', trigger: 'blur' },
+          { min: 1, max: 200, message: '小于100字', trigger: 'blur' }
+        ]
+      }
     }
-    // import VueCoreImageUpload  from 'vue-core-image-upload';
-    // export default {
-    //     data: function(){
-    //         return {
-    //            labelPosition: 'left',
-    //             src: '../../../static/img/img.jpg',
-    //             formLabelAlign: {
-    //                name: '',
-    //                region: '',
-    //                address: '',
-    //                text:''
-    //            }
-    //         }
-    //     },
-    //     components: {
-    //             VueCoreImageUpload
-    //     },
-    //     methods:{
-    //         imageuploaded(res) {
-    //             console.log(res)
-    //         },
-    //         handleRemove(file, fileList) {
-    //             console.log(file, fileList);
-    //         },
-    //         handlePreview(file) {
-    //             console.log(file);
-    //         },
-    //         handleError(){
-    //             this.$notify.error({
-    //                 title: '上传失败',
-    //                 message: '图片上传接口上传失败，可更改为自己的服务器接口'
-    //             });
-    //         },
-    //         onSubmit() {
-    //             this.$message.success('提交成功！');
-    //         }
-    //     }
-    // }
+  },
+  methods: {
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+    onSubmit(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          var form = new FormData();
+          form.append("project_name",this.form.name);
+          form.append("project_region",this.form.region);
+          form.append("project_address",this.form.address);
+          form.append("project_text",this.form.text);
+
+          axios.post(this.url, form, {'headers': {'Authorization': sessionStorage.getItem('token')}})
+          .then(function(response) {
+            if(response.data.status==201){
+
+              router.push('skillupload');
+              Message.success("新建项目经历成功！")
+
+            }else {
+              console.log(response.data.status);
+            }
+
+          }).catch(function (error) {
+            console.log(error);
+          });
+
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
+  }
+}
 </script>
 
 <style scoped>
