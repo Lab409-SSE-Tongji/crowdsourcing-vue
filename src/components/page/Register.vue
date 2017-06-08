@@ -1,8 +1,9 @@
+<template>
     <div id="app">
         <div class="container">
             <!-- Codrops top bar -->
             <header>
-                <h1>Welcome to<span>&nbspCrowdingSourcing Platform</span></h1>
+                <h1>Welcome to<span>&nbsp;CrowdingSourcing Platform</span></h1>
 
             </header>
 
