@@ -1,0 +1,132 @@
+<template lang="html">
+  <div class="table">
+    <div class="header">
+      <template  v-if="getToken()">
+        <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+          <el-menu-item index="1">CrowdSourcing</el-menu-item>
+          <el-menu-item index="2"><router-link to="/readme">我的主页</router-link></el-menu-item>
+        </el-menu>
+      </template>
+      <template v-else>
+        <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+          <el-menu-item index="1">CrowdSourcing</el-menu-item>
+          <el-menu-item index="2"><router-link to="/login">登录</router-link></el-menu-item>
+          <el-menu-item index="3"><router-link to="/register">注册</router-link></el-menu-item> 
+        </el-menu>
+      </template>
+      
+    </div>
+
+
+    <el-card v-model="requirement">
+      <div style="padding: 14px;">
+        <span id="project_name">{{requirement.requirement_name}}</span>
+        <div class="bottom clearfix">
+<!--           <span id="proposer">报名人数</span> -->
+        <el-button @click="enroll()" v-if="getToken()">报名</el-button>
+        </div>
+      </div>
+    </el-card>
+
+  </div>
+
+</template>
+
+<script>
+  import axios from 'axios';
+  import server from '../../../config/index';
+  import router from '../../router/index.js';
+  import { Message } from 'element-ui';
+
+  export default {
+    data() {
+        return {
+          id: this.$route.params.id,
+          url: server.url + '/api/requirement/' + this.$route.params.id,
+
+          requirement: {
+            id: 2,
+            requirement_name: "test"
+          },
+          activeIndex: '1',
+          activeIndex2: '1'
+        };
+      },
+      // created () {
+      //   var that = this;
+      //   axios.get(this.url)
+      //   .then(function(response) {
+      //     if(response.data.status==200){
+      //       that.requirement = response.data.result;
+      //     } else {
+      //       console.log(response.data.status);
+      //     }
+
+      //   }).catch(function (error) {
+      //     console.log(error);
+      //   });
+
+      // },
+      methods: {
+        handleSelect(key, keyPath) {
+          console.log(key, keyPath);
+        },
+        getToken() {
+          if (sessionStorage.getItem('token') != null)
+            return true;
+          else 
+            return false;
+        },
+        enroll() {
+          var enroll_url = this.url + '/enroll';
+
+          axios.post(enroll_url, {}, {'headers': {'Authorization': sessionStorage.getItem('token')}})
+          .then(function(response) {
+            if(response.data.status==200){
+              router.go(0);
+              Message.success("报名成功！");
+            }else {
+              Message.fail("报名失败！")
+              console.log(response.data.status);
+            }
+
+          }).catch(function (error) {
+            console.log(error);
+          });
+        }
+      }
+  }
+</script>
+
+<style lang="css">
+.el-row{
+  margin-top: 1%;
+}
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+}
+
+.el-button {
+  padding: .5rem .5rem .5rem .5rem;
+  float: right;
+}
+
+.image {
+  width: 100%;
+  display: block;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
+#project_type{
+  float:right;
+}
+</style>

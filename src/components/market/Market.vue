@@ -1,8 +1,8 @@
-<template lang="html">
-  <div class="table">
+<template>
+  <div class="content">
     <div class="header">
       <template  v-if="getToken()">
-        <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu :default-active="activeIndex1" class="el-menu-demo" mode="horizontal" @select="handleSelect">
           <el-menu-item index="1">CrowdSourcing</el-menu-item>
           <el-menu-item index="2"><router-link to="readme">我的主页</router-link></el-menu-item>
         </el-menu>
@@ -14,25 +14,26 @@
           <el-menu-item index="3"><router-link to="register">注册</router-link></el-menu-item>
         </el-menu>
       </template>
-
     </div>
+    <div class="project">
       <el-row :gutter="20">
-        <el-col :span="4" v-for="requirement in requirements">
+        <el-col  :span="4" v-for="requirement in requirements">
           <el-card >
             <img src="static/img/img.jpg" class="image">
             <div style="padding: 14px;">
-              <span id="project_name">{{requirement.requirement_id}}</span>
-              <span id="project_type">{{requirement.requirement_name}}</span>
-              <div class="bottom clearfix">
-                <span id="proposer">报名人数</span>
-                <el-button>查看详情</el-button>
-              </div>
-            </div>
+               <span id="project_id">项目编号：{{requirement.requirement_id}}</span>
+               <div class="clearfix">
+                 <span id="project_name">{{requirement.requirement_name}}</span>
+               </div>
+               <div class="bottom">
+                 <span id="proposer">报名人数</span>
+                 <el-button type="text" class="button">操作按钮</el-button>
+               </div>
+           </div>
           </el-card>
         </el-col>
-
       </el-row>
-
+    </div>
   </div>
 
 </template>
@@ -83,8 +84,17 @@
 </script>
 
 <style lang="css">
+.content{
+  top: 0;
+  left: 0;
+  overflow-y:auto;
+}
+.header{
+  top: 0;
+}
 .el-row{
   margin-top: 1%;
+
 }
 .bottom {
   margin-top: 13px;
