@@ -21,3 +21,5 @@ test/unit/coverage/
 npm-debug.log
 selenium-debug.log
 test/e2e/reports/
+test.js
+

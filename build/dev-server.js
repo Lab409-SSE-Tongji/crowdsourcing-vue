@@ -23,6 +23,10 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+app.use(express.static(path.resolve(__dirname, '../static')))
+app.get('/home', function(req, res, next) {
+  res.sendFile('html/index.html',  {root: path.resolve(__dirname, '../static')})
+})
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
@@ -64,7 +68,7 @@ app.use(hotMiddleware)
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
-var uri = 'http://localhost:' + port
+var uri = 'http://localhost:' + port + '/home'
 
 var _resolve
 var readyPromise = new Promise(resolve => {

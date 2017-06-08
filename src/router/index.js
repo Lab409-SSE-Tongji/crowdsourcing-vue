@@ -6,10 +6,6 @@ Vue.use(Router);
 export default new Router({
     routes: [
         {
-            path: '/',
-            redirect: '/CrowdSourcing'
-        },
-        {
             path: '/readme',
             component: resolve => require(['../components/common/Home.vue'], resolve),
             children:[
@@ -59,10 +55,6 @@ export default new Router({
                     component: resolve => require(['../components/page/MixCharts.vue'], resolve)    // vue-echarts-v3组件
                 }
             ]
-        },
-        {
-          path:'/CrowdSourcing',
-          component: resolve => require(['../components/market/Welcome.vue'], resolve)
         },
         {
             path: '/login',
