@@ -2,16 +2,16 @@
   <div class="content">
     <div class="header">
       <template  v-if="getToken()">
-        <el-menu :default-active="activeIndex1" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu class="el-menu-demo" mode="horizontal" @select="handleSelect">
           <el-menu-item index="1">CrowdSourcing</el-menu-item>
-          <el-menu-item index="2"><router-link to="readme">我的主页</router-link></el-menu-item>
+          <el-menu-item index="2"><router-link to="/readme">我的主页</router-link></el-menu-item>
         </el-menu>
       </template>
       <template v-else>
-        <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu class="el-menu-demo" mode="horizontal" @select="handleSelect">
           <el-menu-item index="1">CrowdSourcing</el-menu-item>
-          <el-menu-item index="2"><router-link to="login">登录</router-link></el-menu-item>
-          <el-menu-item index="3"><router-link to="register">注册</router-link></el-menu-item>
+          <el-menu-item index="2"><router-link to="/login">登录</router-link></el-menu-item>
+          <el-menu-item index="3"><router-link to="/register">注册</router-link></el-menu-item>
         </el-menu>
       </template>
       <el-carousel :interval="5000" arrow="always" height="500px">
@@ -57,9 +57,7 @@
         return {
           url: server.url + '/api/requirements',
 
-          requirements: null,
-          activeIndex: '1',
-          activeIndex2: '1'
+          requirements: null
         };
       },
       created () {
@@ -151,12 +149,12 @@ margin-right: 10px;
   }
 
   .el-carousel__item:nth-child(2n) {
-    background-image: url("/static/img/header_one.jpg");
+    background-image: url("/static/img/header_two.jpg");
   }
 
   .el-carousel__item:nth-child(2n+1) {
-    background-image: url("/static/img/header_two.jpg");
-    max-width: 100%;
+    background-image: url("/static/img/header_one.jpg");
+
 
   }
   </style>

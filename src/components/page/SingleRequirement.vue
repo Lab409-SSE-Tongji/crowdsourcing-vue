@@ -53,7 +53,6 @@
 
 
                   <el-button type="primary" icon="edit">编辑</el-button>
-                  <el-button type="primary" icon="share">分享</el-button>
                   <el-button type="primary" icon="delete" @click="handleDelete">删除</el-button>
             </el-form>
 

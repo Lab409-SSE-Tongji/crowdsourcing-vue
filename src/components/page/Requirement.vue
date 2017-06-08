@@ -6,7 +6,7 @@
                 <el-breadcrumb-item>管理需求</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <el-table ref="multipleTable" :data="tableData" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+        <el-table ref="multipleTable" :data="tableData" border tooltip-effect="dark" style="width: 100%" >
             <el-table-column type="selection" width="55">
             </el-table-column>
             <el-table-column prop="requirement_id" label="项目id" width="120">
@@ -83,6 +83,7 @@
           .then(function(response) {
             if(response.data.status==200){
               that.tableData = response.data.result;
+              console.log(that.tableData);
               for (var index = 0; index < that.tableData.length; index++) {
                 // console.log(that.tableData[index]);
                 if (that.tableData[index].requirement_state == 1)
