@@ -14,7 +14,13 @@
           <el-menu-item index="3"><router-link to="register">注册</router-link></el-menu-item>
         </el-menu>
       </template>
+      <el-carousel :interval="5000" arrow="always" height="500px">
+        <el-carousel-item v-for="item in 2" :key="item">
+          <h3>{{ item }}</h3>
+        </el-carousel-item>
+      </el-carousel>
     </div>
+
     <div class="project">
       <el-row :gutter="20">
         <el-col  :span="4" v-for="requirement in requirements">
@@ -22,13 +28,15 @@
             <img src="static/img/img.jpg" class="image">
             <div style="padding: 14px;">
                <span id="project_id">项目编号：{{requirement.requirement_id}}</span>
-               <div class="clearfix">
+               <div class="">
                  <span id="project_name">{{requirement.requirement_name}}</span>
                </div>
-               <div class="bottom">
+               <div class="clearfix">
                  <span id="proposer">报名人数</span>
-                 <el-button type="text" class="button">操作按钮</el-button>
                </div>
+               <div class="bottom">
+               <el-button><router-link :to="{name: 'publicSingleRequirement', params:{id: requirement.id}}">查看详情</router-link>></el-button>
+              </div>
            </div>
           </el-card>
         </el-col>
@@ -88,13 +96,17 @@
   top: 0;
   left: 0;
   overflow-y:auto;
+  padding: 0;
 }
 .header{
   top: 0;
 }
 .el-row{
-  margin-top: 1%;
-
+margin-left: 10px;
+margin-right: 10px;
+}
+.el-card{
+  margin-top: 1em;
 }
 .bottom {
   margin-top: 13px;
@@ -107,7 +119,8 @@
 }
 
 .image {
-  width: 100%;
+  width: 80%;
+  height: 80%;
   display: block;
 }
 
@@ -120,7 +133,30 @@
 .clearfix:after {
     clear: both
 }
-#project_type{
-  float:right;
+
+.router-link {
+    text-decoraction: none;
 }
-</style>
+
+.router-link-active {
+    text-decoration: none;
+}
+
+.el-carousel__item h3 {
+    color: #475669;
+    font-size: 18px;
+    opacity: 0.75;
+    line-height: 300px;
+    margin: 0;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+    background-image: url("/static/img/header_one.jpg");
+  }
+
+  .el-carousel__item:nth-child(2n+1) {
+    background-image: url("/static/img/header_two.jpg");
+    max-width: 100%;
+
+  }
+  </style>
