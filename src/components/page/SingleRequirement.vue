@@ -9,50 +9,52 @@
         <div class="form-box">
             <el-form label-width="80px">
                 <el-form-item label="需求名称">
-                    <el-input v-model="tableData.requirementName" disabled="disabled"></el-input>
+                    <el-input id="requirementName" v-model="tableData.requirementName"></el-input>
                 </el-form-item>
 
                 <el-form-item label="起止时间">
                     <el-col :span="11" >
                       <el-date-picker
+                        id="start_time"
                         style="width:100%"
                         v-model="tableData.start_time"
                         type="date"
                         placeholder="选择日期"
                         :picker-options="pickerOptions0"
                         :format="yyyy-MM-dd"
-                        disabled="disabled">
+                        >
                       </el-date-picker>
                     </el-col>
                     <el-col class="line" :span="2">-</el-col>
                     <el-col :span="11" >
                       <el-date-picker
+                        id="end_time"
                         style="width:100%"
                         v-model="tableData.end_time"
                         type="date"
                         placeholder="选择日期"
                         :picker-options="pickerOptions0"
                         :format="yyyy-MM-dd"
-                        disabled="disabled">
+                        >
                       </el-date-picker>
                     </el-col>
                 </el-form-item>
                 <el-form-item label="项目类型">
-                  <el-select v-model="tableData.requirementType" placeholder="tableData.requirementType"   disabled="disabled">
+                  <el-select id="requirementType" v-model="tableData.requirementType" placeholder="tableData.requirementType" >
                       <el-option label="ios" value="ios"></el-option>
                       <el-option label="android" value="android"></el-option>
                       <el-option label="web" value="web"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="项目经理">
-                    <el-switch on-text="" off-text="" v-model="tableData.need_manager"   disabled="disabled"></el-switch>
+                    <el-switch id="need_manager"on-text="" off-text="" v-model="tableData.need_manager" ></el-switch>
                 </el-form-item>
                 <el-form-item label="项目简介">
-                    <el-input type="textarea" v-model="tableData.requirement_detail"   disabled="disabled"></el-input>
+                    <el-input id="requirement_detail"type="textarea" v-model="tableData.requirement_detail"  ></el-input>
                 </el-form-item>
 
 
-                  <el-button type="primary" icon="edit">编辑</el-button>
+                  <el-button type="primary" icon="edit" @click="handleEdit">编辑</el-button>
                   <el-button type="primary" icon="delete" @click="handleDelete">删除</el-button>
             </el-form>
 
@@ -71,8 +73,9 @@ export default {
     data() {
         return {
             url: server.url + '/api/requirement/' +  this.$route.params.id,
-            tableData: null,
-            currentPage1: 1
+            tableData: {},
+            currentPage1: 1,
+
         }
     },
     created () {
@@ -109,6 +112,45 @@ export default {
         }).catch(function (error) {
           console.log(error);
         });
+      },
+      handleEdit(){
+        var url_operation = server.url + '/api/requirement/' + this.$route.params.id
+
+        var sd = new Date(this.tableData.start_time);
+        var sdd = sd.getFullYear() + '-' + (sd.getMonth() + 1) + '-' + sd.getDate();
+        var ed = new Date(this.tableData.end_time);
+        var edd = ed.getFullYear() + '-' + (ed.getMonth() + 1) + '-' + ed.getDate();
+
+        // var form = new FormData();
+        // form.append("requirement_name",this.tableData.requirementName);
+        // form.append("requirement_type",this.tableData.requirementType);
+        // form.append("start_time",sdd);
+        // form.append("end_time",edd);
+        // form.append("need_manager",1);
+        // form.append("requirement_detail",this.tableData.requirement_detail);
+
+        var form = {
+          requirement_name:this.tableData.requirementName,
+          requirement_type:this.tableData.requirementType,
+          start_time:sdd,
+          end_time:edd,
+          need_manager:1,
+          requirement_detail:this.tableData.requirement_detail
+        }
+        axios.put(url_operation, form, {'headers': {'Authorization': sessionStorage.getItem('token')}})
+        .then(function(response) {
+          if(response.data.status==201){
+            router.push('/requirement');
+            Message.success("修改需求成功！")
+          }else if(response.data.status==500) {
+            console.log(response.data.status);
+            Message.success("服务器错误")
+          }
+
+        }).catch(function (error) {
+          console.log(error);
+        });
+
       },
       sizeChange: function (pageSize) {
          this.pageSize = pageSize;

@@ -22,8 +22,9 @@
     </div>
 
     <div class="project">
-      <el-row :gutter="20">
-        <el-col  :span="4" v-for="requirement in requirements">
+      <el-row :gutter="30" style="margin-left: 10px;
+      margin-right: 10px;">
+        <el-col  :span="6" v-for="requirement in requirements">
           <el-card >
             <img src="static/img/img.jpg" class="image">
             <div style="padding: 14px;">
@@ -105,6 +106,7 @@ margin-right: 10px;
 }
 .el-card{
   margin-top: 1em;
+  margin-bottom: .6em;
 }
 .bottom {
   margin-top: 13px;
@@ -117,8 +119,8 @@ margin-right: 10px;
 }
 
 .image {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   display: block;
 }
 
