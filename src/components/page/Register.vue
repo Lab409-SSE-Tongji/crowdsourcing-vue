@@ -66,6 +66,10 @@ export default{
       }
     }
   },
+  created() {
+      if (sessionStorage.getItem('token'))
+          router.push('/readme');
+  },
   methods: {
     register () {
       axios.post(this.url, this.info)

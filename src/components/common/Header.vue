@@ -18,7 +18,7 @@
     export default {
         data() {
             return {
-                name: '邱娟'
+                name: sessionStorage.getItem('realname')
             }
         },
         computed:{

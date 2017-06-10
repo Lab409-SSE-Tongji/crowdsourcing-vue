@@ -13,7 +13,7 @@
                     <div class="grid-content">
                     	<div class="bg-purple-light">
 	                    	<img class="user-logo" src="../../../static/img/img.jpg">
-	                        <h2>{{username}}</h2>
+	                        <h2>{{realname}}</h2>
                         </div>
 
 
@@ -63,7 +63,7 @@
 								<el-col :xs="4" :sm="6" :md="8" :lg="9">
 									<div class="bg-purple-light item-content">
 										<div class="input-message">
-											<span class="email">邱娟</span>
+											<span class="email">{{realname}}</span>
 										</div>
 									</div>
 								</el-col>
@@ -78,7 +78,8 @@
 								<el-col :xs="4" :sm="6" :md="8" :lg="9">
 									<div class="bg-purple-light item-content">
 										<div class="input-message">
-											<span class="email">男</span>
+											<span class="email" v-if="gender==1">男</span>
+                                            <span class="email" v-else>女</span>
 										</div>
 									</div>
 								</el-col>
@@ -93,7 +94,7 @@
 								<el-col :xs="4" :sm="6" :md="8" :lg="9">
 									<div class="bg-purple-light item-content">
 										<div class="input-message">
-											<span class="email">软件工程师</span>
+											<span class="email">{{profession}}</span>
 										</div>
 									</div>
 								</el-col>
@@ -116,14 +117,16 @@
     export default {
         data() {
             return {
-                name: '邱娟'
+                realname: sessionStorage.getItem('realname'),
+                gender: sessionStorage.getItem('gender'),
+                profession: sessionStorage.getItem('profession')
             }
         },
         computed:{
-            username(){
-                let username = localStorage.getItem('ms_username');
-                return username ? username : this.name;
-            }
+            // username(){
+            //     let username = localStorage.getItem('ms_username');
+            //     return username ? username : this.name;
+            // }
         },
         methods:{
             handleCommand(command) {

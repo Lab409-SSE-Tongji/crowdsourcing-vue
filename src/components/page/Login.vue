@@ -4,7 +4,7 @@
         <div class="container">
             <!-- Codrops top bar -->
             <header>
-                <h1>Welcome to<span>&nbspCrowdingSourcing Platform</span></h1>
+                <h1>Welcome to<span>&nbsp;CrowdingSourcing Platform</span></h1>
 
             </header>
 
@@ -62,6 +62,10 @@
                 }
             }
         },
+        created() {
+            if (sessionStorage.getItem('token'))
+                router.push('/readme');
+        },
         methods: {
             login () {
                 axios.post(this.url, this.info)
@@ -69,6 +73,12 @@
                     if(response.data.status==200){
                         // store.commit('setToken', {token: response.data.result.token});
                         sessionStorage.setItem("token", response.data.result.token);
+                        sessionStorage.setItem("id", response.data.result.userInfoDetail.id);
+                        sessionStorage.setItem("realname", response.data.result.userInfoDetail.realname);
+                        sessionStorage.setItem("gender", response.data.result.userInfoDetail.gender);
+                        sessionStorage.setItem("profession", response.data.result.userInfoDetail.profession);
+                        sessionStorage.setItem("idcard", response.data.result.userInfoDetail.idcard);
+
                         // alert(sessionStorage.getItem('token'));
                         router.push('/readme');
                         console.log(response);
