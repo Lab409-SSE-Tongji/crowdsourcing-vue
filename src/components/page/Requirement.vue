@@ -114,19 +114,22 @@
           },
 
           handleDelete(index, row, requirement_id) {
-            var url_operation = server.url + '/api/requirement/' + requirement_id
-            axios.delete(url_operation, {'headers': {'Authorization': sessionStorage.getItem('token')}})
-            .then(function(response) {
-              if(response.data.status==200){
-                router.push('requirement');
-                Message.success("删除需求成功！")
-              }else {
-                console.log(response.data.status);
-              }
+            // router.go('/requirement');
+            router.push({name:'requirement'});
+            Message.success("hahhhhh");
+            // var url_operation = server.url + '/api/requirement/' + requirement_id
+            // axios.delete(url_operation, {'headers': {'Authorization': sessionStorage.getItem('token')}})
+            // .then(function(response) {
+            //   if(response.data.status==200){
+            //     router.go(0);
+            //     Message.success("删除需求成功！")
+            //   }else {
+            //     console.log(response.data.status);
+            //   }
 
-            }).catch(function (error) {
-              console.log(error);
-            });
+            // }).catch(function (error) {
+            //   console.log(error);
+            // });
           },
           //每页显示数据量变更
               handleSizeChange: function(val) {

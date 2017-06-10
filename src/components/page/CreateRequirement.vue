@@ -118,7 +118,7 @@ export default {
               axios.post(this.url, form, {'headers': {'Authorization': sessionStorage.getItem('token')}})
               .then(function(response) {
                 if(response.data.status==201){
-                  router.push('create_requirement');
+                  router.push('/requirement');
                   Message.success("新建需求成功！")
                 }else {
                   console.log(response.data.status);

@@ -9,7 +9,7 @@
         <div class="form-box">
             <el-form label-width="80px">
                 <el-form-item label="需求名称">
-                    <el-input id="requirementName" v-model="tableData.requirementName"></el-input>
+                    <el-input id="requirement_name" v-model="tableData.requirement_name"></el-input>
                 </el-form-item>
 
                 <el-form-item label="起止时间">
@@ -40,7 +40,7 @@
                     </el-col>
                 </el-form-item>
                 <el-form-item label="项目类型">
-                  <el-select id="requirementType" v-model="tableData.requirementType" placeholder="tableData.requirementType" >
+                  <el-select id="requirement_type" v-model="tableData.requirement_type" placeholder="tableData.requiremen_type" >
                       <el-option label="ios" value="ios"></el-option>
                       <el-option label="android" value="android"></el-option>
                       <el-option label="web" value="web"></el-option>
@@ -50,11 +50,11 @@
                     <el-switch id="need_manager"on-text="" off-text="" v-model="tableData.need_manager" ></el-switch>
                 </el-form-item>
                 <el-form-item label="项目简介">
-                    <el-input id="requirement_detail"type="textarea" v-model="tableData.requirement_detail"  ></el-input>
+                    <el-input id="requirement_detail" type="textarea" v-model="tableData.requirement_detail"  ></el-input>
                 </el-form-item>
 
 
-                  <el-button type="primary" icon="edit" @click="handleEdit">编辑</el-button>
+                  <el-button type="primary" icon="edit" @click="handleEdit">确认</el-button>
                   <el-button type="primary" icon="delete" @click="handleDelete">删除</el-button>
             </el-form>
 
@@ -114,7 +114,7 @@ export default {
         });
       },
       handleEdit(){
-        var url_operation = server.url + '/api/requirement/' + this.$route.params.id
+        var url_operation = server.url + '/api/updateRequirement/' + this.$route.params.id
 
         var sd = new Date(this.tableData.start_time);
         var sdd = sd.getFullYear() + '-' + (sd.getMonth() + 1) + '-' + sd.getDate();
@@ -130,24 +130,24 @@ export default {
         // form.append("requirement_detail",this.tableData.requirement_detail);
 
         var form = {
-          requirement_name:this.tableData.requirementName,
-          requirement_type:this.tableData.requirementType,
+          requirement_name:this.tableData.requirement_name,
+          requirement_type:this.tableData.requirement_type,
           start_time:sdd,
           end_time:edd,
           need_manager:1,
           requirement_detail:this.tableData.requirement_detail
         }
-        axios.put(url_operation, form, {'headers': {'Authorization': sessionStorage.getItem('token')}})
+        axios.post(url_operation, form, {'headers': {'Authorization': sessionStorage.getItem('token')}})
         .then(function(response) {
           if(response.data.status==201){
             router.push('/requirement');
             Message.success("修改需求成功！")
-          }else if(response.data.status==500) {
+          }else {
             console.log(response.data.status);
-            Message.success("服务器错误")
           }
 
         }).catch(function (error) {
+          Message.error("服务器错误")
           console.log(error);
         });
 
