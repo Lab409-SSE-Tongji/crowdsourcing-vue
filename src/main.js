@@ -10,10 +10,6 @@ Vue.use(VueResource);
 import '../static/css/theme-green/index.css';       // 浅绿色主题
 import "babel-polyfill";
 //
-import '../static/css/bootstrap.css'
-import '../static/css/font-awesome/css/font-awesome.css'
-import '../static/js/vegas/jquery.vegas.min.css'
-import '../static/css/style.css'
 
 
 Vue.use(ElementUI);
