@@ -121,25 +121,25 @@ export default {
         var ed = new Date(this.tableData.end_time);
         var edd = ed.getFullYear() + '-' + (ed.getMonth() + 1) + '-' + ed.getDate();
 
-        // var form = new FormData();
-        // form.append("requirement_name",this.tableData.requirementName);
-        // form.append("requirement_type",this.tableData.requirementType);
-        // form.append("start_time",sdd);
-        // form.append("end_time",edd);
-        // form.append("need_manager",1);
-        // form.append("requirement_detail",this.tableData.requirement_detail);
+        var form = new FormData();
+        form.append("requirement_name",this.tableData.requirement_name);
+        form.append("requirement_type",this.tableData.requirement_type);
+        form.append("start_time",sdd);
+        form.append("end_time",edd);
+        form.append("need_manager",1);
+        form.append("requirement_detail",this.tableData.requirement_detail);
 
-        var form = {
-          requirement_name:this.tableData.requirement_name,
-          requirement_type:this.tableData.requirement_type,
-          start_time:sdd,
-          end_time:edd,
-          need_manager:1,
-          requirement_detail:this.tableData.requirement_detail
-        }
+        // var form = {
+        //   requirement_name:this.tableData.requirement_name,
+        //   requirement_type:this.tableData.requirement_type,
+        //   start_time:sdd,
+        //   end_time:edd,
+        //   need_manager:1,
+        //   requirement_detail:this.tableData.requirement_detail
+        // }
         axios.post(url_operation, form, {'headers': {'Authorization': sessionStorage.getItem('token')}})
         .then(function(response) {
-          if(response.data.status==201){
+          if(response.data.status==200){
             router.push('/requirement');
             Message.success("修改需求成功！")
           }else {
