@@ -35,7 +35,7 @@
       </el-form>
     </div>
 
-    <div style="padding: 14px;" v-if="getToken()">
+    <div style="padding: 14px;" v-if="getToken() && requirement['is_enroll'] !== undefined">
       <el-button @click="enroll()" v-if="requirement['is_enroll']==false">报名</el-button>
       <el-button disabled="disabled" v-else>已报名</el-button>
     </div>

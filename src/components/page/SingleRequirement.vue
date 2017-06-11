@@ -9,7 +9,7 @@
         <div class="form-box">
             <el-form label-width="80px">
                 <el-form-item label="需求名称">
-                    <el-input id="requirement_name" v-model="tableData.requirement_name"></el-input>
+                    <el-input id="requirement_name" v-model="tableData['requirement_name ']"></el-input>
                 </el-form-item>
 
                 <el-form-item label="起止时间">

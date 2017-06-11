@@ -83,7 +83,6 @@
           .then(function(response) {
             if(response.data.status==200){
               that.tableData = response.data.result;
-              console.log(that.tableData);
               for (var index = 0; index < that.tableData.length; index++) {
                 // console.log(that.tableData[index]);
                 if (that.tableData[index].requirement_state == 1)
@@ -95,6 +94,7 @@
                 else
                   that.tableData[index]['tag'] = '错误';
               }
+              console.log(that.tableData)
             } else {
               console.log(response.data.status);
             }
