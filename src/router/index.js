@@ -6,11 +6,11 @@ Vue.use(Router);
 export default new Router({
     routes: [
         {
-            path: '/readme',
+            path: '/',
             component: resolve => require(['../components/common/Home.vue'], resolve),
             children:[
                 {
-                    path: '/',
+                    path: '/readme',
                     component: resolve => require(['../components/page/Readme.vue'], resolve)
                 },
                 {

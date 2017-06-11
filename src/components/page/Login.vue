@@ -80,7 +80,7 @@
                         sessionStorage.setItem("idcard", response.data.result.userInfoDetail.idcard);
 
                         // alert(sessionStorage.getItem('token'));
-                        router.push('/readme');
+                        router.push('/');
                         console.log(response);
                     }else if(response.data.status==404) {
                         // console.log(response.data.status);

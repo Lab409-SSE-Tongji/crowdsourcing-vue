@@ -11,9 +11,15 @@
 <script>
     import vHead from './Header.vue';
     import vSidebar from './Sidebar.vue';
+    import router from '../../router/index.js';
     export default {
         components:{
             vHead, vSidebar
+        },
+        created() {
+            if (sessionStorage.getItem('token') == null) {
+                this.$router.push('/login')
+            }
         }
     }
 </script>

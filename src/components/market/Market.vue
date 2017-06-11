@@ -4,7 +4,7 @@
       <template  v-if="getToken()">
         <el-menu class="el-menu-demo" mode="horizontal" @select="handleSelect">
           <el-menu-item index="1">CrowdSourcing</el-menu-item>
-          <el-menu-item index="2"><router-link to="/readme">我的主页</router-link></el-menu-item>
+          <el-menu-item index="2" @click="go()">我的主页</el-menu-item>
         </el-menu>
       </template>
       <template v-else>
@@ -77,6 +77,9 @@
 
       },
       methods: {
+        go() {
+          window.location.href= '/';
+        },
         handleSelect(key, keyPath) {
           console.log(key, keyPath);
         },

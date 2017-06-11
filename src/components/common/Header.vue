@@ -30,7 +30,8 @@
         methods:{
             handleCommand(command) {
                 if(command == 'loginout'){
-                    sessionStorage.removeItem('token')
+                    // sessionStorage.removeItem('token')
+                    sessionStorage.clear();
                     this.$router.push('/login');
                 }
             }
