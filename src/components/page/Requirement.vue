@@ -26,7 +26,7 @@
           <template scope="scope">
             <router-link :to="{name:'singlerequirement',params:{id:scope.row.requirement_id}}">  <el-button
                 size="small"
-                >查看</el-button></router-link>
+                >编辑</el-button></router-link>
             <el-button
               size="small"
               type="danger"
@@ -35,7 +35,7 @@
           </el-table-column>
 
         </el-table>
-        <el-pagination
+<!--         <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page="currentPage"
@@ -44,7 +44,7 @@
             layout="total, sizes, prev, pager, next, jumper"
             :total="tableData.length">
         </el-pagination>
-
+ -->
     </div>
 
 

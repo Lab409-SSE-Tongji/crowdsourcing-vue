@@ -20,7 +20,7 @@
                         type="date"
                         placeholder="选择日期"
                         :picker-options="pickerOptions0"
-                        :format="yyyy-MM-dd">
+                        format="yyyy-MM-dd">
                       </el-date-picker>
                     </el-col>
                     <el-col class="line" :span="2">-</el-col>
@@ -31,7 +31,7 @@
                         type="date"
                         placeholder="选择日期"
                         :picker-options="pickerOptions0"
-                        :format="yyyy-MM-dd">
+                        format="yyyy-MM-dd">
                       </el-date-picker>
                     </el-col>
                 </el-form-item>
@@ -43,7 +43,7 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item label="项目经理">
-                    <el-switch on-text="" off-text="" v-model="form.need_manager"></el-switch>
+                    <el-switch on-value="1" off-value="0" on-text="" off-text="" v-model="form.need_manager"></el-switch>
                 </el-form-item>
                 <el-form-item label="项目简介">
                     <el-input type="textarea" v-model="form.requirement_detail"></el-input>
@@ -53,9 +53,6 @@
                   <el-upload
                     ref="upload"
                     action=""
-                    :on-preview="handlePreview"
-                    :on-remove="handleRemove"
-                    :file-list="fileList"
                     :before-upload="beforeUpload"
                     :auto-upload="false">
                     <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
@@ -95,7 +92,7 @@ export default {
                     requirement_type: '',
                     start_time: '',
                     end_time: '',
-                    need_manager: '1',
+                    need_manager: 0,
                     requirement_detail: '',
                 }
             }
@@ -112,9 +109,9 @@ export default {
               form.append("requirement_type",this.form.requirement_type);
               form.append("start_time",sdd);
               form.append("end_time",edd);
-              form.append("need_manager",1);
+              form.append("need_manager",this.form.need_manager);
               form.append("requirement_detail",this.form.requirement_detail);
-              // axios.post(this.url, {'headers': {'authorization': sessionStorage.getItem('token')}, 'data': this.info})
+              
               axios.post(this.url, form, {'headers': {'Authorization': sessionStorage.getItem('token')}})
               .then(function(response) {
                 if(response.data.status==201){

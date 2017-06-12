@@ -20,8 +20,7 @@
                         v-model="tableData.start_time"
                         type="date"
                         placeholder="选择日期"
-                        :picker-options="pickerOptions0"
-                        :format="yyyy-MM-dd"
+                        format="yyyy-MM-dd"
                         >
                       </el-date-picker>
                     </el-col>
@@ -33,8 +32,7 @@
                         v-model="tableData.end_time"
                         type="date"
                         placeholder="选择日期"
-                        :picker-options="pickerOptions0"
-                        :format="yyyy-MM-dd"
+                        format="yyyy-MM-dd"
                         >
                       </el-date-picker>
                     </el-col>
@@ -47,7 +45,7 @@
                   </el-select>
                 </el-form-item>
                 <el-form-item label="项目经理">
-                    <el-switch id="need_manager"on-text="" off-text="" v-model="tableData.need_manager" ></el-switch>
+                    <el-switch id="need_manager" on-value="1" off-value="0" on-text="" off-text="" v-model="tableData.need_manager" ></el-switch>
                 </el-form-item>
                 <el-form-item label="项目简介">
                     <el-input id="requirement_detail" type="textarea" v-model="tableData.requirement_detail"  ></el-input>
@@ -73,7 +71,7 @@ export default {
     data() {
         return {
             url: server.url + '/api/requirement/' +  this.$route.params.id,
-            tableData: {},
+            tableData: null,
             currentPage1: 1,
 
         }
@@ -84,7 +82,7 @@ export default {
       .then(function(response) {
         if(response.data.status==200){
           that.tableData = response.data.result;
-          console.log(response.data);
+          console.log(response.data.result);
         } else {
           console.log(response.data.status);
         }
@@ -122,11 +120,11 @@ export default {
         var edd = ed.getFullYear() + '-' + (ed.getMonth() + 1) + '-' + ed.getDate();
 
         var form = new FormData();
-        form.append("requirement_name",this.tableData.requirement_name);
+        form.append("requirement_name",this.tableData['requirement_name ']);
         form.append("requirement_type",this.tableData.requirement_type);
         form.append("start_time",sdd);
         form.append("end_time",edd);
-        form.append("need_manager",1);
+        form.append("need_manager", this.tableData.need_manager);
         form.append("requirement_detail",this.tableData.requirement_detail);
 
         // var form = {

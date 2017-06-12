@@ -20,7 +20,7 @@
         <hr> -->
         <div class="content-title">新增项目经历</div>
         <hr>
-        <el-form :label-position="labelPosition" ref="form" label-width="8em" :model="form" :rules="rules">
+        <el-form ref="form" label-width="8em" :model="form" :rules="rules">
           <el-form-item label="项目名称" prop="name">
             <el-input v-model="form.name" ></el-input>
           </el-form-item>
@@ -35,7 +35,7 @@
             <el-input v-model="form.address"></el-input>
           </el-form-item>
           <el-form-item label="项目简介" prop="text">
-              <el-input type="textarea" rows="4" v-model="form.text"></el-input>
+              <el-input type="textarea" v-model="form.text"></el-input>
           </el-form-item>
           <el-form-item>
               <el-button type="primary" @click="onSubmit('form')">提交</el-button>
@@ -98,7 +98,7 @@ export default {
           .then(function(response) {
             if(response.data.status==201){
 
-              router.push('skillupload');
+              router.push('/skill');
               Message.success("新建项目经历成功！")
 
             }else {
