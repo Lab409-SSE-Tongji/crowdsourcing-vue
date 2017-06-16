@@ -4,7 +4,7 @@
         <div class="container">
             <!-- Codrops top bar -->
             <header>
-                <h1>Welcome to<span>&nbsp;CrowdingSourcing Platform</span></h1>
+                <h1>Welcome to<span>&nbsp;CrowdSourcing Platform</span></h1>
 
             </header>
 
