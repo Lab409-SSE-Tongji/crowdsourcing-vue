@@ -5,7 +5,7 @@ describe('Login.vue', () => {
   it('should render correct contents', () => {
     const Constructor = Vue.extend(Login)
     const vm = new Constructor().$mount()
-    expect(vm.$el.querySelector('.container h2').textContent)
+    expect(vm.$el.querySelector('.container h1').textContent)
       .to.equal('Welcome to CrowdingSourcing Platform')
   })
 })
