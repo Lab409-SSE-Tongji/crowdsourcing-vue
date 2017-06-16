@@ -14,10 +14,7 @@
                 <el-form ref="form" :model="form" label-width="80px">
                   <p v-for="(transaction,i1) in transactions">
 
-                    <el-form-item prop="'transactions.'+i1+'.transactionName" label="功能名称" :rules="[
-                    { required: true, message: '功能名称不能为空', trigger: 'blur' },
-                    { max: 20, message: '长度要在20个字符以内', trigger: 'blur'}
-                    ]">                 
+                    <el-form-item prop="transaction.transactionName" label="功能名称">                 
                         <el-input v-model="transaction.transactionName" placeholder="不得多于20个字符"></el-input>
                     </el-form-item>
 
@@ -30,10 +27,7 @@
                             <el-option label="EQ" value="EQ"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item prop="transactionDescription" label="具体描述" :rules="[
-                    { required: true, message: '具体描述内容不能为空', trigger: 'blur' },
-                    { max: 50, message: '长度要在50个字符以内', trigger: 'blur'}
-                    ]">
+                    <el-form-item prop="transactionDescription" label="具体描述" >
                         <el-input type="textarea" v-model="transaction.transactionDescription" placeholder="不得多于50个字符"></el-input>
                     </el-form-item>
 
@@ -156,7 +150,7 @@
             }
         },
         created:function(){
-            this.transactions[0].regulationOfReturningStatus = 1;
+          
             //如果来自编辑页面
             if(this.$route.query.id){
                 var id = this.$route.query.id;
@@ -247,7 +241,7 @@
                 this.forBug = this.forBug + 1;
                 this.transactions[index1].steps[index2].concerningDataSets.splice(index3,1);
             },
-            //flag用于区分仅保存、保存并以id跳转、保存并以insertid跳转三种情况。
+            //flag用于区分仅保存、保存并以id跳转两种情况。
             save:function(flag){
                 var id = this.queryId;
                 var transactions = this.transactions;

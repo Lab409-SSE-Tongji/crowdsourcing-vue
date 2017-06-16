@@ -87,7 +87,8 @@
                 this.$router.push( {path:'/step3', query: param});  
             },
             nextStep:function(){
-                this.$router.push({path:'/step5'});
+                var param = {id:this.queryId};
+                this.$router.push( {path:'/step5', query: param});
             }
         }
 
