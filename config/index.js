@@ -2,7 +2,10 @@
 var path = require('path')
 
 module.exports = {
-    url: 'http://123.206.123.213:8080',
+    // development server
+    url: 'http://123.206.123.213:3000',
+    // production server
+    // url: 'http://202.120.167.198:8080',
     build: {
         env: require('./prod.env'),
         index: path.resolve(__dirname, '../dist/index.html'),
