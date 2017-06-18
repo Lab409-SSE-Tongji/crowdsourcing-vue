@@ -2,10 +2,7 @@
 var path = require('path')
 
 module.exports = {
-    // development server
-    url: 'http://123.206.123.213:3000',
-    // production server
-    // url: 'http://202.120.167.198:8080',
+    url: '',
     build: {
         env: require('./prod.env'),
         index: path.resolve(__dirname, '../dist/index.html'),
@@ -23,7 +20,15 @@ module.exports = {
         // View the bundle analyzer report after build finishes:
         // `npm run build --report`
         // Set to `true` or `false` to always turn it on or off
-        bundleAnalyzerReport: process.env.npm_config_report
+        bundleAnalyzerReport: process.env.npm_config_report,
+        proxyTable: {
+            '/api':{
+                target:'http://202.120.167.198:8080',
+                pathRewrite:{
+                    '^/api': '/api'
+                }
+            }
+        },
     },
     dev: {
         env: require('./dev.env'),
@@ -33,11 +38,12 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             '/api':{
-                target:'http://localhost:8080',
+                target:'http://localhost:3000',
+                // target: 'http://202.120.167.198:8080',
                 changeOrigin:true,
-                // pathRewrite:{
-                //     '/api':''
-                // }
+                pathRewrite:{
+                    '^/api': '/api'
+                }
             }
         },
         // CSS Sourcemaps off by default because relative paths are "buggy"

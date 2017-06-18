@@ -4,7 +4,7 @@
         <div class="container">
             <!-- Codrops top bar -->
             <header>
-                <h1>Welcome to<span>&nbsp;CrowdSourcing Platform</span></h1>
+                <h1>Welcome to<span>&ensp;CrowdSourcing Platform</span></h1>
 
             </header>
 
@@ -68,30 +68,47 @@
         },
         methods: {
             login () {
-                axios.post(this.url, this.info)
-                .then(function(response) {
-                    if(response.data.status==200){
-                        // store.commit('setToken', {token: response.data.result.token});
-                        sessionStorage.setItem("token", response.data.result.token);
-                        sessionStorage.setItem("id", response.data.result.userInfoDetail.id);
-                        sessionStorage.setItem("realname", response.data.result.userInfoDetail.realname);
-                        sessionStorage.setItem("gender", response.data.result.userInfoDetail.gender);
-                        sessionStorage.setItem("profession", response.data.result.userInfoDetail.profession);
-                        sessionStorage.setItem("idcard", response.data.result.userInfoDetail.idcard);
+                this.$http.post(this.url, {}).then(response => {
 
-                        // alert(sessionStorage.getItem('token'));
-                        router.push('/');
-                        console.log(response);
-                    }else if(response.data.status==404) {
-                        // console.log(response.data.status);
-                        Message.error("用户不存在")
-                    }else if(response.data.status==401){
-                        Message.error("密码错误，请重新输入");
-                    }
+                    // get body data
+                    sessionStorage.setItem("token", response.data.result.token);
+                    sessionStorage.setItem("id", response.data.result.userInfoDetail.id);
+                    sessionStorage.setItem("realname", response.data.result.userInfoDetail.realname);
+                    sessionStorage.setItem("gender", response.data.result.userInfoDetail.gender);
+                    sessionStorage.setItem("profession", response.data.result.userInfoDetail.profession);
+                    sessionStorage.setItem("idcard", response.data.result.userInfoDetail.idcard);
 
-                }).catch(function (error) {
-                    console.log(error);
+                    // alert(sessionStorage.getItem('token'));
+                    router.push('/');
+                }, response => {
+                    alert('error')
                 });
+
+
+                // return axios.post(this.url, this.info)
+                // .then(function(response) {
+                //     if(response.data.status==200){
+                //         // store.commit('setToken', {token: response.data.result.token});
+                //         sessionStorage.setItem("token", response.data.result.token);
+                //         sessionStorage.setItem("id", response.data.result.userInfoDetail.id);
+                //         sessionStorage.setItem("realname", response.data.result.userInfoDetail.realname);
+                //         sessionStorage.setItem("gender", response.data.result.userInfoDetail.gender);
+                //         sessionStorage.setItem("profession", response.data.result.userInfoDetail.profession);
+                //         sessionStorage.setItem("idcard", response.data.result.userInfoDetail.idcard);
+
+                //         // alert(sessionStorage.getItem('token'));
+                //         router.push('/');
+                //         console.log(response);
+                //     }else if(response.data.status==404) {
+                //         // console.log(response.data.status);
+                //         Message.error("用户不存在")
+                //     }else if(response.data.status==401){
+                //         Message.error("密码错误，请重新输入");
+                //     }
+
+                // }).catch(function (error) {
+                //     console.log(error);
+                // });
             }
         }
     }
