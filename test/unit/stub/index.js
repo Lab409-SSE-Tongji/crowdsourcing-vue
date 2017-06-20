@@ -96,23 +96,25 @@ app.get('/api/requirements', function(req, res, next) {
   res.send({
     'status':'200',
     'result': [{
-      'id': 1,
+      'requirement_id': 1,
       'start_time': '2016-06-07',
       'end_time': '2016-06-09',
       'need_manager': 1,
       'requirement_detail': 'this is why we live',
       'requirement_state': 'www.github.com',
       'requirement_name': 'Crowdsourcing',
-      'requirement_type': 'ios'
+      'requirement_type': 'ios',
+			'proposer':3
     }, {
-      'id': 2,
+      'requirement_id': 2,
       'start_time': '2016-06-04',
       'end_time': '2016-06-07',
       'need_manager': 0,
       'requirement_detail': 'in me the tiger sniff the rose',
       'requirement_state': 'www.gayhub.com',
       'requirement_name': 'WebGis',
-      'requirement_type': 'web'
+      'requirement_type': 'web',
+			'proposer':5
     }
     ]
   });

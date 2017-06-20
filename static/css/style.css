@@ -6,7 +6,7 @@ body {
     font-family: 'Open Sans', sans-serif;
 	letter-spacing:1px;
     color:#fff;
-   
+
 }
 p{
 padding:20px;
@@ -24,7 +24,6 @@ font-size:60px;
 }
 
 p {
-    
     line-height:30px;
     margin-bottom:35px;
 }
@@ -86,9 +85,9 @@ text-transform:uppercase;
 }
 /*SLIDER STYLES*/
 #carousel-slider {
-    color:#fff; 
+    color:#fff;
     min-height:420px;
-    padding:30px 20px 5px 20px; 
+    padding:30px 20px 5px 20px;
 }
     .carousel-control.left {
 left: 0;
@@ -112,7 +111,7 @@ background-image: linear-gradient(to right,rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0
     width:20px;
     height:20px;
 	background-color:transparent;
-    
+
 }
 
 /* =============================================================

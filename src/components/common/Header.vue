@@ -1,6 +1,7 @@
 <template>
     <div class="header">
         <div class="logo">个人中心</div>
+        <div class="market" @click="gomarket()">需求市场</div>
         <div class="user-info">
             <el-dropdown trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
@@ -34,6 +35,9 @@
                     sessionStorage.clear();
                     this.$router.push('/login');
                 }
+            },
+            gomarket(){
+            this.$router.push('/market');
             }
         }
     }
@@ -52,6 +56,11 @@
         float: left;
         width:250px;
         text-align: center;
+    }
+    .header .market{
+      float: left;
+      width:250px;
+
     }
     .user-info {
         float: right;

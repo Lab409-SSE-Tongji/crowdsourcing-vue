@@ -68,7 +68,7 @@
         },
         methods: {
             login () {
-                this.$http.post(this.url, this.info).then(response => {
+                    axios.post(this.url, this.info).then(response => {
                     sessionStorage.setItem("token", response.data.result.token);
                     sessionStorage.setItem("id", response.data.result.userInfoDetail.id);
                     sessionStorage.setItem("realname", response.data.result.userInfoDetail.realname);

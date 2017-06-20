@@ -9,7 +9,7 @@ body {
     font-weight: lighter;
 }
 p{
-padding:20px;
+padding:20px 0px;
 }
 
 section
@@ -24,7 +24,7 @@ font-weight: 100;
 }
 
 p {
-
+  font-size: 20px;
     line-height:30px;
     margin-bottom:35px;
 }

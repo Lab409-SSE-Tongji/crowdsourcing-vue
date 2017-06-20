@@ -16,7 +16,8 @@
       </template>
       <el-carousel :interval="5000" arrow="always" height="500px">
         <el-carousel-item v-for="item in 2" :key="item">
-          <h3>{{ item }}</h3>
+          <h3>{{ item }} </h3>
+          <h1 style="margin:-50px 200px auto;font-size:80px;color:white">欢迎访问众包平台</h1>
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -26,15 +27,15 @@
       margin-right: 10px;">
         <el-col  :span="6" v-for="requirement in requirements">
           <el-card >
-            <img src="static/img/img.jpg" class="image">
+            <img src="static/img/HTML.jpg" class="image">
             <div style="padding: 14px;">
                <span id="project_id">项目编号：{{requirement.requirement_id}}</span>
                <div class="">
                  <span id="project_name">{{requirement.requirement_name}}</span>
                </div>
-               <div class="clearfix">
-                 <span id="proposer">报名人数</span>
-               </div>
+               <!-- <div class="clearfix">
+                 <span id="proposer">报名人数:{{requirement.proposer}}</span>
+               </div> -->
                <div class="bottom">
                <el-button><router-link :to="{name: 'publicSingleRequirement', params:{id: requirement.id}}">查看详情</router-link>></el-button>
               </div>
