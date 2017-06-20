@@ -11,16 +11,16 @@
         <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
           <el-menu-item index="1">CrowdSourcing</el-menu-item>
           <el-menu-item index="2"><router-link to="/login">登录</router-link></el-menu-item>
-          <el-menu-item index="3"><router-link to="/register">注册</router-link></el-menu-item> 
+          <el-menu-item index="3"><router-link to="/register">注册</router-link></el-menu-item>
         </el-menu>
       </template>
-      
+
     </div>
 
     <div class="form-box">
       <el-form label-width="80px">
         <el-form-item label="需求名称">
-          <el-input disabled="disabled" id="requirement_name" v-model="requirement['requirement_name ']"></el-input>
+          <el-input disabled="disabled" id="requirement_name" v-model="requirement['requirement_name']"></el-input>
         </el-form-item>
         <el-form-item label="起止时间">
           <el-input disabled="disabled" id="start_time" v-model="requirement['start_time']"></el-input>
@@ -67,6 +67,7 @@
       .then(function(response) {
         if(response.data.status==200){
           var date = new Date();
+          console.log(response);
           date.setTime(response.data.result['start_time']);
           response.data.result['start_time'] = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDay();
           date.setTime(response.data.result['end_time']);
@@ -93,7 +94,7 @@
       getToken() {
         if (sessionStorage.getItem('token') != null)
           return true;
-        else 
+        else
           return false;
       },
       enroll() {
