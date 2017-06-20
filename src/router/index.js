@@ -35,35 +35,39 @@ export default new Router({
                 },
                 {
                     path: '/step1',
-                    component: resolve => require(['../components/page/StepOne.vue'], resolve)
+                    component: resolve => require(['../components/estimation/StepOne.vue'], resolve)
                 },
                 {
                     path: '/step2',
-                    component: resolve => require(['../components/page/StepTwo.vue'], resolve)
+                    component: resolve => require(['../components/estimation/StepTwo.vue'], resolve)
                 },
                 {
                     path: '/step3',
-                    component: resolve => require(['../components/page/StepThree.vue'], resolve)
+                    component: resolve => require(['../components/estimation/StepThree.vue'], resolve)
                 },
                 {
                     path: '/step4',
-                    component: resolve => require(['../components/page/StepFour.vue'], resolve)
+                    component: resolve => require(['../components/estimation/StepFour.vue'], resolve)
                 },
                 {
                     path: '/step5',
-                    component: resolve => require(['../components/page/StepFive.vue'], resolve)
+                    component: resolve => require(['../components/estimation/StepFive.vue'], resolve)
                 },
                 {
                     path: '/step6',
-                    component: resolve => require(['../components/page/StepSix.vue'], resolve)
+                    component: resolve => require(['../components/estimation/StepSix.vue'], resolve)
                 },
                 {
-                    path: '/records',
-                    component: resolve => require(['../components/page/EstimationRecords.vue'], resolve)
+                    path: '/estimations',
+                    component: resolve => require(['../components/estimation/EstimationRecords.vue'], resolve)
                 },
                 {
                     path: '/report',
-                    component: resolve => require(['../components/page/EstimationReport.vue'], resolve)
+                    component: resolve => require(['../components/estimation/EstimationReport.vue'], resolve)
+                },
+                {
+                    path: '/records',
+                    component: resolve => require(['../components/page/Requirement.vue'], resolve)
                 },
                 {
                     path: '/vueeditor',
