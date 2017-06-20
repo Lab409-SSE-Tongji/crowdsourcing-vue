@@ -17,7 +17,7 @@
 
     </div>
 
-    <div class="form-box">
+    <div style="margin:30px" class="form-box">
       <el-form label-width="80px">
         <el-form-item label="需求名称">
           <el-input disabled="disabled" id="requirement_name" v-model="requirement['requirement_name']"></el-input>
@@ -35,11 +35,11 @@
       </el-form>
     </div>
 
-    <div style="padding: 14px;" v-if="getToken() && requirement['is_enroll'] !== undefined">
+    <!-- <div style="padding: 14px;" v-if="getToken() && requirement['is_enroll'] !== undefined">
       <el-button @click="enroll()" v-if="requirement['is_enroll']==false">报名</el-button>
       <el-button disabled="disabled" v-else>已报名</el-button>
     </div>
-
+ -->
   </div>
 
 </template>
@@ -69,6 +69,7 @@
           var date = new Date();
           console.log(response);
           date.setTime(response.data.result['start_time']);
+          response.data.result['requirement_name'] = 'CrowdSourcing'
           response.data.result['start_time'] = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDay();
           date.setTime(response.data.result['end_time']);
           response.data.result['end_time'] = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDay();

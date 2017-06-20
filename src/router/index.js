@@ -26,14 +26,6 @@ export default new Router({
                     component: resolve => require(['../components/page/CreateRequirement.vue'], resolve)
                 },
                 {
-                    path: '/vueeditor',
-                    component: resolve => require(['../components/page/VueEditor.vue'], resolve)    // Vue-Quill-Editor组件
-                },
-                {
-                    path: '/markdown',
-                    component: resolve => require(['../components/page/Markdown.vue'], resolve)     // Vue-Quill-Editor组件
-                },
-                {
                     path: '/skillupload',
                     component: resolve => require(['../components/page/SkillUpload.vue'], resolve)       // Vue-Core-Image-Upload组件
                 },
@@ -45,14 +37,6 @@ export default new Router({
                 {
                     path: '/project',
                     component: resolve => require(['../components/page/Project.vue'], resolve)       // Vue-Core-Image-Upload组件
-                },
-                {
-                    path: '/basecharts',
-                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve)   // vue-echarts-v3组件
-                },
-                {
-                    path: '/mixcharts',
-                    component: resolve => require(['../components/page/MixCharts.vue'], resolve)    // vue-echarts-v3组件
                 }
             ]
         },

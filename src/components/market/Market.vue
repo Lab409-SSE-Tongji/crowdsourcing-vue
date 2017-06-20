@@ -67,6 +67,7 @@
         axios.get(this.url,{'headers': {'Authorization': sessionStorage.getItem('token')}})
         .then(function(response) {
           if(response.data.status==200){
+            
             that.requirements = response.data.result;
           } else {
             console.log(response.data.status);
