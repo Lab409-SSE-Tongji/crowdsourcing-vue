@@ -2,7 +2,10 @@
 var path = require('path')
 
 module.exports = {
-    url: '',
+    // dev server
+    // url: '',
+    // production server
+    url: 'http://202.120.167.198:8080',
     build: {
         env: require('./prod.env'),
         index: path.resolve(__dirname, '../dist/index.html'),
@@ -21,14 +24,6 @@ module.exports = {
         // `npm run build --report`
         // Set to `true` or `false` to always turn it on or off
         bundleAnalyzerReport: process.env.npm_config_report,
-        proxyTable: {
-            '/api':{
-                target:'http://202.120.167.198:8080',
-                pathRewrite:{
-                    '^/api': '/api'
-                }
-            }
-        },
     },
     dev: {
         env: require('./dev.env'),
@@ -37,9 +32,8 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            '/api':{
-              target:'http://localhost:3000',
-                // target: 'http://202.120.167.198:8080',
+            '/api' :{
+                target: 'http://localhost:3000',
                 changeOrigin:true,
                 pathRewrite:{
                     '^/api': '/api'

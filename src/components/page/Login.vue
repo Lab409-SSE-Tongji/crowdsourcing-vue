@@ -68,9 +68,7 @@
         },
         methods: {
             login () {
-                this.$http.post(this.url, {}).then(response => {
-
-                    // get body data
+                this.$http.post(this.url, this.info).then(response => {
                     sessionStorage.setItem("token", response.data.result.token);
                     sessionStorage.setItem("id", response.data.result.userInfoDetail.id);
                     sessionStorage.setItem("realname", response.data.result.userInfoDetail.realname);
@@ -78,10 +76,9 @@
                     sessionStorage.setItem("profession", response.data.result.userInfoDetail.profession);
                     sessionStorage.setItem("idcard", response.data.result.userInfoDetail.idcard);
 
-                    // alert(sessionStorage.getItem('token'));
                     router.push('/');
                 }, response => {
-                    alert('error')
+                    Message.error('服务器错误')
                 });
 
 
