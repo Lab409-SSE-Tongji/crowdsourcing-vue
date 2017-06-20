@@ -53,6 +53,7 @@ import "../../common/animate-custom.css";
 import axios from 'axios';
 import server from '../../../config/index';
 import router from '../../router/index.js';
+import { Message } from 'element-ui';
 
 export default{
   name:"register",
@@ -72,22 +73,19 @@ export default{
   },
   methods: {
     register () {
-      axios.post(this.url, this.info)
-      .then(function(response) {
-        if(response.data.status==201){
-          // store.commit('setToken', {token: response.data.result.token});
-          // sessionStorage.setItem("token", response.data.result.token);
-          // alert(sessionStorage.getItem('token'));
-          router.push('login');
-          // alert(store.getters.token);
-          //
-        }else {
-          console.log(response.data.status);
-        }
+        axios.post(this.url, this.info)
+        .then(function(response) {
+            if(response.data.status==201){
+                router.push('/login');
+                Message.success('注册成功');
+            }else {
+                Message.error('注册失败');
+                console.log(response.data.status);
+            }
 
-      }).catch(function (error) {
+        }).catch(function (error) {
         console.log(error);
-      });
+        });
     }
   }
 }

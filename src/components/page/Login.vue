@@ -76,6 +76,7 @@
                     sessionStorage.setItem("profession", response.data.result.userInfoDetail.profession);
                     sessionStorage.setItem("idcard", response.data.result.userInfoDetail.idcard);
 
+                    Message.success('登录成功')
                     router.push('/');
                 }, response => {
                     Message.error('服务器错误')

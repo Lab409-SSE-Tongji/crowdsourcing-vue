@@ -24,6 +24,12 @@ app.post('/api/session', function(req, res, next) {
 	});
 })
 
+app.post('/api/register', function(req, res, next) {
+  res.send({
+    'status':'201'
+  });
+})
+
 
 app.get('/api/user/projectExperience', function(req, res, next) {
   res.send({
@@ -36,6 +42,19 @@ app.get('/api/user/projectExperience', function(req, res, next) {
       'projectRegion': 'ios',
       'projectAddress': 'www.github.com',
       'projectText': 'test'
+    }]
+  });
+})
+
+app.post('/api/user/projectExperience', function(req, res, next) {
+  res.send({
+    'status':'201',
+    'result': [{
+      'certificate': 'test',
+      'project_name': 'test',
+      'project_region': 'test',
+      'project_address': 'test',
+      'project_text': 'test'
     }]
   });
 })
@@ -53,6 +72,12 @@ app.get('/api/requirement', function(req, res, next) {
   });
 })
 
+app.post('/api/requirement', function(req, res, next) {
+  res.send({
+    'status':'201'
+  });
+})
+
 app.get('/api/project', function(req, res, next) {
   res.send({
     'status':'200',
@@ -67,7 +92,31 @@ app.get('/api/project', function(req, res, next) {
   });
 })
 
-
+app.get('/api/requirements', function(req, res, next) {
+  res.send({
+    'status':'200',
+    'result': [{
+      'id': 1,
+      'start_time': '2016-06-07',
+      'end_time': '2016-06-09',
+      'need_manager': 1,
+      'requirement_detail': 'this is why we live',
+      'requirement_state': 'www.github.com',
+      'requirement_name': 'Crowdsourcing',
+      'requirement_type': 'ios'
+    }, {
+      'id': 2,
+      'start_time': '2016-06-04',
+      'end_time': '2016-06-07',
+      'need_manager': 0,
+      'requirement_detail': 'in me the tiger sniff the rose',
+      'requirement_state': 'www.gayhub.com',
+      'requirement_name': 'WebGis',
+      'requirement_type': 'web'
+    }
+    ]
+  });
+})
 
 app.use((req, res, next) => {
     res.send("404 not found");

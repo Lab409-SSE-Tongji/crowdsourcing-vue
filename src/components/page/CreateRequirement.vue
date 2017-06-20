@@ -118,6 +118,7 @@ export default {
                   router.push('/requirement');
                   Message.success("新建需求成功！")
                 }else {
+                  Message.error("新建需求失败！")
                   console.log(response.data.status);
                 }
 
