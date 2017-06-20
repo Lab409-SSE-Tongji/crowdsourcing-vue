@@ -27,7 +27,7 @@ describe('Readme.vue', () => {
       const Constructor = Vue.extend(Readme)
       const vm = new Constructor().$mount()
       Vue.nextTick(() => {
-        expert(v.$el.querySelector('.gender').innerText).toBe('男')
+        expect(v.$el.querySelector('.gender').innerText).toBe('男')
         return Promise().then();
       })
     })
@@ -37,7 +37,7 @@ describe('Readme.vue', () => {
       const Constructor = Vue.extend(Readme)
       const vm = new Constructor().$mount()
       Vue.nextTick(() => {
-        expert(v.$el.querySelector('.profession').innerText).toBe('test')
+        expect(v.$el.querySelector('.profession').innerText).toBe('test')
         return Promise().then();
       })
     })

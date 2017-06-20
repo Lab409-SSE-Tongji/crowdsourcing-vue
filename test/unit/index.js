@@ -1,4 +1,6 @@
-import Vue from 'vue'
+import Vue from 'vue';
+import ElementUI from 'element-ui';
+
 
 Vue.config.productionTip = false
 

@@ -39,6 +39,36 @@ app.get('/api/user/projectExperience', function(req, res, next) {
     }]
   });
 })
+
+app.get('/api/requirement', function(req, res, next) {
+  res.send({
+    'status':'200',
+    'result': [{
+      'requirement_id': 1,
+			'requirement_type':'ios',
+			'requirement_name':'test',
+			'requirement_state': 1
+
+    }]
+  });
+})
+
+app.get('/api/project', function(req, res, next) {
+  res.send({
+    'status':'200',
+    'result': [{
+      'project_id': 1,
+			'project_type':'ios',
+			'project_name':'test',
+			'username':'同济大学软件工程实验室',
+			'project_state': 1
+
+    }]
+  });
+})
+
+
+
 app.use((req, res, next) => {
     res.send("404 not found");
 })

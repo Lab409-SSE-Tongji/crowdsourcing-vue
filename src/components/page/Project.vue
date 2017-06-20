@@ -9,11 +9,11 @@
         <el-table ref="multipleTable" :data="tableData" border tooltip-effect="dark" style="width: 100%">
             <el-table-column type="selection" width="55">
             </el-table-column>
-            <el-table-column prop="project_name" label="项目名称" width="120">
+            <el-table-column class="project_name" prop="project_name" label="项目名称" width="200">
             </el-table-column>
-            <el-table-column prop="project_type" label="项目类型" width="120">
+            <el-table-column class="project_type" prop="project_type" label="项目类型" width="200">
             </el-table-column>
-            <el-table-column prop="username" label="需求方" width="120">
+            <el-table-column class="username" prop="username" label="需求方" width="250">
             </el-table-column>
 <!--             <el-table-column prop="project_name" label="项目名称" width="180">
             </el-table-column> -->
@@ -78,5 +78,3 @@
     }
   }
 </script>
-
-<style src="../../../static/css/datasource.css"></style>

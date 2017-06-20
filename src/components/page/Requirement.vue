@@ -9,13 +9,13 @@
         <el-table ref="multipleTable" :data="tableData" border tooltip-effect="dark" style="width: 100%" >
             <el-table-column type="selection" width="55">
             </el-table-column>
-            <el-table-column prop="requirement_id" label="项目id" width="120">
+            <el-table-column class="requirement_id" prop="requirement_id" label="项目id" width="120">
             </el-table-column>
-            <el-table-column prop="requirement_name" label="项目名称" width="280">
+            <el-table-column class="requirement_name" prop="requirement_name" label="项目名称" width="280">
             </el-table-column>
-            <el-table-column prop="requirement_type" label="项目类型" show-overflow-tooltip>
+            <el-table-column class="requirement_type" prop="requirement_type" label="项目类型" show-overflow-tooltip>
             </el-table-column>
-            <el-table-column prop="tag" label="标签" width="100" :filters="[{ text: '发布中', value: '发布中' }, { text: '开发中', value: '开发中' },{ text: '已完成', value: '已完成' }]" :filter-method="filterTag" filter-placement="bottom-end">
+            <el-table-column class="tag" prop="tag" label="标签" width="100" :filters="[{ text: '发布中', value: '发布中' }, { text: '开发中', value: '开发中' },{ text: '已完成', value: '已完成' }]" :filter-method="filterTag" filter-placement="bottom-end">
               <template scope="scope">
                 <el-tag
                   :type="scope.row.tag === '开发中' ? 'primary' : 'success'"

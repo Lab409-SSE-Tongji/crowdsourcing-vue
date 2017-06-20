@@ -7,7 +7,7 @@ describe('Skill',() => {
       const Constructor = Vue.extend(Skill)
       const vm = new Constructor().$mount()
       Vue.nextTick(() => {
-        expert(v.$el.querySelector('.projectName').innerText).toBe('CrowdSourcing')
+        expect(v.$el.querySelector('.projectName').innerText).to.equal('test')
         return Promise().then();
       })
     })
