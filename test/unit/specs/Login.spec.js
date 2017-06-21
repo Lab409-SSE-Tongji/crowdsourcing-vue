@@ -8,7 +8,7 @@ describe('Login.vue', () => {
       const vm = new Constructor().$mount()
 
       expect(vm.$el.querySelector('.container h1').textContent)
-        .to.equal('Welcome to CrowdSourcing Platform')
+        .to.equal('Welcome to CrowdSourcing Platform test')
     })
   })
   describe('Login',() =>{
@@ -19,7 +19,7 @@ describe('Login.vue', () => {
       Vue.nextTick(() => {
         vm.login()
         console.log(sessionStorage.getItem('token'))
-        expect(sessionStorage.getItem('token')).toBe('t')
+        expect(sessionStorage.getItem('token')).toBe('test')
         return Promise().then();
       })
 
