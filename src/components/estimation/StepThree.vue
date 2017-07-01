@@ -61,6 +61,7 @@
 </template>
 
 <script>
+    import server from '../../../config/index';
     export default {
         data: function(){
             return {
@@ -87,7 +88,7 @@
             if(this.$route.query.id){
                 var id = this.$route.query.id;
                 this.queryId = id;
-                this.$http.get('http://127.0.0.1:8011/estimation/getRequirement/'+id).then(response => {
+                this.$http.get(server.url + '/estimation/getRequirement/'+id).then(response => {
 
                    console.log("success");
                    console.log(response.body.entities);
@@ -123,7 +124,7 @@
             },
             sort: function(){
                 var id = this.queryId;
-                this.$http.get('http://127.0.0.1:8011/estimation/sortOutAllEntity/'+id).then(response => {
+                this.$http.get(server.url + '/estimation/sortOutAllEntity/'+id).then(response => {
 
                    this.entities = [];
                    for(var i=0; i<response.body.length; i++){
@@ -167,7 +168,7 @@
                 var id = this.queryId;
                 var entities = this.entities;
                 var object = {entities:this.entities};
-                this.$http.post('http://127.0.0.1:8011/estimation/addAllEntity/'+id,object).then(response => {
+                this.$http.post(server.url + '/estimation/addAllEntity/'+id,object).then(response => {
                     if(flag == 1){
                         var param = {id:this.queryId};
                         this.$router.push( {path:'/step4', query: param});

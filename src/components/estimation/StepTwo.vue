@@ -121,6 +121,7 @@
 </template>
 
 <script>
+    import server from '../../../config/index';
     export default {
         data: function(){
             return {
@@ -155,7 +156,7 @@
             if(this.$route.query.id){
                 var id = this.$route.query.id;
                 this.queryId = id;
-                this.$http.get('http://127.0.0.1:8011/estimation/getRequirement/'+id).then(response => {
+                this.$http.get(server.url + '/estimation/getRequirement/'+id).then(response => {
 
                    console.log("success");
                    console.log(response.body.transactions);
@@ -245,7 +246,7 @@
             save:function(flag){
                 var id = this.queryId;
                 var transactions = this.transactions;
-                this.$http.post('http://127.0.0.1:8011/estimation/addAllTransaction/'+id,{transactions}).then(response => {
+                this.$http.post(server.url + '/estimation/addAllTransaction/'+id,{transactions}).then(response => {
                     console.log("success");
                     if(flag == 1){
                         var param = {id:this.queryId};

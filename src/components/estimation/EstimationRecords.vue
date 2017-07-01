@@ -15,6 +15,7 @@
 <script>
     import axios from 'axios';
     import Datasource from 'vue-datasource';
+    import server from '../../../config/index';
     export default {
         data: function(){
             const self = this;
@@ -92,7 +93,7 @@
             },
             removeRecord(id){
                 console.log("remove"+id);
-                this.$http.get('http://localhost:8011/estimation/removeOneRequirement/'+id).then(response => {
+                this.$http.get(server.url + '/estimation/removeOneRequirement/'+id).then(response => {
 
                    console.log("success");
 
@@ -108,7 +109,7 @@
                 axios.get('/static/estimationrecords.json').then( (res) => {
                     var response_data = res.data;
 
-                    this.$http.get('http://localhost:8011/estimation/getAllRequirements').then(response => {
+                    this.$http.get(server.url + '/estimation/getAllRequirements').then(response => {
 
                         //注意如果mongo字段为空，前段会报错的
                        for(var i=0; i<response.body.length; i++){

@@ -40,6 +40,8 @@
 </template>
 
 <script>
+    import server from '../../../config/index';
+
     export default {
         data: function(){
             return {
@@ -57,7 +59,7 @@
             if(this.$route.query.id){
                 var id = this.$route.query.id;
                 this.queryId = id;
-                this.$http.get('http://127.0.0.1:8011/estimation/getRequirement/'+id).then(response => {
+                this.$http.get(server.url + '/estimation/getRequirement/'+id).then(response => {
 
                     console.log("success");
                    console.log(response.body.description);
@@ -91,7 +93,7 @@
                 if(this.$route.query.id){
                     var id = this.queryId;
                     var description = this.form;
-                    this.$http.post('http://127.0.0.1:8011/estimation/addDescription/'+id,description).then(response => {
+                    this.$http.post(server.url + '/estimation/addDescription/'+id,description).then(response => {
                          console.log("save success");
                          if(flag == 1){
                             var param = {id:this.queryId};
@@ -104,12 +106,12 @@
                     });
                 }
                 else{
-                    this.$http.get('http://127.0.0.1:8011/estimation/addRequirement').then(response => {
+                    this.$http.get(server.url + '/estimation/addRequirement').then(response => {
                         var id = response.body;
                         this.insertId = id;
                         console.log("insertid:"+this.insertId);
                         var description = this.form;
-                        this.$http.post('http://127.0.0.1:8011/estimation/addDescription/'+id,description).then(response => {
+                        this.$http.post(server.url + '/estimation/addDescription/'+id,description).then(response => {
                              console.log("save success");
                              if(flag == 1){
                                  var param = {id:this.insertId};

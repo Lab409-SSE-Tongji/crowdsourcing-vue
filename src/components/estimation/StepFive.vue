@@ -92,6 +92,7 @@
 </template>
 
 <script>
+    import server from '../../../config/index';
     export default {
         data: function() {
             return{
@@ -115,7 +116,7 @@
             if(this.$route.query.id){
                 var id = this.$route.query.id;
                 this.queryId = id;
-                this.$http.get('http://127.0.0.1:8011/estimation/getRequirement/'+id).then(response => {
+                this.$http.get(server.url + '/estimation/getRequirement/'+id).then(response => {
 
                    
                    var res_vaf = response.body.vaf;
@@ -150,7 +151,7 @@
             save:function(flag){
                 var id = this.queryId;
                 var vaf = this.vaf;
-                this.$http.post('http://127.0.0.1:8011/estimation/addVAF/'+id,vaf).then(response => {
+                this.$http.post(server.url + '/estimation/addVAF/'+id,vaf).then(response => {
                     if(flag == 1){
                         this.$http.post('http://127.0.0.1:8011/fp/fp/'+id,vaf).then(response => {
                             var fp = response.body;

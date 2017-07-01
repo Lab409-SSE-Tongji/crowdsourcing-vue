@@ -27,6 +27,7 @@
 </template>
 
 <script>
+    import server from '../../../config/index';
     export default {
         data: function(){
             return {
@@ -42,7 +43,7 @@
         methods: {
             submit() {
                 var id = this.queryId;
-                this.$http.get('http://localhost:8011/fp/ufp/'+id).then(response => {
+                this.$http.get(server.url + '/fp/ufp/'+id).then(response => {
                     var ufp = response.body;
                     this.$message.success('估算完成！共计'+ufp+"个未调整功能点");
                 }, response => {
