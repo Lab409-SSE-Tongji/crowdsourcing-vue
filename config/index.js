@@ -5,7 +5,7 @@ module.exports = {
     // dev server
     // url: '',
     // production server
-    url: 'http://202.120.167.198:8080',
+    url: 'http://localhost:8080',
     build: {
         env: require('./prod.env'),
         index: path.resolve(__dirname, '../dist/index.html'),

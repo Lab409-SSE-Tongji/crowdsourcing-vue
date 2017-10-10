@@ -70,11 +70,11 @@
             login () {
                     axios.post(this.url, this.info).then(response => {
                     sessionStorage.setItem("token", response.data.result.token);
-                    sessionStorage.setItem("id", response.data.result.userInfoDetail.id);
-                    sessionStorage.setItem("realname", response.data.result.userInfoDetail.realname);
-                    sessionStorage.setItem("gender", response.data.result.userInfoDetail.gender);
-                    sessionStorage.setItem("profession", response.data.result.userInfoDetail.profession);
-                    sessionStorage.setItem("idcard", response.data.result.userInfoDetail.idcard);
+                    \\sessionStorage.setItem("id", response.data.result.userInfoDetail.id);
+                    \\sessionStorage.setItem("realname", response.data.result.userInfoDetail.realname);
+                    \\sessionStorage.setItem("gender", response.data.result.userInfoDetail.gender);
+                    \\sessionStorage.setItem("profession", response.data.result.userInfoDetail.profession);
+                    \\sessionStorage.setItem("idcard", response.data.result.userInfoDetail.idcard);
 
                     Message.success('登录成功')
                     router.push('/');
