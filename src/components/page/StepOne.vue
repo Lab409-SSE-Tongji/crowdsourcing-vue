@@ -19,7 +19,7 @@
                 </el-form-item>
        
                 <el-form-item prop="projectDescription" label="项目简介" :rules="[
-                    { required: true, message: '项目简介不能为空', trigger: 'blur' },
+                    { required: true, message: '项目简介不能为空', trigger: 'blur' }，
                     { max: 50, message: '长度要在50个字符以内', trigger: 'blur'}
                     ]">
                     <el-input type="textarea" v-model="form.projectDescription" placeholder="文字不得多于50个字"></el-input>

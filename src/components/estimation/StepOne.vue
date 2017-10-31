@@ -14,7 +14,7 @@
                     { required: true, message: '请输入项目名称', trigger: 'blur' },
                     { max: 20, message: '长度要在20个字符以内', trigger: 'blur'}
                     ]">
-                    <el-input v-model="form.projectName" placeholder="名称不得多于20个字"></el-input>
+                    <el-input v-model="form.projectName" placeholder="请输入项目名称"></el-input>
                    
                 </el-form-item>
        
@@ -22,7 +22,28 @@
                     { required: true, message: '项目简介不能为空', trigger: 'blur' },
                     { max: 50, message: '长度要在50个字符以内', trigger: 'blur'}
                     ]">
-                    <el-input type="textarea" v-model="form.projectDescription" placeholder="文字不得多于50个字"></el-input>
+                    <el-input type="textarea" v-model="form.projectDescription" placeholder="请输入项目简介"></el-input>
+                </el-form-item>
+
+                <el-form-item prop="projectContact" label="联系人员" :rules="[
+                    { required: true, message: '联系人员不能为空', trigger: 'blur' }
+                    ]">
+                    <el-input type="textarea" v-model="form.projectContact" placeholder="请输入项目联系人"></el-input>
+                </el-form-item>
+
+                <el-form-item prop="contactNumber" label="联系电话" :rules="[
+                    { required: true, message: '联系电话不能为空', trigger: 'blur' }
+                    ]">
+                    <el-input type="textarea" v-model="form.contactNumber" placeholder="请输入项目联系人电话"></el-input>
+                </el-form-item>
+
+                <el-form-item prop="estimationMethod" label="估算方法" :rules="[
+                    { required: true, message: '估算方法不能为空', trigger: 'change' }
+                    ]">
+                    <el-select placeholder="请选择估算方法">
+                        <el-option label="IFPUG" value="IFPUG"></el-option>
+                        <el-option label="COSMIC" value="COSMIC"></el-option>
+                    </el-select>
                 </el-form-item>
             </el-form>
 
@@ -45,7 +66,9 @@
             return {
                 form: {
                     projectName: '',
-                    projectDescription: ''
+                    projectDescription: '',
+                    projectContact:'',
+                    contactNumber:''
                     
                 },
                 queryId:'',
@@ -63,7 +86,9 @@
                    console.log(response.body.description);
                    var description = response.body.description;
                    this.form.projectName = description.projectName;
-                   this.form.projectDescription = description.projectDescription
+                   this.form.projectDescription = description.projectDescription;
+                   this.form.projectContact = description.projectContact;
+                   this.form.contactNumber = description.contactNumber;
 
                  }, response => {
                   
