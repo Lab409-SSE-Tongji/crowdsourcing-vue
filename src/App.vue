@@ -1,21 +1,29 @@
 <template>
-    <div id="app">
-        <router-view></router-view>
-    </div>
+  <div id="app">
+    <!-- <img src="./assets/logo.png"> -->
+    <router-view/>
+  </div>
 </template>
+
 <script>
-</script>
-<style>
-	@font-face {
-    font-family: 'PingFang Light';
-
-    src:
-         url('assets/fonts/PingFang Light.ttf') format('truetype') ;
-    font-weight: normal;
-    font-style: normal;
+export default {
+  name: 'app'
 }
-    @import "../static/css/main.css";
-    @import "../static/css/theme-green/color-green.css";  /*浅绿色主题*/
-   /* @import "../static/css/color-dark.css";*/
+</script>
 
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body{
+  margin: 0px;
+}
+
+a{
+  text-decoration: none;
+  color:#ffffff;
+}
 </style>

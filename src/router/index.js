@@ -1,103 +1,179 @@
-    import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from 'vue'
+import Router from 'vue-router'
+// import HelloWorld from '@/components/HelloWorld'
+import Home from '@/views/Home'
+import Login from '@/views/Login'
+import Register from '@/views/Register'
+import Center from '@/views/Center'
+import Projects from '@/views/Projects'
+import ProjectDetail from '@/views/ProjectDetail'
+import Workers from '@/views/Workers'
+import store from '../vuex/store'
 
-Vue.use(Router);
+import StepOne from '@/views/user/StepOne'
+import StepTwo from '@/views/user/StepTwo'
+import StepThree from '@/views/user/StepThree'
+import StepFour from '@/views/user/StepFour'
+import VER from  '@/views/user/view_estimated_report'
+import MVER from '@/views/manager/ManagerEstView_report'
+import ManagerStepTwo from '@/views/manager/ManagerStepTwo'
+import ManagerStepThree from '@/views/manager/ManagerStepThree'
+import ManagerIFPUGReport from '@/views/manager/ManagerReport'
+import FunctionDiv from '@/views/manager/FunctionDiv'
+// 引入样式
+import 'vue-easytable/libs/themes-base/index.css'
+// 导入 table 和 分页组件
+import {VTable,VPagination} from 'vue-easytable'
 
-export default new Router({
-    routes: [
-        {
-            path: '/',
-            component: resolve => require(['../components/common/Home.vue'], resolve),
-            children:[
-                {
-                    path: '/readme',
-                    component: resolve => require(['../components/page/Readme.vue'], resolve)
-                },
-                {
-                    path: '/skill',
-                    component: resolve => require(['../components/page/Skill.vue'], resolve)
-                },
-                {
-                    path: '/inputrequirement',
-                    component: resolve => require(['../components/page/InputRequirement.vue'], resolve)     // vue-datasource组件
-                },
-                {
-                    path: '/requirement',
-                    component: resolve => require(['../components/page/Requirement.vue'], resolve)     // vue-datasource组件
-                },
-                {
-                    path: '/create',
-                    component: resolve => require(['../components/page/CreateRequirement.vue'], resolve)
-                },
-                {
-                    path: '/step1',
-                    component: resolve => require(['../components/estimation/StepOne.vue'], resolve)
-                },
-                //{
-                //    path: '/step2',
-                //    component: resolve => require(['../components/estimation/StepTwo.vue'], resolve)
-                //},
-                //{
-                //    path: '/step3',
-                //    component: resolve => require(['../components/estimation/StepThree.vue'], resolve)
-                //},
-                //{
-                //    path: '/step4',
-                //    component: resolve => require(['../components/estimation/StepFour.vue'], resolve)
-                //},
-                //{
-                //    path: '/step5',
-                //    component: resolve => require(['../components/estimation/StepFive.vue'], resolve)
-                //},
-                //{
-                //    path: '/step6',
-                //    component: resolve => require(['../components/estimation/StepSix.vue'], resolve)
-                //},
-                {
-                    path: '/estimations',
-                    component: resolve => require(['../components/estimation/EstimationRecords.vue'], resolve)
-                },
-                {
-                    path: '/report',
-                    component: resolve => require(['../components/estimation/EstimationReport.vue'], resolve)
-                },
-                {
-                    path: '/records',
-                    component: resolve => require(['../components/page/Requirement.vue'], resolve)
-                },
-                {
-                    path: '/skillupload',
-                    component: resolve => require(['../components/page/SkillUpload.vue'], resolve)       // Vue-Core-Image-Upload组件
-                },
-                {
-                    path: '/requirement/:id',
-                    name:'singlerequirement',
-                    component: resolve => require(['../components/page/SingleRequirement.vue'], resolve)
-                },
-                {
-                    path: '/project',
-                    component: resolve => require(['../components/page/Project.vue'], resolve)       // Vue-Core-Image-Upload组件
-                }
+// 注册到全局
+Vue.component(VTable.name, VTable)
+Vue.component(VPagination.name, VPagination)
 
-            ]
-        },
-        {
-            path: '/login',
-            component: resolve => require(['../components/page/Login.vue'], resolve)
-        },
-        {
-            path:'/register',
-            component:resolve =>require(['../components/page/Register.vue'],resolve)
-        },
-        {
-          path:'/market',
-          component:resolve =>require(['../components/market/Market.vue'],resolve)
-        },
-        {
-          path:'/market/:id',
-          name:'publicSingleRequirement',
-          component: resolve => require(['../components/market/SingleRequirement.vue'], resolve)
-        }
+Vue.use(Router)
 
-    ]
+const router = new Router({
+    routes: [{
+        path: '/',
+        name: 'Home',
+        component: Home
+    }, {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    }, {
+        path: '/register',
+        name: 'Register',
+        component: Register
+    }, {
+        path: '/center',
+        name: 'Center',
+        meta: {
+            requireAuth: true
+        },
+        component: Center
+    }, {
+        path: '/projects',
+        name: 'Projects',
+        component: Projects
+    }, {
+        path: '/projectDetail',
+        name: 'ProjectDetail',
+        // meta: {
+        //     requireProjectId: true
+        // },
+        component: ProjectDetail
+    },{
+        path:'/workers',
+        name:"Workers",
+        component: Workers
+    },{
+        path: '/stepone/:rId',
+        name: 'StepOne',
+        meta: {
+            requireAuth: true
+        },
+        component: StepOne
+    },{
+        path: '/steptwo/:rId',
+        name: 'StepTwo',
+        meta: {
+            requireAuth: true
+        },
+        component: StepTwo
+    },{
+        path: '/ver',
+        name: 'VER',
+        meta: {
+            requireAuth: true
+        },
+        component: VER
+    },{
+        path: '/mver',
+        name: 'MVER',
+        meta: {
+            requireAuth: true
+        },
+        component: MVER
+    },{
+        path: '/stepthree/:rId',
+        name: 'StepThree',
+        meta: {
+            requireAuth: true
+        },
+        component:StepThree
+    },{
+        path: '/stepfour',
+        name: 'StepFour',
+        meta: {
+            requireAuth: true
+        },
+        component:StepFour
+    },{
+        path: '/managersteptwo/:rId',
+        name: 'ManagerStepTwo',
+        meta: {
+            requireAuth: true
+        },
+        component:ManagerStepTwo
+    },{
+        path: '/managerstepthree/:rId',
+        name: 'ManagerStepThree',
+        meta: {
+            requireAuth: true
+        },
+        component:ManagerStepThree
+    },{
+        path: '/managerIFPUGreport/:rId',
+        name: 'ManagerIFPUGReport',
+        meta: {
+            requireAuth: true
+        },
+        component:ManagerIFPUGReport
+    },{
+        path: '/functiondiv/:rId',
+        name: 'FunctionDiv',
+        meta: {
+            requireAuth: true
+        },
+        component:FunctionDiv
+    }]
 })
+
+//  判断是否需要登录权限 以及是否登录
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(res => res.meta.requireAuth)) {// 判断是否需要登录权限
+        if(store.state.user.tokenid){// 判断是否登录
+            next()
+        }
+        else if(sessionStorage.tokenid){
+            store.state.user.tokenid = sessionStorage.tokenid;
+            store.state.user.username = sessionStorage.username;
+            store.state.user.realname = sessionStorage.realname;
+            store.state.user.mobile = sessionStorage.mobile;
+            store.state.user.email = sessionStorage.email;
+            next()
+        }
+        else {// 没登录则跳转到登录界面
+            next({
+            path: '/login',
+            query: {redirect: to.fullPath}
+            })
+        }
+    }
+    else if(to.matched.some(res => res.meta.requireProjectId)) {
+        if(store.state.projectId){
+            next()
+        }
+        else {
+            next({
+                path: '/projects',
+                query: {redirect: to.fullPath}
+            })
+        }
+    }
+    else {
+      next()
+    }
+  });
+
+export default router
