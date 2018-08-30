@@ -5,8 +5,8 @@ module.exports = {
     // dev server
     // url: '',
     // production server
-    url: 'http://10.60.38.173:30001',
-    estimation: 'http://10.60.38.173:8011',
+    url: 'http://172.16.101.90:30001',
+    estimation: 'http://172.16.101.91:8011',
     build: {
         env: require('./prod.env'),
         index: path.resolve(__dirname, '../dist/index.html'),

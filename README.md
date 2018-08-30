@@ -19,3 +19,17 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+# Build Docker
+
+npm install
+
+npm run build
+
+cd ..
+
+mv mart-vue/dist/ dist/
+
+docker build -t nee11235/crowdsourcing-frontend .
+
+docker run -d -p 80:80 nee11235/crowdsourcing-frontend
